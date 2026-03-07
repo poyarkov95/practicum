@@ -25,7 +25,7 @@ public interface IEventService
     /// </summary>
     /// <param name="model"></param>
     /// <returns>овое событие</returns>
-    Event Create(Event model);
+    Event? Create(Event model);
     
     /// <summary>
     /// Обновить событе

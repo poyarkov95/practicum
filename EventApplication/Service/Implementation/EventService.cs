@@ -21,8 +21,13 @@ public class EventService : IEventService
         return eventItem;
     }
 
-    public Event Create(Event model)
+    public Event? Create(Event model)
     {
+        if (Events.Any(x => x.Id == model.Id))
+        {
+            return null;
+        }
+        
         Events.Add(model);
         return model;
     }

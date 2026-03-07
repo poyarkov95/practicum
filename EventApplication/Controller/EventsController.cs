@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EventApplication.Controller;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("[controller]")]
 public class EventsController(IEventService eventService) : ControllerBase
 {
     [HttpGet]
@@ -33,23 +33,29 @@ public class EventsController(IEventService eventService) : ControllerBase
         
         var model = EventMapper.MapToEvent(eventDto);
         var eventItem = eventService.Create(model);
-        return CreatedAtAction(nameof(Create), EventMapper.MapToDto(eventItem));
+        return eventItem == null ? BadRequest("Событие с таким идентификатором уже существует") 
+            : CreatedAtAction(nameof(Create), EventMapper.MapToDto(eventItem));
     }
 
-    [HttpPut]
-    public IActionResult Update(EventDto eventDto)
+    [HttpPut("{id:Guid}")]
+    public IActionResult Update(Guid id, EventDto eventDto)
     {
         if (!ModelState.IsValid)
         {
             return BadRequest(ModelState);
-        } 
-        
+        }
+
+        if (id != eventDto.Id)
+        {
+            return BadRequest("Идентификатор не совпадает с идентификатором из модели");
+        }
+
         var model = EventMapper.MapToEvent(eventDto);
         var eventItem = eventService.Update(model);
         return eventItem == null ? NotFound() : Ok(EventMapper.MapToDto(eventItem));
     }
 
-    [HttpDelete]
+    [HttpDelete("{id:Guid}")]
     public IActionResult Delete(Guid id)
     {
         var result = eventService.Delete(id);

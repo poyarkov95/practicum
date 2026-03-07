@@ -5,7 +5,7 @@ namespace EventApplication.Models;
 /// <summary>
 /// DTO Модель события
 /// </summary>
-public class EventDto : IValidatableObject
+public class EventDto
 {
     /// <summary>
     /// Уникальный идентификатор
@@ -34,15 +34,4 @@ public class EventDto : IValidatableObject
     /// </summary>
     [Required(ErrorMessage = "Дата окончания события обязательна для заполнения")]
     public required DateTime EndAt { get;set; }
-
-    public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-    {
-        if (EndAt <= StartAt)
-        {
-            yield return new ValidationResult(
-                "EndAt должно быть позже StartAt.",
-                new[] { nameof(EndAt) }
-            );
-        }
-    }
 }

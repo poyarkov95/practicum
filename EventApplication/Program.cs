@@ -1,5 +1,7 @@
 using System.Reflection;
 using EventApplication.Extensions;
+using EventApplication.Validation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,11 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 builder.Services.AddControllers()
+    .AddFluentValidation(fv =>
+    {
+        fv.RegisterValidatorsFromAssemblyContaining<EventValidator>();
+        fv.AutomaticValidationEnabled = true;
+    })
     .ConfigureApiBehaviorOptions(options =>
     {
         options.SuppressModelStateInvalidFilter = true;

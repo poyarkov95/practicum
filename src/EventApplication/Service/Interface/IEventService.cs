@@ -11,32 +11,32 @@ public interface IEventService
     /// Получить список событий
     /// </summary>
     /// <returns>Список событий</returns>
-    IEnumerable<Event> GetAll();
+    PaginatedResult<EventDto> GetAll(string? title, DateTime? from, DateTime? to, int? page = 1, int? pageSize = 10);
     
     /// <summary>
     /// Получить событие по идентификатору
     /// </summary>
     /// <param name="id"></param>
     /// <returns>Возвращает событие</returns>
-    Event? GetById(Guid id);
+    EventDto GetById(Guid id);
     
     /// <summary>
     /// Создать событие
     /// </summary>
     /// <param name="model"></param>
     /// <returns>овое событие</returns>
-    Event? Create(Event model);
+    EventDto Create(Event model);
     
     /// <summary>
     /// Обновить событе
     /// </summary>
     /// <param name="model"></param>
     /// <returns>Обновленное событие</returns>
-    Event? Update(Event model);
+    EventDto Update(Event model);
     
     /// <summary>
     /// Удалить событие
     /// </summary>
     /// <param name="id"></param>
-    bool Delete(Guid id);
+    void Delete(Guid id);
 }

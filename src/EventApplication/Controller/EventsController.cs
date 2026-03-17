@@ -1,6 +1,8 @@
+using EventApplication.Exception;
 using EventApplication.Mapper;
 using EventApplication.Models;
 using EventApplication.Service.Interface;
+using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventApplication.Controller;
@@ -10,17 +12,19 @@ namespace EventApplication.Controller;
 public class EventsController(IEventService eventService) : ControllerBase
 {
     [HttpGet]
-    public IActionResult GetAll()
+    public IActionResult GetAll([FromQuery] string? title,
+        [FromQuery] DateTime? from,
+        [FromQuery] DateTime? to,
+        [FromQuery] int? page,
+        [FromQuery] int? pageSize)
     {
-        var events = eventService.GetAll();
-        return Ok(events);
+        return Ok(eventService.GetAll(title, from, to, page, pageSize));
     }
 
     [HttpGet("{id:Guid}")]
     public IActionResult GetById(Guid id)
     {
-        var eventItem =  eventService.GetById(id);
-        return eventItem == null ? NotFound() : Ok(EventMapper.MapToDto(eventItem));
+        return Ok(eventService.GetById(id));
     }
 
     [HttpPost]
@@ -28,13 +32,16 @@ public class EventsController(IEventService eventService) : ControllerBase
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            var errors = ModelState.Values
+                .SelectMany(state => state.Errors)
+                .Select(error => error.ErrorMessage)
+                .ToList();
+            
+            throw new ValidationException(string.Join(", ", errors));
         } 
         
         var model = EventMapper.MapToEvent(eventDto);
-        var eventItem = eventService.Create(model);
-        return eventItem == null ? BadRequest("Событие с таким идентификатором уже существует") 
-            : CreatedAtAction(nameof(Create), EventMapper.MapToDto(eventItem));
+        return CreatedAtAction(nameof(Create), eventService.Create(model));
     }
 
     [HttpPut("{id:Guid}")]
@@ -42,23 +49,27 @@ public class EventsController(IEventService eventService) : ControllerBase
     {
         if (!ModelState.IsValid)
         {
-            return BadRequest(ModelState);
+            var errors = ModelState.Values
+                .SelectMany(state => state.Errors)
+                .Select(error => error.ErrorMessage)
+                .ToList();
+            
+            throw new ValidationException(string.Join(", ", errors));
         }
-
+        
         if (id != eventDto.Id)
         {
-            return BadRequest("Идентификатор не совпадает с идентификатором из модели");
+            throw new EventNotFoundException("Идентификатор не совпадает с идентификатором из модели");
         }
 
         var model = EventMapper.MapToEvent(eventDto);
-        var eventItem = eventService.Update(model);
-        return eventItem == null ? NotFound() : Ok(EventMapper.MapToDto(eventItem));
+        return Ok(eventService.Update(model));
     }
 
     [HttpDelete("{id:Guid}")]
     public IActionResult Delete(Guid id)
     {
-        var result = eventService.Delete(id);
-        return result ?  Ok() : NotFound();
+        eventService.Delete(id);
+        return Ok();
     }
 }

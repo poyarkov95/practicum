@@ -4,14 +4,35 @@
     <projectFile profileName="http">EventApplication.csproj</projectFile>
     <projectFile profileName="https">EventApplication.csproj</projectFile>
   </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="2cf73f89-09f1-49bd-8c8c-1ddc7792d617" name="Changes" comment="" />
+    <list default="true" id="2cf73f89-09f1-49bd-8c8c-1ddc7792d617" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Exception/EventAlreadyExistsException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Middleware/GlobalExceptionHandlingMiddleware.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/PaginatedResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/EventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/EventsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Implementation/EventService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Implementation/EventService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Interface/IEventService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Interface/IEventService.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -26,27 +47,43 @@
     &quot;accountId&quot;: &quot;c75d03ba-9e58-4a9a-98b6-72bf291034c1&quot;
   }
 }</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/656c392daf503fe14a1fe53fc449dbae6fe48d895df4a039d1ca03e2d837/ProblemDetails.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7f17ec8a792336f22d4db3723fbddcb12fa39ff14bfda85d9ea332462b2019f2/StatusCodes.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Exception/EventAlreadyExistsException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Middleware/GlobalExceptionHandlingMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Models/EventRegistryDto.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Models/PaginatedResult.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 1
 }</component>
   <component name="ProjectId" id="3AdA3W8JUOaqR4OqcvXRL52WXQF" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;sprint-1&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;SolutionBuilderGeneralOptionsPage&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.EventApplication: http.executor": "Debug",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "sprint-2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "SolutionBuilderGeneralOptionsPage",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.EventApplication: http">
     <configuration name="EventApplication: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/EventApplication.csproj" />
@@ -91,6 +128,7 @@
       <workItem from="1772911880145" duration="46000" />
       <workItem from="1772911933999" duration="11000" />
       <workItem from="1772911958954" duration="196000" />
+      <workItem from="1773764986776" duration="5963000" />
     </task>
     <task id="LOCAL-00001" summary="Перенес все в src папку">
       <option name="closed" value="true" />
@@ -139,6 +177,32 @@
           <properties exception="System.Threading.ThreadAbortException" breakIfHandledByOtherCode="false" displayValue="System.Threading.ThreadAbortException" />
           <option name="timeStamp" value="3" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Service/Implementation/EventService.cs</url>
+          <line>33</line>
+          <properties documentPath="$PROJECT_DIR$/Service/Implementation/EventService.cs" containingFunctionPresentation="Method 'GetAll'">
+            <startOffsets>
+              <option value="882" />
+            </startOffsets>
+            <endOffsets>
+              <option value="908" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Service/Implementation/EventService.cs</url>
+          <line>16</line>
+          <properties documentPath="$PROJECT_DIR$/Service/Implementation/EventService.cs" containingFunctionPresentation="Method 'GetAll'">
+            <startOffsets>
+              <option value="502" />
+            </startOffsets>
+            <endOffsets>
+              <option value="543" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

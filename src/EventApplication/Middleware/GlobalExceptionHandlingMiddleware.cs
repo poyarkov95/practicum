@@ -54,4 +54,5 @@ public class GlobalExceptionHandlingMiddleware(
             EventNotFoundException => StatusCodes.Status404NotFound,
             _ => StatusCodes.Status500InternalServerError
         };   
+    
 }

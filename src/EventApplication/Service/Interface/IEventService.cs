@@ -11,7 +11,7 @@ public interface IEventService
     /// Получить список событий
     /// </summary>
     /// <returns>Список событий</returns>
-    PaginatedResult<EventDto> GetAll(string? title, DateTime? from, DateTime? to, int? page = 1, int? pageSize = 10);
+    PaginatedResult<EventDto> GetAll(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10);
     
     /// <summary>
     /// Получить событие по идентификатору

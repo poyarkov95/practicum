@@ -12,7 +12,7 @@ public class EventService : IEventService
 {
     private ICollection<Event> Events { get; } = [];
 
-    public PaginatedResult<EventDto> GetAll(string? title, DateTime? from, DateTime? to, int? page = 1, int? pageSize = 10)
+    public PaginatedResult<EventDto> GetAll(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10)
     {
         var query = Events as IEnumerable<Event>;
 

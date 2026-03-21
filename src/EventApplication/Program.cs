@@ -55,5 +55,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.AddExceptionMiddleware();
 app.MapControllers();
 app.Run();

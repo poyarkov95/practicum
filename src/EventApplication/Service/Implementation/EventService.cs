@@ -18,7 +18,7 @@ public class EventService : IEventService
 
         if (!string.IsNullOrEmpty(title))
         {
-            query = query.Where(s => s.Title == title);
+            query = query.Where(s => s.Title.Contains(title, StringComparison.OrdinalIgnoreCase));
         }
 
         if (from != null)

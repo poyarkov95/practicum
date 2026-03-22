@@ -1,6 +1,6 @@
 using EventApplication.Exception;
+using EventApplication.Models;
 using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
 
 namespace EventApplication.Middleware;
 
@@ -22,29 +22,18 @@ public class GlobalExceptionHandlingMiddleware(
 
     private async Task HandleException(HttpContext httpContext, System.Exception ex)
     {
-        logger.LogError(
-            ex,
-            "Unhandled exception. Method={Method}, Path={Path}",
-            httpContext.Request.Method,
-            httpContext.Request.Path);
-            
         if (httpContext.Response.HasStarted)
         {
             return;
         }
 
         var statusCode = MapStatusCode(ex);
-        
+        var errorResponse = CreateErrorResponse(ex);
+
         httpContext.Response.StatusCode = statusCode;
         httpContext.Response.ContentType = "application/json";
 
-        var error = new ProblemDetails
-        {
-            Status = statusCode,
-            Detail = ex.Message
-        };
-
-        await httpContext.Response.WriteAsJsonAsync(error);
+        await httpContext.Response.WriteAsJsonAsync(errorResponse);
     }
 
     private static int MapStatusCode(System.Exception ex)
@@ -54,5 +43,20 @@ public class GlobalExceptionHandlingMiddleware(
             EventNotFoundException => StatusCodes.Status404NotFound,
             _ => StatusCodes.Status500InternalServerError
         };   
-    
+    private static ErrorResponse CreateErrorResponse(System.Exception ex)
+    {
+        var errorResponse = new ErrorResponse
+        {
+            Message = ex.Message
+        };
+
+        if (ex is ValidationException validationException)
+        {
+            errorResponse.Errors = validationException.Errors
+                .Select(error => error.ErrorMessage)
+                .ToList();
+        }
+
+        return errorResponse;
+    }
 }

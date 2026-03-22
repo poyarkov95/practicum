@@ -2,7 +2,6 @@ using EventApplication.Exception;
 using EventApplication.Mapper;
 using EventApplication.Models;
 using EventApplication.Service.Interface;
-using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventApplication.Controller;
@@ -37,7 +36,11 @@ public class EventsController(IEventService eventService) : ControllerBase
                 .Select(error => error.ErrorMessage)
                 .ToList();
             
-            throw new ValidationException(string.Join(", ", errors));
+            return BadRequest(new ErrorResponse
+            {
+                Message = "Ошибка валидации",
+                Errors = errors
+            });
         } 
         
         var model = EventMapper.MapToEvent(eventDto);
@@ -54,7 +57,11 @@ public class EventsController(IEventService eventService) : ControllerBase
                 .Select(error => error.ErrorMessage)
                 .ToList();
             
-            throw new ValidationException(string.Join(", ", errors));
+            return BadRequest(new ErrorResponse
+            {
+                Message = "Ошибка валидации",
+                Errors = errors
+            });
         }
         
         if (id != eventDto.Id)

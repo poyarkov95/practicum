@@ -14,7 +14,7 @@ public class EventValidator : AbstractValidator<EventDto>
             .NotEmpty().WithMessage("Дата начала события обязателена для заполнения.");
         
         RuleFor(eventDto => eventDto.EndAt)
-            .NotEmpty().WithMessage("Дата начала события обязателена для заполнения.")
+            .NotEmpty().WithMessage("Дата окончания события обязателена для заполнения.")
             .GreaterThan(eventDto => eventDto.StartAt)
             .WithMessage("Дата окончания события должна быть позже даты начала");
     }

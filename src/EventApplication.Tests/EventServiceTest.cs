@@ -93,6 +93,9 @@ public class EventServiceTest
     {
         var eventByTitle = _eventService.GetAll("Заголовок события").Data?.FirstOrDefault();
         Assert.Equal(_testEvent.Id, eventByTitle?.Id);
+        
+        var eventBySubTitle = _eventService.GetAll("овок события").Data?.FirstOrDefault();
+        Assert.Equal(_testEvent.Id, eventByTitle?.Id);
     }
     
     [Fact]
@@ -129,10 +132,26 @@ public class EventServiceTest
         Assert.Equal(eventByDates?.Id, _testEvent.Id);
     }
     
+    [Fact]
+    public void FilterByAllParametersTest()
+    {
+        var eventByDates = _eventService.GetAll(
+            page: 1,
+            pageSize: 10,
+            title: "заг", 
+            from: new DateTime(2019, 01, 02),
+            to: new DateTime(2024, 01, 02)
+            ).Data?.FirstOrDefault();
+        
+        Assert.Equal(eventByDates?.Id, _testEvent.Id);
+    }
+    
     [Theory]
     [InlineData(1, 2, null, 2)]
     [InlineData(1, 1, null, 1)]
+    [InlineData(1, 1, "ловок события", 1)]
     [InlineData(1, 1, "Заголовок события", 1)]
+    [InlineData(1, 1, "ЗаГолОвОк событиЯ", 1)]
     [InlineData(1, 1, "", 1)]
     public void FilterPaginationTest(int? page, int? pageSize, string? title, int expectedCount)
     {

@@ -1,5 +1,6 @@
 using System.Reflection;
 using EventApplication.Extensions;
+using EventApplication.Models;
 using EventApplication.Validation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Mvc;
@@ -25,18 +26,20 @@ builder.Services.AddControllers()
     {
         options.SuppressModelStateInvalidFilter = true;
         options.InvalidModelStateResponseFactory = context =>
-        {
-            var errors = context.ModelState
-                .Where(kv => kv.Value?.Errors.Count > 0)
-                .ToDictionary(
-                    kv => kv.Key,
-                    kv => kv.Value!.Errors.Select(e => e.ErrorMessage));
-
-            var logger = context.HttpContext.RequestServices
-                .GetRequiredService<ILogger<Program>>();
-            logger.LogError($"Validation errors: {string.Join(", ", errors.Select(kv => $"{kv.Key}: {string.Join("; ", kv.Value)}"))}");
-
-            return new BadRequestObjectResult(new { Message = "Validation errors", Errors = errors });
+        { 
+            var errors = context.ModelState.Values
+                .SelectMany(state => state.Errors)
+                .Select(error => error.ErrorMessage)
+                .ToList();
+            
+            var logger = context.HttpContext.RequestServices.GetRequiredService<ILogger<Program>>();
+            logger.LogError($"Validation errors: {string.Join(", ", errors)}");
+            
+            return new BadRequestObjectResult(new ErrorResponse
+            {
+                Message = "Ошибка валидации",
+                Errors = errors
+            });
         };
     });
 

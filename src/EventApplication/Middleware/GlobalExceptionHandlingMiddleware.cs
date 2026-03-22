@@ -4,9 +4,7 @@ using FluentValidation;
 
 namespace EventApplication.Middleware;
 
-public class GlobalExceptionHandlingMiddleware(
-    RequestDelegate next,
-    ILogger<GlobalExceptionHandlingMiddleware> logger)
+public class GlobalExceptionHandlingMiddleware(RequestDelegate next)
 {
     public async Task InvokeAsync(HttpContext httpContext)
     {

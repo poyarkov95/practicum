@@ -7,7 +7,7 @@ namespace EventApplication.Controller;
 
 [ApiController]
 [Route("[controller]")]
-public class EventsController(IEventService eventService) : ControllerBase
+public class EventsController(IEventService eventService, IBookingService bookingService) : ControllerBase
 {
     [HttpGet]
     public IActionResult GetAll()
@@ -60,5 +60,18 @@ public class EventsController(IEventService eventService) : ControllerBase
     {
         var result = eventService.Delete(id);
         return result ?  Ok() : NotFound();
+    }
+    
+    [HttpPost("{id:Guid}/book")]
+    public async Task<IActionResult> BookEvent(Guid id)
+    {
+        var booking = await bookingService.CreateBookingAsync(id);
+
+        if (booking == null)
+        {
+            return BadRequest($"Событие и идентификатором {id} не было найдено.");
+        }
+        
+        return AcceptedAtAction( actionName: "GetBookingById", controllerName:  "bookings", routeValues: new { id = booking.Id }, value: BookingMapper.MapToDto(booking));
     }
 }

@@ -3,7 +3,7 @@ using EventApplication.Service.Interface;
 
 namespace EventApplication.Service.Hosted;
 
-public class BookingWorker(IBookingService bookingService, ILogger<BookingWorker> logger) : BackgroundService
+public class BookingWorker(ILogger<BookingWorker> logger, IServiceScopeFactory scopeFactory) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -13,27 +13,33 @@ public class BookingWorker(IBookingService bookingService, ILogger<BookingWorker
         {
             try
             {
-                var booking = await bookingService.GetPendingBooking();
+                await using var scope = scopeFactory.CreateAsyncScope();
+                var bookingService = scope.ServiceProvider.GetRequiredService<IBookingService>();
+                
+                var pendingBookings = await bookingService.GetPendingBookingsAsync();
 
-                if (booking == null)
+                if (pendingBookings.Count == 0)
                 {
                     logger.LogInformation("Все бронирования обработаны");
                     await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
                     continue;
                 }
-
-                logger.LogInformation("Обработка бронирования {Id} для события {EventId}",
-                    booking.Id, booking.EventId);
-
-                await Task.Delay(TimeSpan.FromSeconds(3), stoppingToken);
-
-                booking.ProcessedAt = DateTime.UtcNow;
-                booking.Status = BookingStatus.Confirmed;
-
-                await bookingService.SaveProcessedBooking(booking);
                 
-                logger.LogInformation(
-                    "Бронирование {Id} обработано успешно", booking.Id);
+                foreach (var booking in pendingBookings)
+                {
+                    logger.LogInformation("Обработка бронирования {Id} для события {EventId}",
+                        booking.Id, booking.EventId);
+
+                    await Task.Delay(TimeSpan.FromSeconds(3), stoppingToken);
+
+                    booking.ProcessedAt = DateTime.UtcNow;
+                    booking.Status = BookingStatus.Confirmed;
+
+                    await bookingService.SaveProcessedBookingAsync(booking);
+                
+                    logger.LogInformation(
+                        "Бронирование {Id} обработано успешно", booking.Id);
+                }
             }
             catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
             {

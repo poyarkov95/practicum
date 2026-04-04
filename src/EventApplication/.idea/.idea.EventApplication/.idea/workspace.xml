@@ -10,11 +10,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cf73f89-09f1-49bd-8c8c-1ddc7792d617" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/EventApplication.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/EventApplication.Tests.csproj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Exception/BookingNotFoundException.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/BookingsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/BookingsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Middleware/GlobalExceptionHandlingMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Middleware/GlobalExceptionHandlingMiddleware.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Hosted/BookingWorker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Hosted/BookingWorker.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Service/Implementation/BookingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Implementation/BookingService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Interface/IBookingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Interface/IBookingService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,6 +57,8 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7f17ec8a792336f22d4db3723fbddcb12fa39ff14bfda85d9ea332462b2019f2/StatusCodes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/db7395f4add94e6d10e515b3e55373f2821f8323de7dc8e314d78feefacf5584/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Exception/BookingNotFoundException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Exception/EventAlreadyExistsException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Extensions/ExceptionMiddlewareExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Middleware/GlobalExceptionHandlingMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
@@ -80,6 +86,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "f8ba6b64-9ad3-4f49-8b56-d394958d88b9.executor": "Debug",
     "git-widget-placeholder": "sprint-3",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -156,7 +163,7 @@
       <workItem from="1772911933999" duration="11000" />
       <workItem from="1772911958954" duration="196000" />
       <workItem from="1773764986776" duration="30066000" />
-      <workItem from="1775315064370" duration="581000" />
+      <workItem from="1775315064370" duration="7001000" />
     </task>
     <task id="LOCAL-00001" summary="Перенес все в src папку">
       <option name="closed" value="true" />
@@ -190,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774185331341</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="мерж и починка тестов">
+      <option name="closed" value="true" />
+      <created>1775315666140</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775315666140</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -227,7 +242,8 @@
     <MESSAGE value="wip" />
     <MESSAGE value="Добавлен проект с тестами + регистрация миддлваре + обновленный README.md" />
     <MESSAGE value="Правки по результатам ревью" />
-    <option name="LAST_COMMIT_MESSAGE" value="Правки по результатам ревью" />
+    <MESSAGE value="мерж и починка тестов" />
+    <option name="LAST_COMMIT_MESSAGE" value="мерж и починка тестов" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -373,6 +389,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs</url>
+          <line>114</line>
+          <properties documentPath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" containingFunctionPresentation="Method 'VerifyBookingStatusChangeTest'">
+            <startOffsets>
+              <option value="3841" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3901" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

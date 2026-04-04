@@ -12,15 +12,15 @@ public interface IBookingService
      /// <summary>
      /// Получение брони по идентификатору
      /// </summary>
-     Task<Booking?> GetBookingByIdAsync(Guid bookingId);
+     Task<Booking> GetBookingByIdAsync(Guid bookingId);
 
      /// <summary>
      /// Получить бронирование в статусе Pending
      /// </summary>
-     Task<Booking?> GetPendingBooking();
+     Task<ICollection<Booking>> GetPendingBookingsAsync();
 
      /// <summary>
      /// Сохранить в хранилище обработанную бронь
      /// </summary>
-     Task SaveProcessedBooking(Booking processedBooking);
+     Task SaveProcessedBookingAsync(Booking processedBooking);
 }

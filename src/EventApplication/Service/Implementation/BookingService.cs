@@ -1,3 +1,4 @@
+using EventApplication.Exception;
 using EventApplication.Models;
 using EventApplication.Service.Interface;
 
@@ -24,18 +25,24 @@ public class BookingService(IEventService eventService) : IBookingService
         return booking;
     }
 
-    public async Task<Booking?> GetBookingByIdAsync(Guid bookingId)
+    public async Task<Booking> GetBookingByIdAsync(Guid bookingId)
     {
         var booking = Booking.FirstOrDefault(x => x.Id == bookingId);
+        
+        if (booking == null)
+        {
+            throw new BookingNotFoundException($"Не удалось найти бронирование с идентификатором {booking}");
+        }
+        
         return booking;
     }
 
-    public async Task<Booking?> GetPendingBooking()
+    public async Task<ICollection<Booking>> GetPendingBookingsAsync()
     {
-        return Booking.FirstOrDefault(x => x.Status == BookingStatus.Pending);
+        return Booking.Where(x => x.Status == BookingStatus.Pending).ToList();
     }
 
-    public async Task SaveProcessedBooking(Booking processedBooking)
+    public async Task SaveProcessedBookingAsync(Booking processedBooking)
     {
         var bookingToUpdate = Booking.FirstOrDefault(s => s.Id == processedBooking.Id);
 

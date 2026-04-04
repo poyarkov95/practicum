@@ -10,17 +10,13 @@ public class BookingService(IEventService eventService) : IBookingService
     public async Task<Booking?> CreateBookingAsync(Guid eventId)
     {
         var eventItem = eventService.GetById(eventId);
-        if (eventItem == null)
-        {
-            return null;
-        }
 
         var booking = new Booking
         {
             Id = Guid.NewGuid(),
             CreatedAt = DateTime.UtcNow,
             Status = BookingStatus.Pending,
-            EventId = eventId
+            EventId = eventItem.Id
         };
         
         Booking.Add(booking);

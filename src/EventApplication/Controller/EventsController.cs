@@ -90,6 +90,6 @@ public class EventsController(IEventService eventService, IBookingService bookin
             return BadRequest($"Событие и идентификатором {id} не было найдено.");
         }
         
-        return AcceptedAtAction( actionName: "GetBookingById", controllerName:  "bookings", routeValues: new { id = booking.Id }, value: BookingMapper.MapToDto(booking));
+        return AcceptedAtAction( actionName: nameof(BookingController.GetBookingByIdAsync), controllerName:  nameof(BookingController).Replace("Controller", "".ToLower()), routeValues: new { id = booking.Id }, value: BookingMapper.MapToDto(booking));
     }
 }

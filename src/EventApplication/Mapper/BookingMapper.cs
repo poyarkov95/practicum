@@ -13,7 +13,9 @@ public class BookingMapper
         {
             Id = booking.Id,
             EventId = booking.EventId,
-            Status = booking.Status
+            Status = booking.Status,
+            CreatedAt = booking.CreatedAt,
+            ProcessedAt =  booking.ProcessedAt
         };
     }
 }

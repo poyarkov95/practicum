@@ -12,13 +12,14 @@ namespace EventApplication.Tests;
 
 public class BookingServiceTest
 {
+    private readonly IEventService _eventService;
     private readonly IBookingService _bookingService;
     private readonly Event _testEvent;
 
     public BookingServiceTest()
     {
-        var eventService = new EventService();
-        _bookingService = new BookingService(eventService);
+        _eventService = new EventService();
+        _bookingService = new BookingService(_eventService);
         
         _testEvent = new Event
         {
@@ -29,7 +30,7 @@ public class BookingServiceTest
             EndAt = new DateTime(2020, 01, 31)
         };
         
-        eventService.Create(_testEvent);
+        _eventService.Create(_testEvent);
     }
 
     [Fact]
@@ -136,6 +137,24 @@ public class BookingServiceTest
     public async Task CreateNonExistingEventBookingTest()
     {
         await Assert.ThrowsAsync<EventNotFoundException>(() => _bookingService.CreateBookingAsync(Guid.NewGuid()));
+    }
+    
+    [Fact]
+    public async Task CreateDeletedEventBookingTest()
+    {
+        var eventId = Guid.NewGuid();
+        var eventItem = new Event
+        {
+            Id = eventId,
+            Title = "Заголовок события",
+            Description = "Описание события",
+            StartAt = new DateTime(2020, 01, 01),
+            EndAt = new DateTime(2020, 01, 31)
+        };
+        
+        _eventService.Create(eventItem);
+        _eventService.Delete(eventId);
+        await Assert.ThrowsAsync<EventNotFoundException>(() => _bookingService.CreateBookingAsync(eventId));
     }
 
     [Fact]

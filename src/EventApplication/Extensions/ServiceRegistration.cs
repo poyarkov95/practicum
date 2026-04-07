@@ -1,3 +1,4 @@
+using EventApplication.Service.Hosted;
 using EventApplication.Service.Implementation;
 using EventApplication.Service.Interface;
 
@@ -12,5 +13,9 @@ public static class ServiceRegistration
     {
         // Регистрация сервисов
         services.AddSingleton<IEventService, EventService>();
+        services.AddSingleton<IBookingService, BookingService>();
+        
+        // Hosted сервисы
+        services.AddHostedService<BookingWorker>();
     }
 }

@@ -8,7 +8,7 @@ namespace EventApplication.Controller;
 
 [ApiController]
 [Route("[controller]")]
-public class EventsController(IEventService eventService) : ControllerBase
+public class EventsController(IEventService eventService, IBookingService bookingService) : ControllerBase
 {
     [HttpGet]
     public IActionResult GetAll([FromQuery] string? title,
@@ -78,5 +78,12 @@ public class EventsController(IEventService eventService) : ControllerBase
     {
         eventService.Delete(id);
         return Ok();
+    }
+    
+    [HttpPost("{id:Guid}/book")]
+    public async Task<IActionResult> BookEvent(Guid id)
+    {
+        var booking = await bookingService.CreateBookingAsync(id);
+        return AcceptedAtAction( actionName: nameof(BookingsController.GetBookingByIdAsync), controllerName:  nameof(BookingsController).Replace("Controller", ""), routeValues: new { id = booking.Id }, value: BookingMapper.MapToDto(booking));
     }
 }

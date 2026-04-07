@@ -11,13 +11,9 @@
   <component name="ChangeListManager">
     <list default="true" id="2cf73f89-09f1-49bd-8c8c-1ddc7792d617" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/BookingsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/BookingController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/BookingController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/BookingsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controller/EventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/EventsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mapper/BookingMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Mapper/BookingMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/BookingInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/BookingInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +158,7 @@
       <workItem from="1772911933999" duration="11000" />
       <workItem from="1772911958954" duration="196000" />
       <workItem from="1773764986776" duration="30066000" />
-      <workItem from="1775315064370" duration="10131000" />
+      <workItem from="1775315064370" duration="12568000" />
     </task>
     <task id="LOCAL-00001" summary="Перенес все в src папку">
       <option name="closed" value="true" />
@@ -212,7 +208,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775326606621</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Правки по ревью">
+      <option name="closed" value="true" />
+      <created>1775413754584</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1775413754584</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +255,8 @@
     <MESSAGE value="Правки по результатам ревью" />
     <MESSAGE value="мерж и починка тестов" />
     <MESSAGE value="тестирование + обновленный README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="тестирование + обновленный README.md" />
+    <MESSAGE value="Правки по ревью" />
+    <option name="LAST_COMMIT_MESSAGE" value="Правки по ревью" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

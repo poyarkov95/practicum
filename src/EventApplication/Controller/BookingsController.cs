@@ -6,9 +6,9 @@ namespace EventApplication.Controller;
 
 [ApiController]
 [Route("[controller]")]
-public class BookingController(IBookingService bookingService) : ControllerBase
+public class BookingsController(IBookingService bookingService) : ControllerBase
 {
-    [HttpGet("get-booking/{id:Guid}")]
+    [HttpGet("{id:Guid}")]
     public async Task<IActionResult> GetBookingByIdAsync(Guid id)
     {
         var booking = await bookingService.GetBookingByIdAsync(id);

@@ -84,12 +84,6 @@ public class EventsController(IEventService eventService, IBookingService bookin
     public async Task<IActionResult> BookEvent(Guid id)
     {
         var booking = await bookingService.CreateBookingAsync(id);
-
-        if (booking == null)
-        {
-            return BadRequest($"Событие и идентификатором {id} не было найдено.");
-        }
-        
-        return AcceptedAtAction( actionName: nameof(BookingController.GetBookingByIdAsync), controllerName:  nameof(BookingController).Replace("Controller", "".ToLower()), routeValues: new { id = booking.Id }, value: BookingMapper.MapToDto(booking));
+        return AcceptedAtAction( actionName: nameof(BookingsController.GetBookingByIdAsync), controllerName:  nameof(BookingsController).Replace("Controller", ""), routeValues: new { id = booking.Id }, value: BookingMapper.MapToDto(booking));
     }
 }

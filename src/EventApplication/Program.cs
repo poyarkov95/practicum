@@ -16,7 +16,8 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(xmlPath);
 });
 
-builder.Services.AddControllers()
+builder.Services.AddControllers(
+        options =>  options.SuppressAsyncSuffixInActionNames = false)
     .AddFluentValidation(fv =>
     {
         fv.RegisterValidatorsFromAssemblyContaining<EventValidator>();

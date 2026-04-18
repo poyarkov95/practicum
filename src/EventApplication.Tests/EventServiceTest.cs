@@ -67,10 +67,10 @@ public class EventServiceTest
     [Fact]
     public void UpdateEventTest()
     {
-        var eventToUpdate = _eventService.GetById(_testEvent.Id);
+        var eventToUpdate = _eventService.GetEntityById(_testEvent.Id);
         eventToUpdate.Title = "updated title";
-        //var updatedEvent = _eventService.Update(Mapper.EventMapper.MapToEvent(eventToUpdate));
-        //Assert.Equal(updatedEvent.Title,  eventToUpdate.Title);
+        var updatedEvent = _eventService.Update(eventToUpdate);
+        Assert.Equal(updatedEvent.Title,  eventToUpdate.Title);
     }
     
     [Fact]

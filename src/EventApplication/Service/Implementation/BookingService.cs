@@ -75,7 +75,7 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
             {
                 eventItem = eventService.GetEntityById(booking.EventId);
             }
-            catch (EventNotFoundException e)
+            catch (EventNotFoundException)
             {
                 booking.Reject();
                 await SaveProcessedBookingAsync(booking);

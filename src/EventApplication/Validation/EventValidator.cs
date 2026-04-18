@@ -19,6 +19,6 @@ public class EventValidator : AbstractValidator<CreateEventDto>
             .WithMessage("Дата окончания события должна быть позже даты начала");
         
         RuleFor(eventDto => eventDto.TotalSeats)
-            .GreaterThan(0).WithMessage("Количетсво мест на событии не может быть равно 0.");
+            .GreaterThan(0).WithMessage("Количетсво мест на событии не может быть больше 0.");
     }
 }

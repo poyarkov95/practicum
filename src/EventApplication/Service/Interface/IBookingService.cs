@@ -23,4 +23,9 @@ public interface IBookingService
      /// Сохранить в хранилище обработанную бронь
      /// </summary>
      Task SaveProcessedBookingAsync(Booking processedBooking);
+
+     /// <summary>
+     /// Метод обработки брони в hosted service
+     /// </summary>
+     Task ProcessBookingAsync(Booking booking, CancellationToken stoppingToken);
 }

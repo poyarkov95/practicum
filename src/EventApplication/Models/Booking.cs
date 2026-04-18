@@ -29,4 +29,20 @@ public class Booking
     /// Дата и время обработки брони
     /// </summary>
     public DateTime? ProcessedAt { get; set; }
+
+    /// <summary>
+    /// Метод смены статуса на BookingStatus.Confirmed
+    /// </summary>
+    public void Confirm()
+    {
+        Status = BookingStatus.Confirmed;
+    }
+    
+    /// <summary>
+    /// Метод смены статуса на BookingStatus.Rejected
+    /// </summary>
+    public void Reject()
+    {
+        Status = BookingStatus.Rejected;
+    }
 }

@@ -27,7 +27,7 @@ public class EventsController(IEventService eventService, IBookingService bookin
     }
 
     [HttpPost]
-    public IActionResult Create(EventDto eventDto)
+    public IActionResult Create(CreateEventDto newEvent)
     {
         if (!ModelState.IsValid)
         {
@@ -43,12 +43,12 @@ public class EventsController(IEventService eventService, IBookingService bookin
             });
         } 
         
-        var model = EventMapper.MapToEvent(eventDto);
+        var model = EventMapper.MapToEvent(newEvent);
         return CreatedAtAction(nameof(Create), eventService.Create(model));
     }
 
     [HttpPut("{id:Guid}")]
-    public IActionResult Update(Guid id, EventDto eventDto)
+    public IActionResult Update(Guid id, CreateEventDto eventDto)
     {
         if (!ModelState.IsValid)
         {
@@ -81,6 +81,7 @@ public class EventsController(IEventService eventService, IBookingService bookin
     }
     
     [HttpPost("{id:Guid}/book")]
+    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
     public async Task<IActionResult> BookEvent(Guid id)
     {
         var booking = await bookingService.CreateBookingAsync(id);

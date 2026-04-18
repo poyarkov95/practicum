@@ -14,12 +14,16 @@ public class BookingServiceTest
 {
     private readonly IEventService _eventService;
     private readonly IBookingService _bookingService;
+    private readonly ILogger<BookingService> _logger;
     private readonly Event _testEvent;
 
     public BookingServiceTest()
     {
+        var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+        
         _eventService = new EventService();
-        _bookingService = new BookingService(_eventService);
+        _logger = new Logger<BookingService>(loggerFactory);
+        _bookingService = new BookingService(_logger, _eventService);
         
         _testEvent = new Event
         {

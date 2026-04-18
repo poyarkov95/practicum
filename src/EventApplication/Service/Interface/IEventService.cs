@@ -11,28 +11,35 @@ public interface IEventService
     /// Получить список событий
     /// </summary>
     /// <returns>Список событий</returns>
-    PaginatedResult<EventDto> GetAll(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10);
+    PaginatedResult<EventInfoDto> GetAll(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10);
     
     /// <summary>
     /// Получить событие по идентификатору
     /// </summary>
     /// <param name="id"></param>
     /// <returns>Возвращает событие</returns>
-    EventDto GetById(Guid id);
+    EventInfoDto GetById(Guid id);
+    
+    /// <summary>
+    /// Получить событие из хранилища событие по идентификатору
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns>Возвращает событие</returns>
+    Event GetEntityById(Guid id);
     
     /// <summary>
     /// Создать событие
     /// </summary>
     /// <param name="model"></param>
     /// <returns>овое событие</returns>
-    EventDto Create(Event model);
+    EventInfoDto Create(Event model);
     
     /// <summary>
     /// Обновить событе
     /// </summary>
     /// <param name="model"></param>
     /// <returns>Обновленное событие</returns>
-    EventDto Update(Event model);
+    EventInfoDto Update(Event model);
     
     /// <summary>
     /// Удалить событие

@@ -7,27 +7,31 @@ namespace EventApplication.Mapper;
 /// </summary>
 public static class EventMapper
 {
-    public static EventDto MapToDto(Event eventItem)
+    public static EventInfoDto MapToDto(Event eventItem)
     {
-        return new EventDto
+        return new EventInfoDto
         {
             Id = eventItem.Id,
             Title = eventItem.Title,
             Description = eventItem.Description,
             StartAt = eventItem.StartAt,
-            EndAt = eventItem.EndAt
+            EndAt = eventItem.EndAt,
+            TotalSeats = eventItem.TotalSeats,
+            AvailableSeats = eventItem.AvailableSeats
         };
     }
-
-    public static Event MapToEvent(EventDto eventDto)
+    
+    public static Event MapToEvent(CreateEventDto eventItem)
     {
         return new Event
         {
-            Id = eventDto.Id,
-            Title = eventDto.Title,
-            Description = eventDto.Description,
-            StartAt = eventDto.StartAt,
-            EndAt = eventDto.EndAt
+            Id = eventItem.Id,
+            Title = eventItem.Title,
+            Description = eventItem.Description,
+            StartAt = eventItem.StartAt,
+            EndAt = eventItem.EndAt,
+            TotalSeats = eventItem.TotalSeats ?? 0,
+            AvailableSeats = eventItem.TotalSeats ?? 0
         };
     }
 }

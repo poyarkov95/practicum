@@ -40,6 +40,7 @@ public class GlobalExceptionHandlingMiddleware(RequestDelegate next)
             ValidationException => StatusCodes.Status400BadRequest,
             EventNotFoundException => StatusCodes.Status404NotFound,
             BookingNotFoundException => StatusCodes.Status404NotFound,
+            NoAvailableSeatsException => StatusCodes.Status409Conflict,
             _ => StatusCodes.Status500InternalServerError
         };   
     private static ErrorResponse CreateErrorResponse(System.Exception ex)

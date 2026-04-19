@@ -84,7 +84,7 @@ public class BookingServiceTest
         var mockServiceProvider = new Mock<IServiceProvider>();
         mockServiceProvider
             .Setup(p => p.GetService(typeof(IBookingService)))
-            .Returns(realBookingService); // <--- Возвращаем РЕАЛЬНЫЙ объект
+            .Returns(realBookingService);
 
         var mockServiceScope = new Mock<IServiceScope>();
         mockServiceScope.Setup(s => s.ServiceProvider).Returns(mockServiceProvider.Object);
@@ -109,75 +109,141 @@ public class BookingServiceTest
     }
 
     [Fact]
-    public async Task VerifyRejectBookingTriggersReleaseSeats()
+    public async Task VerifyEventNotFoundTriggersBookingRejectTest()
     {
-        var bookingId = Guid.NewGuid();
-        var eventId = Guid.NewGuid();
+        var eventService = new Mock<IEventService>();
+        eventService.Setup(r => r.GetEntityById(_testEvent.Id)).Returns(_testEvent);
 
-        var createDate = new DateTime(2025, 1, 1);
-        var processedDate = createDate.AddSeconds(5);
+        var bookingLogger = new Logger<BookingService>(new LoggerFactory());
 
-        var mockBookingService = new Mock<IBookingService>();
-        mockBookingService
-            .Setup(service => service.GetPendingBookingsAsync())
-            .ReturnsAsync(new List<Booking> { new() { Id = bookingId, EventId = eventId } });
-
-        mockBookingService
-            .Setup(service => service.CreateBookingAsync(eventId))
-            .ReturnsAsync(new Booking
-            {
-                Id = bookingId,
-                EventId = eventId,
-                CreatedAt = createDate,
-                Status = BookingStatus.Pending
-            });
-
-        mockBookingService
-            .Setup(service => service.GetBookingByIdAsync(bookingId))
-            .ReturnsAsync(new Booking
-            {
-                Id = bookingId,
-                EventId = eventId,
-                CreatedAt = createDate,
-                Status = BookingStatus.Confirmed,
-                ProcessedAt = processedDate
-            });
+        var realBookingService = new BookingService(bookingLogger, eventService.Object);
+        var pendingBooking =  await realBookingService.CreateBookingAsync(_testEvent.Id);
 
         var mockServiceProvider = new Mock<IServiceProvider>();
         mockServiceProvider
-            .Setup(provider => provider.GetService(typeof(IBookingService)))
-            .Returns(mockBookingService.Object);
+            .Setup(p => p.GetService(typeof(IBookingService)))
+            .Returns(realBookingService); 
 
         var mockServiceScope = new Mock<IServiceScope>();
-        mockServiceScope
-            .Setup(scope => scope.ServiceProvider)
-            .Returns(mockServiceProvider.Object);
+        mockServiceScope.Setup(s => s.ServiceProvider).Returns(mockServiceProvider.Object);
 
         var mockScopeFactory = new Mock<IServiceScopeFactory>();
-        mockScopeFactory
-            .Setup(factory => factory.CreateScope())
-            .Returns(mockServiceScope.Object);
+        mockScopeFactory.Setup(f => f.CreateScope()).Returns(mockServiceScope.Object);
 
+        eventService.Setup(r => r.GetEntityById(_testEvent.Id)).Throws(new EventNotFoundException($"Не удалось найти событие с идентификатором {_testEvent.Id}"));
+        
         var mockLogger = new Mock<ILogger<BookingWorker>>();
-
-        await mockBookingService.Object.CreateBookingAsync(eventId);
-
         var worker = new BookingWorker(mockLogger.Object, mockScopeFactory.Object);
 
         using var cts = new CancellationTokenSource();
 
         await worker.StartAsync(cts.Token);
+        
+        await Task.Delay(TimeSpan.FromSeconds(4), cts.Token);
+        cts.Cancel();
 
-        await Task.Delay(TimeSpan.FromSeconds(100), cts.Token);
+        Assert.NotNull(pendingBooking);
+        Assert.Equal(BookingStatus.Rejected, pendingBooking.Status);
+        Assert.NotNull(pendingBooking.ProcessedAt);
+    }
+    
+    [Fact]
+    public async Task VerifyBookingRejectTriggersReleaseSeatsTest()
+    {
+        var availableSeats = _testEvent.AvailableSeats;
+        
+        var eventService = new Mock<IEventService>();
+        eventService.Setup(r => r.GetEntityById(_testEvent.Id)).Returns(_testEvent);
 
-        await worker.StopAsync(cts.Token);
+        var bookingLogger = new Logger<BookingService>(new LoggerFactory());
 
-        var processedBooking = await mockBookingService.Object.GetBookingByIdAsync(bookingId);
+        var realBookingService = new BookingService(bookingLogger, eventService.Object);
+        var pendingBooking =  await realBookingService.CreateBookingAsync(_testEvent.Id);
 
-        Assert.NotNull(processedBooking);
+        var mockServiceProvider = new Mock<IServiceProvider>();
+        mockServiceProvider
+            .Setup(p => p.GetService(typeof(IBookingService)))
+            .Returns(realBookingService); 
 
-        Assert.Equal(BookingStatus.Confirmed, processedBooking.Status);
-        Assert.NotNull(processedBooking.ProcessedAt);
+        var mockServiceScope = new Mock<IServiceScope>();
+        mockServiceScope.Setup(s => s.ServiceProvider).Returns(mockServiceProvider.Object);
+
+        var mockScopeFactory = new Mock<IServiceScopeFactory>();
+        mockScopeFactory.Setup(f => f.CreateScope()).Returns(mockServiceScope.Object);
+
+        eventService.Setup(r => r.Update(It.IsAny<Event>())).Throws(new System.Exception());
+        
+        var mockLogger = new Mock<ILogger<BookingWorker>>();
+        var worker = new BookingWorker(mockLogger.Object, mockScopeFactory.Object);
+
+        using var cts = new CancellationTokenSource();
+
+        await worker.StartAsync(cts.Token);
+        
+        await Task.Delay(TimeSpan.FromSeconds(4), cts.Token);
+        cts.Cancel();
+
+        Assert.NotNull(pendingBooking);
+        Assert.Equal(BookingStatus.Rejected, pendingBooking.Status);
+        Assert.NotNull(pendingBooking.ProcessedAt);
+        Assert.Equal(_testEvent.AvailableSeats, availableSeats);
+    }
+    
+    [Fact]
+    public async Task VerifyAfterReleaseSeatsBookingIsAvailableTest()
+    {
+        _testEvent.AvailableSeats = 1;
+        var availableSeats = _testEvent.AvailableSeats;
+        
+        var eventService = new Mock<IEventService>();
+        eventService.Setup(r => r.GetEntityById(_testEvent.Id)).Returns(_testEvent);
+
+        var bookingLogger = new Logger<BookingService>(new LoggerFactory());
+
+        var realBookingService = new BookingService(bookingLogger, eventService.Object);
+        var pendingBooking =  await realBookingService.CreateBookingAsync(_testEvent.Id);
+
+        var mockServiceProvider = new Mock<IServiceProvider>();
+        mockServiceProvider
+            .Setup(p => p.GetService(typeof(IBookingService)))
+            .Returns(realBookingService); 
+
+        var mockServiceScope = new Mock<IServiceScope>();
+        mockServiceScope.Setup(s => s.ServiceProvider).Returns(mockServiceProvider.Object);
+
+        var mockScopeFactory = new Mock<IServiceScopeFactory>();
+        mockScopeFactory.Setup(f => f.CreateScope()).Returns(mockServiceScope.Object);
+
+        eventService.Setup(r => r.Update(It.IsAny<Event>())).Throws(new System.Exception());
+        
+        var mockLogger = new Mock<ILogger<BookingWorker>>();
+        var worker = new BookingWorker(mockLogger.Object, mockScopeFactory.Object);
+
+        using var cts = new CancellationTokenSource();
+
+        await worker.StartAsync(cts.Token);
+        
+        await Task.Delay(TimeSpan.FromSeconds(4), cts.Token);
+        cts.Cancel();
+
+        Assert.NotNull(pendingBooking);
+        Assert.Equal(BookingStatus.Rejected, pendingBooking.Status);
+        Assert.NotNull(pendingBooking.ProcessedAt);
+        Assert.Equal(_testEvent.AvailableSeats, availableSeats);
+        
+        var secondPendingBooking =  await realBookingService.CreateBookingAsync(_testEvent.Id);
+        
+        eventService.Setup(r => r.Update(It.IsAny<Event>())).Returns(It.IsAny<EventInfoDto>());
+        using var ctsNew = new CancellationTokenSource();
+
+        await worker.StartAsync(ctsNew.Token);
+        
+        await Task.Delay(TimeSpan.FromSeconds(4), ctsNew.Token);
+        ctsNew.Cancel();
+        
+        Assert.NotNull(secondPendingBooking);
+        Assert.Equal(BookingStatus.Confirmed, secondPendingBooking.Status);
+        Assert.NotNull(secondPendingBooking.ProcessedAt);
     }
 
     [Fact]

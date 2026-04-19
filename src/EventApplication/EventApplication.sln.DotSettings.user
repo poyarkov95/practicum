@@ -28,6 +28,12 @@
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.BookingChangeStatusMethodsTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9a38f0f9_002D5f91_002D4719_002D8240_002D5dddd3e55826/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="VerifyEventNotFoundTriggersBookingReject" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.VerifyBookingRejectTriggersReleaseSeatsTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.VerifyAfterReleaseSeatsBookingIsAvailableTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9ada1540_002D94db_002D4742_002Db0f1_002D0099ac856ed0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="VerifyBookingStatusChangeTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.VerifyBookingStatusChangeTest&lt;/TestId&gt;
@@ -42,11 +48,13 @@
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.BookingChangeStatusMethodsTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=eca8e62c_002D807f_002D4a90_002D8795_002D9608eb456d10/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="VerifyBookingStatusChangeTest #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=eca8e62c_002D807f_002D4a90_002D8795_002D9608eb456d10/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="VerifyBookingStatusChangeTest #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.VerifyBookingStatusChangeTest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.VerifyBookingStatusChangeTest_RealService&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.BookingChangeStatusMethodsTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.VerifyRejectBookingTriggersReleaseSeats&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.VerifyEventNotFoundTriggersBookingReject&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f8ba6b64_002D9ad3_002D4f49_002D8b56_002Dd394958d88b9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;EventApplication.Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

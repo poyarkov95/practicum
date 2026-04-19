@@ -78,6 +78,7 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
             catch (EventNotFoundException)
             {
                 booking.Reject();
+                booking.ProcessedAt = DateTime.UtcNow;
                 await SaveProcessedBookingAsync(booking);
 
                 logger.LogWarning(
@@ -107,6 +108,7 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
                 booking.Id, e.Message);
             
             booking.Reject();
+            booking.ProcessedAt = DateTime.UtcNow;
             await SaveProcessedBookingAsync(booking);
             
             var eventItem = eventService.GetEntityById(booking.EventId);

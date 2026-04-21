@@ -9,7 +9,9 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
     private ICollection<Booking> Booking { get; } = [];
     private readonly object _bookingLock = new();
     
-    public async Task<Booking?> CreateBookingAsync(Guid eventId)
+    private readonly SemaphoreSlim _processingSemaphore = new(1, 1);
+    
+    public async Task<Booking> CreateBookingAsync(Guid eventId)
     {
             var eventItem = eventService.GetEntityById(eventId);
 
@@ -69,6 +71,9 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
             logger.LogInformation("Обработка бронирования {Id} для события {EventId}",
                 booking.Id, booking.EventId);
 
+            await Task.Delay(TimeSpan.FromSeconds(2), stoppingToken);
+            await _processingSemaphore.WaitAsync(stoppingToken);
+            
             Event eventItem;
 
             try
@@ -91,10 +96,10 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
             booking.Confirm();
             booking.ProcessedAt = DateTime.UtcNow;
             booking.Status = BookingStatus.Confirmed;
-            
+
             await SaveProcessedBookingAsync(booking);
             eventService.Update(eventItem);
-            
+
             logger.LogInformation(
                 "Бронирование {Id} обработано успешно", booking.Id);
         }
@@ -104,16 +109,21 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
         }
         catch (System.Exception e)
         {
-            logger.LogError("Произошла непредвиденная ошибка при обработке бронирования {Id}. Текст ошибки {errorMessage}",
+            logger.LogError(
+                "Произошла непредвиденная ошибка при обработке бронирования {Id}. Текст ошибки {errorMessage}",
                 booking.Id, e.Message);
-            
+
             booking.Reject();
             booking.ProcessedAt = DateTime.UtcNow;
             await SaveProcessedBookingAsync(booking);
-            
+
             var eventItem = eventService.GetEntityById(booking.EventId);
             eventItem.ReleaseSeats();
             eventService.Update(eventItem);
+        }
+        finally
+        {
+            _processingSemaphore.Release();
         }
     }
 }

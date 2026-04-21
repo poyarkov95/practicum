@@ -10,8 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cf73f89-09f1-49bd-8c8c-1ddc7792d617" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Hosted/BookingWorker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Hosted/BookingWorker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Implementation/BookingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Implementation/BookingService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Interface/IBookingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Interface/IBookingService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -168,7 +171,7 @@
       <workItem from="1772911958954" duration="196000" />
       <workItem from="1773764986776" duration="30066000" />
       <workItem from="1775315064370" duration="12568000" />
-      <workItem from="1776185456099" duration="46115000" />
+      <workItem from="1776185456099" duration="51927000" />
     </task>
     <task id="LOCAL-00001" summary="Перенес все в src папку">
       <option name="closed" value="true" />
@@ -266,7 +269,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776599858531</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Обновленный README.md">
+      <option name="closed" value="true" />
+      <created>1776604988655</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1776604988655</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -310,7 +321,8 @@
     <MESSAGE value="fix тестов" />
     <MESSAGE value="тесты на смену статуса" />
     <MESSAGE value="+ concurrency tests" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ concurrency tests" />
+    <MESSAGE value="Обновленный README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="Обновленный README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

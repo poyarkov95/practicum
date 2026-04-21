@@ -59,6 +59,9 @@ public class Event
     /// </summary>
     public void ReleaseSeats(int count = 1)
     {
-        AvailableSeats += count;
+        if (AvailableSeats < TotalSeats)
+        {
+            AvailableSeats += count;   
+        }
     }
 }

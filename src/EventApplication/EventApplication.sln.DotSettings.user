@@ -29,7 +29,7 @@
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9a38f0f9_002D5f91_002D4719_002D8240_002D5dddd3e55826/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="VerifyEventNotFoundTriggersBookingReject" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;ProjectFile&gt;124C91E7-73C6-40B1-AFCB-851CD78D31F4/f:BookingServiceTest.cs&lt;/ProjectFile&gt;
+  &lt;Project Location="/Users/andrey/Projects/learning/yandex/practicum/src/EventApplication.Tests" Presentation="&amp;lt;EventApplication.Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=9ada1540_002D94db_002D4742_002Db0f1_002D0099ac856ed0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="VerifyBookingStatusChangeTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;

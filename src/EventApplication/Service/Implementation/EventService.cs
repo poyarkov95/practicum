@@ -12,7 +12,7 @@ public class EventService : IEventService
 {
     private ICollection<Event> Events { get; } = [];
 
-    public PaginatedResult<EventDto> GetAll(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10)
+    public PaginatedResult<EventInfoDto> GetAll(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10)
     {
         var query = Events as IEnumerable<Event>;
 
@@ -38,7 +38,7 @@ public class EventService : IEventService
             query = query.Skip((page.Value - 1) * pageSize.Value).Take(pageSize.Value);
         }
 
-        return new PaginatedResult<EventDto>
+        return new PaginatedResult<EventInfoDto>
         {
             Data = query.ToList().Select(EventMapper.MapToDto).ToList(),
             Count = count,
@@ -47,7 +47,7 @@ public class EventService : IEventService
         };
     }
 
-    public EventDto GetById(Guid id)
+    public EventInfoDto GetById(Guid id)
     {
         var eventItem = Events.FirstOrDefault(x => x.Id == id);
 
@@ -59,7 +59,19 @@ public class EventService : IEventService
         return EventMapper.MapToDto(eventItem);
     }
 
-    public EventDto Create(Event model)
+    public Event GetEntityById(Guid id)
+    {
+        var eventItem = Events.FirstOrDefault(x => x.Id == id);
+
+        if (eventItem == null)
+        {
+            throw new EventNotFoundException($"Не удалось найти событие с идентификатором {id}");
+        }
+        
+        return eventItem;
+    }
+
+    public EventInfoDto Create(Event model)
     {
         if (Events.Any(x => x.Id == model.Id))
         {
@@ -70,7 +82,7 @@ public class EventService : IEventService
         return EventMapper.MapToDto(model);
     }
 
-    public EventDto Update(Event model)
+    public EventInfoDto Update(Event model)
     {
         var eventItem = Events.FirstOrDefault(x => x.Id == model.Id);
         if (eventItem == null)
@@ -81,7 +93,9 @@ public class EventService : IEventService
         eventItem.Description = model.Description;
         eventItem.StartAt = model.StartAt;
         eventItem.EndAt = model.EndAt;
-
+        eventItem.TotalSeats = model.TotalSeats;
+        eventItem.AvailableSeats = model.AvailableSeats;
+        
         return EventMapper.MapToDto(eventItem);
     }
 

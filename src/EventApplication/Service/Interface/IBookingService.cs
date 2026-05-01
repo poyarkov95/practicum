@@ -7,7 +7,7 @@ public interface IBookingService
      /// <summary>
      ///  Cоздание брони для указанного события
      /// </summary>
-     Task<Booking?> CreateBookingAsync(Guid eventId);
+     Task<Booking> CreateBookingAsync(Guid eventId);
 
      /// <summary>
      /// Получение брони по идентификатору
@@ -23,4 +23,9 @@ public interface IBookingService
      /// Сохранить в хранилище обработанную бронь
      /// </summary>
      Task SaveProcessedBookingAsync(Booking processedBooking);
+
+     /// <summary>
+     /// Метод обработки брони в hosted service
+     /// </summary>
+     Task ProcessBookingAsync(Booking booking, CancellationToken stoppingToken);
 }

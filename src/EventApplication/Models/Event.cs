@@ -29,4 +29,39 @@ public class Event
     /// Дата окончания события 
     /// </summary>
     public required DateTime EndAt { get;set; }
+
+    /// <summary>
+    /// Общее количество мест на событии
+    /// </summary>
+    public int TotalSeats { get; set; }
+
+    /// <summary>
+    /// Текущее количество свободных мест
+    /// </summary>
+    public int AvailableSeats { get; set; }
+
+    /// <summary>
+    /// Метод резерва доступных мест
+    /// </summary>
+    public bool TryReserveSeats(int count = 1)
+    {
+        if (AvailableSeats < count)
+        {
+            return false;
+        }
+        
+        AvailableSeats -= count;
+        return true;
+    }
+
+    /// <summary>
+    /// Метод особождения мест
+    /// </summary>
+    public void ReleaseSeats(int count = 1)
+    {
+        if (AvailableSeats < TotalSeats)
+        {
+            AvailableSeats += count;   
+        }
+    }
 }

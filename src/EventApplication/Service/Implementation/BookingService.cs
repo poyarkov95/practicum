@@ -1,22 +1,23 @@
+using EventApplication.Database;
 using EventApplication.Exception;
 using EventApplication.Models;
 using EventApplication.Service.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventApplication.Service.Implementation;
 
-public class BookingService(ILogger<BookingService> logger, IEventService eventService) : IBookingService
+public class BookingService(AppDbContext db, ILogger<BookingService> logger, IEventService eventService) : IBookingService
 {
-    private ICollection<Booking> Booking { get; } = [];
-    private readonly object _bookingLock = new();
-    
     private readonly SemaphoreSlim _processingSemaphore = new(1, 1);
+    private readonly SemaphoreSlim _createBookingSemaphore = new(1, 1);
     
     public async Task<Booking> CreateBookingAsync(Guid eventId)
     {
-            var eventItem = eventService.GetEntityById(eventId);
-
-            lock (_bookingLock)
+            var eventItem = await eventService.GetEntityByIdAsync(eventId);
+            try
             {
+                await _createBookingSemaphore.WaitAsync();
+                
                 if (!eventItem.TryReserveSeats())
                 {
                     throw new NoAvailableSeatsException("No available seats for this event");
@@ -30,15 +31,20 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
                     EventId = eventItem.Id
                 };
         
-                Booking.Add(booking);
-        
+                await db.Bookings.AddAsync(booking);
+                await db.SaveChangesAsync();
+                
                 return booking;   
+            }
+            finally
+            {
+                _createBookingSemaphore.Release();
             }
     }
 
     public async Task<Booking> GetBookingByIdAsync(Guid bookingId)
     {
-        var booking = Booking.FirstOrDefault(x => x.Id == bookingId);
+        var booking = await db.Bookings.FirstOrDefaultAsync(x => x.Id == bookingId);
         
         if (booking == null)
         {
@@ -50,18 +56,20 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
 
     public async Task<ICollection<Booking>> GetPendingBookingsAsync()
     {
-        return Booking.Where(x => x.Status == BookingStatus.Pending).ToList();
+        return await db.Bookings.Where(x => x.Status == BookingStatus.Pending).ToListAsync();
     }
 
     public async Task SaveProcessedBookingAsync(Booking processedBooking)
     {
-        var bookingToUpdate = Booking.FirstOrDefault(s => s.Id == processedBooking.Id);
+        var bookingToUpdate = db.Bookings.FirstOrDefault(s => s.Id == processedBooking.Id);
     
         if (bookingToUpdate != null)
         {
             bookingToUpdate.Status = processedBooking.Status;
             bookingToUpdate.ProcessedAt =  processedBooking.ProcessedAt;
         }
+        
+        await db.SaveChangesAsync();
     }
 
     public async Task ProcessBookingAsync(Booking booking, CancellationToken stoppingToken)
@@ -78,7 +86,7 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
 
             try
             {
-                eventItem = eventService.GetEntityById(booking.EventId);
+                eventItem = await eventService.GetEntityByIdAsync(booking.EventId);
             }
             catch (EventNotFoundException)
             {
@@ -98,7 +106,7 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
             booking.Status = BookingStatus.Confirmed;
 
             await SaveProcessedBookingAsync(booking);
-            eventService.Update(eventItem);
+            await eventService.UpdateAsync(eventItem);
 
             logger.LogInformation(
                 "Бронирование {Id} обработано успешно", booking.Id);
@@ -117,9 +125,9 @@ public class BookingService(ILogger<BookingService> logger, IEventService eventS
             booking.ProcessedAt = DateTime.UtcNow;
             await SaveProcessedBookingAsync(booking);
 
-            var eventItem = eventService.GetEntityById(booking.EventId);
+            var eventItem = await eventService.GetEntityByIdAsync(booking.EventId);
             eventItem.ReleaseSeats();
-            eventService.Update(eventItem);
+            await eventService.UpdateAsync(eventItem);
         }
         finally
         {

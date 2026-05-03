@@ -1,20 +1,20 @@
+using EventApplication.Database;
 using EventApplication.Exception;
 using EventApplication.Mapper;
 using EventApplication.Models;
 using EventApplication.Service.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventApplication.Service.Implementation;
 
 /// <summary>
 /// Руализация сервиса для работы с событиями
 /// </summary>
-public class EventService : IEventService
+public class EventService(AppDbContext db) : IEventService
 {
-    private ICollection<Event> Events { get; } = [];
-
-    public PaginatedResult<EventInfoDto> GetAll(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10)
+    public async Task<PaginatedResult<EventInfoDto>> GetAllAsync(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10)
     {
-        var query = Events as IEnumerable<Event>;
+        var query = db.Events.AsQueryable();
 
         if (!string.IsNullOrEmpty(title))
         {
@@ -31,7 +31,7 @@ public class EventService : IEventService
             query = query.Where(s => s.EndAt <= to);
         }
 
-        var count = query.Count();
+        var count = await query.CountAsync();
         
         if (page != null && pageSize != null)
         {
@@ -40,16 +40,16 @@ public class EventService : IEventService
 
         return new PaginatedResult<EventInfoDto>
         {
-            Data = query.ToList().Select(EventMapper.MapToDto).ToList(),
+            Data = (await query.ToListAsync()).Select(EventMapper.MapToDto).ToList(),
             Count = count,
             Page = page.Value,
             PageSize = pageSize.Value
         };
     }
 
-    public EventInfoDto GetById(Guid id)
+    public async Task<EventInfoDto> GetByIdAsync(Guid id)
     {
-        var eventItem = Events.FirstOrDefault(x => x.Id == id);
+        var eventItem = await db.Events.FirstOrDefaultAsync(x => x.Id == id);
 
         if (eventItem == null)
         {
@@ -59,9 +59,9 @@ public class EventService : IEventService
         return EventMapper.MapToDto(eventItem);
     }
 
-    public Event GetEntityById(Guid id)
+    public async Task<Event> GetEntityByIdAsync(Guid id)
     {
-        var eventItem = Events.FirstOrDefault(x => x.Id == id);
+        var eventItem = await db.Events.FirstOrDefaultAsync(x => x.Id == id);
 
         if (eventItem == null)
         {
@@ -71,20 +71,21 @@ public class EventService : IEventService
         return eventItem;
     }
 
-    public EventInfoDto Create(Event model)
+    public async Task<EventInfoDto> CreateAsync(Event model)
     {
-        if (Events.Any(x => x.Id == model.Id))
+        if (await db.Events.AnyAsync(x => x.Id == model.Id))
         {
             throw new EventAlreadyExistsException("Событие с таким идентификатором уже существует");
         }
         
-        Events.Add(model);
+        await db.Events.AddAsync(model);
+        await db.SaveChangesAsync();
         return EventMapper.MapToDto(model);
     }
 
-    public EventInfoDto Update(Event model)
+    public async Task<EventInfoDto> UpdateAsync(Event model)
     {
-        var eventItem = Events.FirstOrDefault(x => x.Id == model.Id);
+        var eventItem = await db.Events.FirstOrDefaultAsync(x => x.Id == model.Id);
         if (eventItem == null)
         {
             throw new EventNotFoundException($"Не удалось найти событие с идентификатором {model.Id}");
@@ -95,19 +96,22 @@ public class EventService : IEventService
         eventItem.EndAt = model.EndAt;
         eventItem.TotalSeats = model.TotalSeats;
         eventItem.AvailableSeats = model.AvailableSeats;
+
+        await db.SaveChangesAsync();
         
         return EventMapper.MapToDto(eventItem);
     }
 
-    public void Delete(Guid id)
+    public async Task DeleteAsync(Guid id)
     {
-        var eventToDelete = Events.FirstOrDefault(x => x.Id == id);
+        var eventToDelete = await db.Events.FirstOrDefaultAsync(x => x.Id == id);
 
         if (eventToDelete == null)
         {
             throw new EventNotFoundException($"Не удалось найти событие с идентификатором {id}");
         }
         
-        Events.Remove(eventToDelete);
+        db.Events.Remove(eventToDelete);
+        await db.SaveChangesAsync();
     }
 }

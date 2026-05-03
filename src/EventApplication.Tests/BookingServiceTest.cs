@@ -1,9 +1,11 @@
 using System.Collections.Concurrent;
+using EventApplication.Database;
 using EventApplication.Exception;
 using EventApplication.Models;
 using EventApplication.Service.Hosted;
 using EventApplication.Service.Implementation;
 using EventApplication.Service.Interface;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
@@ -16,15 +18,32 @@ public class BookingServiceTest
     private readonly IEventService _eventService;
     private readonly IBookingService _bookingService;
     private readonly Event _testEvent;
+    
+    private readonly AppDbContext _dbContext;
 
     public BookingServiceTest()
     {
-        var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
-        var logger = new Logger<BookingService>(loggerFactory);
+        var dbName = Guid.NewGuid().ToString();
+        var services = new ServiceCollection();
+        services.AddDbContext<AppDbContext>(options =>
+            options.UseInMemoryDatabase(dbName));
+        
+        services.AddScoped<IEventService, EventService>();
+        services.AddScoped<IBookingService, BookingService>();
+        
+        services.AddLogging(configure => configure.AddConsole());
+        
+        var options = new DbContextOptionsBuilder<AppDbContext>()
+            .UseInMemoryDatabase(dbName)
+            .Options;
 
-        _eventService = new EventService();
-        _bookingService = new BookingService(logger, _eventService);
-
+        _dbContext = new AppDbContext(options);
+        
+        var serviceProvider = services.BuildServiceProvider(); 
+        var scope = serviceProvider.CreateScope();
+        _eventService = scope.ServiceProvider.GetRequiredService<IEventService>();
+        _bookingService = scope.ServiceProvider.GetRequiredService<IBookingService>();
+        
         _testEvent = new Event
         {
             Id = new Guid("8a1f2e3b4c5d6e7f8a9b0c1d2e3f4a5b"),
@@ -36,7 +55,7 @@ public class BookingServiceTest
             AvailableSeats = 2
         };
 
-        _eventService.Create(_testEvent);
+        _eventService.CreateAsync(_testEvent);
     }
 
     [Fact]
@@ -75,11 +94,11 @@ public class BookingServiceTest
         var availableSeatsBeforeBooking = _testEvent.AvailableSeats;
 
         var eventService = new Mock<IEventService>();
-        eventService.Setup(r => r.GetEntityById(_testEvent.Id)).Returns(_testEvent);
+        eventService.Setup(r =>  r.GetEntityByIdAsync(_testEvent.Id)).ReturnsAsync(_testEvent);
 
         var bookingLogger = new Logger<BookingService>(new LoggerFactory());
 
-        var realBookingService = new BookingService(bookingLogger, eventService.Object);
+        var realBookingService = new BookingService(_dbContext, bookingLogger, eventService.Object);
         var pendingBooking = await realBookingService.CreateBookingAsync(_testEvent.Id);
 
         var mockServiceProvider = new Mock<IServiceProvider>();
@@ -113,11 +132,11 @@ public class BookingServiceTest
     public async Task VerifyEventNotFoundTriggersBookingRejectTest()
     {
         var eventService = new Mock<IEventService>();
-        eventService.Setup(r => r.GetEntityById(_testEvent.Id)).Returns(_testEvent);
+        eventService.Setup(r => r.GetEntityByIdAsync(_testEvent.Id)).ReturnsAsync(_testEvent);
 
         var bookingLogger = new Logger<BookingService>(new LoggerFactory());
 
-        var realBookingService = new BookingService(bookingLogger, eventService.Object);
+        var realBookingService = new BookingService(_dbContext, bookingLogger, eventService.Object);
         var pendingBooking = await realBookingService.CreateBookingAsync(_testEvent.Id);
 
         var mockServiceProvider = new Mock<IServiceProvider>();
@@ -131,7 +150,7 @@ public class BookingServiceTest
         var mockScopeFactory = new Mock<IServiceScopeFactory>();
         mockScopeFactory.Setup(f => f.CreateScope()).Returns(mockServiceScope.Object);
 
-        eventService.Setup(r => r.GetEntityById(_testEvent.Id))
+        eventService.Setup(r => r.GetEntityByIdAsync(_testEvent.Id))
             .Throws(new EventNotFoundException($"Не удалось найти событие с идентификатором {_testEvent.Id}"));
 
         var mockLogger = new Mock<ILogger<BookingWorker>>();
@@ -155,11 +174,11 @@ public class BookingServiceTest
         var availableSeats = _testEvent.AvailableSeats;
 
         var eventService = new Mock<IEventService>();
-        eventService.Setup(r => r.GetEntityById(_testEvent.Id)).Returns(_testEvent);
+        eventService.Setup(r => r.GetEntityByIdAsync(_testEvent.Id)).ReturnsAsync(_testEvent);
 
         var bookingLogger = new Logger<BookingService>(new LoggerFactory());
 
-        var realBookingService = new BookingService(bookingLogger, eventService.Object);
+        var realBookingService = new BookingService(_dbContext, bookingLogger, eventService.Object);
         var pendingBooking = await realBookingService.CreateBookingAsync(_testEvent.Id);
 
         var mockServiceProvider = new Mock<IServiceProvider>();
@@ -173,7 +192,7 @@ public class BookingServiceTest
         var mockScopeFactory = new Mock<IServiceScopeFactory>();
         mockScopeFactory.Setup(f => f.CreateScope()).Returns(mockServiceScope.Object);
 
-        eventService.Setup(r => r.Update(It.IsAny<Event>())).Throws(new System.Exception());
+        eventService.Setup(r => r.UpdateAsync(It.IsAny<Event>())).Throws(new System.Exception());
 
         var mockLogger = new Mock<ILogger<BookingWorker>>();
         var worker = new BookingWorker(mockLogger.Object, mockScopeFactory.Object);
@@ -198,11 +217,11 @@ public class BookingServiceTest
         var availableSeats = _testEvent.AvailableSeats;
 
         var eventService = new Mock<IEventService>();
-        eventService.Setup(r => r.GetEntityById(_testEvent.Id)).Returns(_testEvent);
+        eventService.Setup(r => r.GetEntityByIdAsync(_testEvent.Id)).ReturnsAsync(_testEvent);
 
         var bookingLogger = new Logger<BookingService>(new LoggerFactory());
 
-        var realBookingService = new BookingService(bookingLogger, eventService.Object);
+        var realBookingService = new BookingService(_dbContext, bookingLogger, eventService.Object);
         var pendingBooking = await realBookingService.CreateBookingAsync(_testEvent.Id);
 
         var mockServiceProvider = new Mock<IServiceProvider>();
@@ -216,7 +235,7 @@ public class BookingServiceTest
         var mockScopeFactory = new Mock<IServiceScopeFactory>();
         mockScopeFactory.Setup(f => f.CreateScope()).Returns(mockServiceScope.Object);
 
-        eventService.Setup(r => r.Update(It.IsAny<Event>())).Throws(new System.Exception());
+        eventService.Setup(r => r.UpdateAsync(It.IsAny<Event>())).Throws(new System.Exception());
 
         var mockLogger = new Mock<ILogger<BookingWorker>>();
         var worker = new BookingWorker(mockLogger.Object, mockScopeFactory.Object);
@@ -235,7 +254,7 @@ public class BookingServiceTest
 
         var secondPendingBooking = await realBookingService.CreateBookingAsync(_testEvent.Id);
 
-        eventService.Setup(r => r.Update(It.IsAny<Event>())).Returns(It.IsAny<EventInfoDto>());
+        eventService.Setup(r => r.UpdateAsync(It.IsAny<Event>())).ReturnsAsync(It.IsAny<EventInfoDto>());
         using var ctsNew = new CancellationTokenSource();
 
         await worker.StartAsync(ctsNew.Token);
@@ -267,8 +286,8 @@ public class BookingServiceTest
             EndAt = new DateTime(2020, 01, 31)
         };
 
-        _eventService.Create(eventItem);
-        _eventService.Delete(eventId);
+        _eventService.CreateAsync(eventItem);
+        _eventService.DeleteAsync(eventId);
         await Assert.ThrowsAsync<EventNotFoundException>(() => _bookingService.CreateBookingAsync(eventId));
     }
 
@@ -334,11 +353,11 @@ public class BookingServiceTest
     {
         _testEvent.AvailableSeats = 5;
         var eventService = new Mock<IEventService>();
-        eventService.Setup(r => r.GetEntityById(_testEvent.Id)).Returns(_testEvent);
+        eventService.Setup(r => r.GetEntityByIdAsync(_testEvent.Id)).ReturnsAsync(_testEvent);
 
         var bookingLogger = new Logger<BookingService>(new LoggerFactory());
 
-        var bookingService = new BookingService(bookingLogger, eventService.Object);
+        var bookingService = new BookingService(_dbContext, bookingLogger, eventService.Object);
 
         using var cts = new CancellationTokenSource();
 
@@ -375,11 +394,11 @@ public class BookingServiceTest
     {
         _testEvent.AvailableSeats = 10;
         var eventService = new Mock<IEventService>();
-        eventService.Setup(r => r.GetEntityById(_testEvent.Id)).Returns(_testEvent);
+        eventService.Setup(r => r.GetEntityByIdAsync(_testEvent.Id)).ReturnsAsync(_testEvent);
 
         var bookingLogger = new Logger<BookingService>(new LoggerFactory());
 
-        var bookingService = new BookingService(bookingLogger, eventService.Object);
+        var bookingService = new BookingService(_dbContext, bookingLogger, eventService.Object);
 
         using var cts = new CancellationTokenSource();
 

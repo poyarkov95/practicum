@@ -17,13 +17,13 @@ public class EventsController(IEventService eventService, IBookingService bookin
         [FromQuery] int? page,
         [FromQuery] int? pageSize)
     {
-        return Ok(eventService.GetAll(title, from, to, page, pageSize));
+        return Ok(eventService.GetAllAsync(title, from, to, page, pageSize));
     }
 
     [HttpGet("{id:Guid}")]
     public IActionResult GetById(Guid id)
     {
-        return Ok(eventService.GetById(id));
+        return Ok(eventService.GetByIdAsync(id));
     }
 
     [HttpPost]
@@ -44,7 +44,7 @@ public class EventsController(IEventService eventService, IBookingService bookin
         } 
         
         var model = EventMapper.MapToEvent(newEvent);
-        return CreatedAtAction(nameof(Create), eventService.Create(model));
+        return CreatedAtAction(nameof(Create), eventService.CreateAsync(model));
     }
 
     [HttpPut("{id:Guid}")]
@@ -70,13 +70,13 @@ public class EventsController(IEventService eventService, IBookingService bookin
         }
 
         var model = EventMapper.MapToEvent(eventDto);
-        return Ok(eventService.Update(model));
+        return Ok(eventService.UpdateAsync(model));
     }
 
     [HttpDelete("{id:Guid}")]
     public IActionResult Delete(Guid id)
     {
-        eventService.Delete(id);
+        eventService.DeleteAsync(id);
         return Ok();
     }
     

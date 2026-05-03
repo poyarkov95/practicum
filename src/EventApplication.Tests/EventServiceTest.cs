@@ -1,7 +1,11 @@
-﻿using EventApplication.Exception;
+﻿using EventApplication.Database;
+using EventApplication.Exception;
 using EventApplication.Models;
 using EventApplication.Service.Implementation;
 using EventApplication.Service.Interface;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Xunit;
 
 namespace EventApplication.Tests;
@@ -13,7 +17,19 @@ public class EventServiceTest
     
     public EventServiceTest()
     {
-        _eventService = new EventService();
+        var dbName = Guid.NewGuid().ToString();
+        var services = new ServiceCollection();
+        services.AddDbContext<AppDbContext>(options =>
+            options.UseInMemoryDatabase(dbName));
+        
+        services.AddScoped<IEventService, EventService>();
+        services.AddScoped<IBookingService, BookingService>();
+        
+        services.AddLogging(configure => configure.AddConsole());
+        
+        var serviceProvider = services.BuildServiceProvider(); 
+        var scope = serviceProvider.CreateScope();
+        _eventService = scope.ServiceProvider.GetRequiredService<IEventService>();
         
         _testEvent = new Event
         {
@@ -24,11 +40,11 @@ public class EventServiceTest
             EndAt = new DateTime(2020, 01, 31)
         };
         
-        _eventService.Create(_testEvent);
+        Task.Run(() => _eventService.CreateAsync(_testEvent)).GetAwaiter().GetResult();
     }
 
     [Fact]
-    public void CreateEventTest()
+    public async Task CreateEventTest()
     {
         var eventToCreate = new Event
         {
@@ -38,110 +54,110 @@ public class EventServiceTest
             StartAt = new DateTime(2020, 01, 01),
             EndAt = new DateTime(2020, 01, 31),
         };
-        var createdDto = _eventService.Create(eventToCreate);
+        var createdDto = await _eventService.CreateAsync(eventToCreate);
         Assert.Equal(eventToCreate.Id, createdDto.Id);
     }
-
+    
     [Fact]
-    public void GetAllEventsTest()
+    public async Task GetAllEventsTest()
     {
-        var eventList = _eventService.GetAll();
+        var eventList = await _eventService.GetAllAsync();
         var eventsCount = eventList.Data.Count();
         Assert.Equal(1, eventsCount);
     }
-
+    
     [Theory]
     [InlineData( "8a1f2e3b4c5d6e7f8a9b0c1d2e3f4a5b")]
-    public void GetEventByIdTest(string id)
+    public async Task GetEventByIdTest(string id)
     {
-        var eventItem = _eventService.GetById(new Guid(id));
+        var eventItem = await _eventService.GetByIdAsync(new Guid(id));
         Assert.Equal(_testEvent.Id, eventItem.Id);
     }
     
     [Fact]
-    public void CreateWithExisingIdTest()
+    public async Task CreateWithExisingIdTest()
     {
-        Assert.Throws<EventAlreadyExistsException>(() => _eventService.Create(_testEvent));
+        await Assert.ThrowsAsync<EventAlreadyExistsException>(() => _eventService.CreateAsync(_testEvent));
     }
     
     [Fact]
-    public void UpdateEventTest()
+    public async Task UpdateEventTest()
     {
-        var eventToUpdate = _eventService.GetEntityById(_testEvent.Id);
+        var eventToUpdate = await _eventService.GetEntityByIdAsync(_testEvent.Id);
         eventToUpdate.Title = "updated title";
-        var updatedEvent = _eventService.Update(eventToUpdate);
+        var updatedEvent = await _eventService.UpdateAsync(eventToUpdate);
         Assert.Equal(updatedEvent.Title,  eventToUpdate.Title);
     }
     
     [Fact]
-    public void DeleteEventTest()
+    public async Task DeleteEventTest()
     {
-        _eventService.Delete(_testEvent.Id);
-        var eventList = _eventService.GetAll();
+        await _eventService.DeleteAsync(_testEvent.Id);
+        var eventList = await _eventService.GetAllAsync();
         var eventsCount = eventList.Data.Count();
         Assert.Equal(0, eventsCount);
     }
     
     [Fact]
-    public void DeleteNonExisingIdTest()
+    public async Task DeleteNonExisingIdTest()
     {
-        Assert.Throws<EventNotFoundException>(() => _eventService.Delete(new  Guid("9a1f2e3b4c5d6e7f8a9b0c1d2e3f4a5b")));
+        await Assert.ThrowsAsync<EventNotFoundException>(() => _eventService.DeleteAsync(new  Guid("9a1f2e3b4c5d6e7f8a9b0c1d2e3f4a5b")));
     }
     
     [Fact]
-    public void FilterByTitleTest()
+    public async Task FilterByTitleTest()
     {
-        var eventByTitle = _eventService.GetAll("Заголовок события").Data?.FirstOrDefault();
+        var eventByTitle = (await _eventService.GetAllAsync("Заголовок события")).Data?.FirstOrDefault();
         Assert.Equal(_testEvent.Id, eventByTitle?.Id);
         
-        var eventBySubTitle = _eventService.GetAll("овок события").Data?.FirstOrDefault();
+        var eventBySubTitle = (await _eventService.GetAllAsync("овок события")).Data?.FirstOrDefault();
         Assert.Equal(_testEvent.Id, eventByTitle?.Id);
     }
     
     [Fact]
-    public void FilterByDatesTest()
+    public async Task FilterByDatesTest()
     {
-        var eventByDates = _eventService.GetAll(
+        var eventByDates = (await _eventService.GetAllAsync(
             from: new DateTime(2019, 01, 02), 
-            to: new DateTime(2020, 02, 15)).Data?.FirstOrDefault();
+            to: new DateTime(2020, 02, 15))).Data?.FirstOrDefault();
         Assert.Equal(_testEvent.Id, eventByDates?.Id);
     }
     
     [Fact]
-    public void FilterByDatesNoResultTest()
+    public async Task FilterByDatesNoResultTest()
     {
-        var eventByDates = _eventService.GetAll(
+        var eventByDates = (await _eventService.GetAllAsync(
             from: new DateTime(2099, 01, 02), 
-            to: new DateTime(2100, 02, 15)).Data?.FirstOrDefault();
+            to: new DateTime(2100, 02, 15))).Data?.FirstOrDefault();
         Assert.Null(eventByDates);
     }
     
     [Fact]
-    public void FilterByDateFromTest()
+    public async Task FilterByDateFromTest()
     {
-        var eventByDates = _eventService.GetAll(
-            from: new DateTime(2019, 01, 02)).Data?.FirstOrDefault();
+        var eventByDates = (await _eventService.GetAllAsync(
+            from: new DateTime(2019, 01, 02))).Data?.FirstOrDefault();
         Assert.Equal(eventByDates?.Id, _testEvent.Id);
     }
     
     [Fact]
-    public void FilterByDateToTest()
+    public async Task FilterByDateToTest()
     {
-        var eventByDates = _eventService.GetAll(
-            to: new DateTime(2024, 01, 02)).Data?.FirstOrDefault();
+        var eventByDates = (await _eventService.GetAllAsync(
+            to: new DateTime(2024, 01, 02))).Data?.FirstOrDefault();
         Assert.Equal(eventByDates?.Id, _testEvent.Id);
     }
     
     [Fact]
-    public void FilterByAllParametersTest()
+    public async Task FilterByAllParametersTest()
     {
-        var eventByDates = _eventService.GetAll(
+        var eventByDates = (await _eventService.GetAllAsync(
             page: 1,
             pageSize: 10,
             title: "заг", 
             from: new DateTime(2019, 01, 02),
             to: new DateTime(2024, 01, 02)
-            ).Data?.FirstOrDefault();
+            )).Data?.FirstOrDefault();
         
         Assert.Equal(eventByDates?.Id, _testEvent.Id);
     }
@@ -153,7 +169,7 @@ public class EventServiceTest
     [InlineData(1, 1, "Заголовок события", 1)]
     [InlineData(1, 1, "ЗаГолОвОк событиЯ", 1)]
     [InlineData(1, 1, "", 1)]
-    public void FilterPaginationTest(int? page, int? pageSize, string? title, int expectedCount)
+    public async Task FilterPaginationTest(int? page, int? pageSize, string? title, int expectedCount)
     {
         var eventToCreate = new Event
         {
@@ -163,21 +179,21 @@ public class EventServiceTest
             StartAt = new DateTime(2020, 01, 01),
             EndAt = new DateTime(2020, 01, 31),
         };
-        _eventService.Create(eventToCreate);
-
-        var getByPaginationCount =_eventService.GetAll(title: title, page: page, pageSize: pageSize).Data?.Count();
+        _eventService.CreateAsync(eventToCreate);
+    
+        var getByPaginationCount = (await _eventService.GetAllAsync(title: title, page: page, pageSize: pageSize)).Data?.Count();
         Assert.Equal(expectedCount, getByPaginationCount);
     }
     
     [Fact]
-    public void SearchNonExistingIdTest()
+    public async Task SearchNonExistingIdTest()
     {
         var id = new Guid("9a1f2e3b4c5d6e7f8a9b0c1d2e3f4a5b");
-        Assert.Throws<EventNotFoundException>(() => _eventService.GetById(id));
+        await Assert.ThrowsAsync<EventNotFoundException>(() => _eventService.GetByIdAsync(id));
     }
     
     [Fact]
-    public void UpdateNonExistingIdTest()
+    public async Task UpdateNonExistingIdTest()
     {
         var eventToUpdate = new Event
         {
@@ -188,6 +204,6 @@ public class EventServiceTest
             EndAt = new DateTime(2020, 01, 31),
         };
         
-        Assert.Throws<EventNotFoundException>(() => _eventService.Update(eventToUpdate));
+        await Assert.ThrowsAsync<EventNotFoundException>(() => _eventService.UpdateAsync(eventToUpdate));
     }
 }

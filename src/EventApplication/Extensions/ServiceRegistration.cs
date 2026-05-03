@@ -1,6 +1,8 @@
+using EventApplication.Database;
 using EventApplication.Service.Hosted;
 using EventApplication.Service.Implementation;
 using EventApplication.Service.Interface;
+using Microsoft.EntityFrameworkCore;
 
 namespace EventApplication.Extensions;
 
@@ -12,8 +14,8 @@ public static class ServiceRegistration
     public static void AddServices(this IServiceCollection services)
     {
         // Регистрация сервисов
-        services.AddSingleton<IEventService, EventService>();
-        services.AddSingleton<IBookingService, BookingService>();
+        services.AddScoped<IEventService, EventService>();
+        services.AddScoped<IBookingService, BookingService>();
         
         // Hosted сервисы
         services.AddHostedService<BookingWorker>();

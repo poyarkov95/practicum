@@ -11,39 +11,39 @@ public interface IEventService
     /// Получить список событий
     /// </summary>
     /// <returns>Список событий</returns>
-    PaginatedResult<EventInfoDto> GetAll(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10);
+    Task<PaginatedResult<EventInfoDto>> GetAllAsync(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10);
     
     /// <summary>
     /// Получить событие по идентификатору
     /// </summary>
     /// <param name="id"></param>
     /// <returns>Возвращает событие</returns>
-    EventInfoDto GetById(Guid id);
+    Task<EventInfoDto> GetByIdAsync(Guid id);
     
     /// <summary>
     /// Получить событие из хранилища событие по идентификатору
     /// </summary>
     /// <param name="id"></param>
     /// <returns>Возвращает событие</returns>
-    Event GetEntityById(Guid id);
+    Task<Event> GetEntityByIdAsync(Guid id);
     
     /// <summary>
     /// Создать событие
     /// </summary>
     /// <param name="model"></param>
     /// <returns>овое событие</returns>
-    EventInfoDto Create(Event model);
+    Task<EventInfoDto> CreateAsync(Event model);
     
     /// <summary>
     /// Обновить событе
     /// </summary>
     /// <param name="model"></param>
     /// <returns>Обновленное событие</returns>
-    EventInfoDto Update(Event model);
+    Task<EventInfoDto> UpdateAsync(Event model);
     
     /// <summary>
     /// Удалить событие
     /// </summary>
     /// <param name="id"></param>
-    void Delete(Guid id);
+    Task DeleteAsync(Guid id);
 }

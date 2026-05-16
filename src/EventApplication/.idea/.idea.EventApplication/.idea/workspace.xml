@@ -10,25 +10,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cf73f89-09f1-49bd-8c8c-1ddc7792d617" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Database/AppDbContext.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Database/Configuration/BookingsConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Database/Configuration/EventConfiguration.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Database/Repository/Implementation/BookingRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Database/Repository/Implementation/EventRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Database/Repository/Interface/IBookingRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Database/Repository/Interface/IEventRepository.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Extensions/RepositoryRegistration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/EventApplication.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/EventApplication.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/EventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/EventsController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EventApplication.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/ServiceRegistration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/ServiceRegistration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Booking.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Booking.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Event.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Event.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Service/Implementation/BookingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Implementation/BookingService.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Service/Implementation/EventService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Implementation/EventService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Interface/IEventService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Interface/IEventService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,7 +34,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="main" />
+        <entry key="$PROJECT_DIR$/../.." value="sprint-5" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -60,7 +53,7 @@
 }</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1d6adc2a4ba444f89174c21e9cc94ddf69400/01/fda8c7f9/ValidationTestExtension.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a534d715270545338a1b10305774950016e00/9d/a50c1f9e/WebApplicationBuilder.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a534d715270545338a1b10305774950016e00/9d/a50c1f9e/WebApplicationBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f11d9f4720504a4ab075fa10df0db547e200/3d/2206f8b1/BackgroundService.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/271b8d2d9d94e13a469269f46758864f64ad438c3174f74d4a591af6410e96b/Future.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2c711cc1eafabedca656f5c8568f7359816ecc2613c46dceaae83ff4bd332a/ExceptionAsserts.cs" root0="FORCE_HIGHLIGHTING" />
@@ -71,6 +64,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7f17ec8a792336f22d4db3723fbddcb12fa39ff14bfda85d9ea332462b2019f2/StatusCodes.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a6f52f75db0c77bb83f322fb52f52cef9cff6cdafbb94dfec214bab243d18/Task.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b2bf10fa1a078c781bb4d6954d449e2aa1b7e5b37e2f0b59db9787f0b5ff56/TestRunner.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b43021565ba7f13262dd95827ae378ea6015db2c146979398f92c7356d98488/MigrationCommandExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ce37be1a06b16c6faa02038d2cc477dd3bca5b217ceeb41c5f2ad45c1bf9/ServiceProvider.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/db7395f4add94e6d10e515b3e55373f2821f8323de7dc8e314d78feefacf5584/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
@@ -79,10 +73,15 @@
     <setting file="file://$PROJECT_DIR$/Database/AppDbContext.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Database/Configuration/BookingsConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Database/Configuration/EventConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Database/Repository/Implementation/BookingRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Database/Repository/Implementation/EventRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Database/Repository/Interface/IBookingRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Database/Repository/Interface/IEventRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Exception/BookingNotFoundException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Exception/EventAlreadyExistsException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Exception/NoAvailableSeatsException.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Extensions/ExceptionMiddlewareExtension.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Extensions/RepositoryRegistration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Middleware/GlobalExceptionHandlingMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Models/CreateEventDto.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Models/ErrorResponse.cs" root0="FORCE_HIGHLIGHTING" />
@@ -117,7 +116,7 @@
     "e70ac98a-5ad8-4653-a78e-a9c4b9833b64.executor": "Debug",
     "eca8e62c-807f-4a90-8795-9608eb456d10.executor": "Debug",
     "f8ba6b64-9ad3-4f49-8b56-d394958d88b9.executor": "Debug",
-    "git-widget-placeholder": "sprint-5",
+    "git-widget-placeholder": "sprint-6",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -195,6 +194,7 @@
       <workItem from="1773764986776" duration="30066000" />
       <workItem from="1775315064370" duration="12568000" />
       <workItem from="1776185456099" duration="51927000" />
+      <workItem from="1778607231852" duration="8936000" />
     </task>
     <task id="LOCAL-00001" summary="Перенес все в src папку">
       <option name="closed" value="true" />
@@ -300,7 +300,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776604988655</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Коммит по итогам пятого спринта.&#10;&#10;Подключена база данных Postgres">
+      <option name="closed" value="true" />
+      <created>1777801739417</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1777801739417</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -345,7 +353,8 @@
     <MESSAGE value="тесты на смену статуса" />
     <MESSAGE value="+ concurrency tests" />
     <MESSAGE value="Обновленный README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="Обновленный README.md" />
+    <MESSAGE value="Коммит по итогам пятого спринта.&#10;&#10;Подключена база данных Postgres" />
+    <option name="LAST_COMMIT_MESSAGE" value="Коммит по итогам пятого спринта.&#10;&#10;Подключена база данных Postgres" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -364,26 +373,13 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Service/Implementation/EventService.cs</url>
-          <line>16</line>
-          <properties documentPath="$PROJECT_DIR$/Service/Implementation/EventService.cs" containingFunctionPresentation="Method 'GetAll'">
-            <startOffsets>
-              <option value="573" />
-            </startOffsets>
-            <endOffsets>
-              <option value="589" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/Service/Implementation/EventService.cs</url>
-          <line>73</line>
+          <line>49</line>
           <properties documentPath="$PROJECT_DIR$/Service/Implementation/EventService.cs" containingFunctionPresentation="Method 'Update'">
             <startOffsets>
-              <option value="2195" />
+              <option value="1628" />
             </startOffsets>
             <endOffsets>
-              <option value="2270" />
+              <option value="1708" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="11" />
@@ -417,12 +413,12 @@
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/../EventApplication.Tests/FluentValidatorTest.cs</url>
           <line>81</line>
-          <properties documentPath="$PROJECT_DIR$/../EventApplication.Tests/FluentValidatorTest.cs" containingFunctionPresentation="Method 'ValidateStartDateIsLaterThenDateEndTest'">
+          <properties documentPath="$PROJECT_DIR$/../EventApplication.Tests/FluentValidatorTest.cs" containingFunctionPresentation="Method 'ValidateStartAtIsLaterThanDateEndTest'">
             <startOffsets>
-              <option value="2255" />
+              <option value="2300" />
             </startOffsets>
             <endOffsets>
-              <option value="2391" />
+              <option value="2437" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="18" />
@@ -468,39 +464,39 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Service/Implementation/BookingService.cs</url>
-          <line>15</line>
+          <line>14</line>
           <properties documentPath="$PROJECT_DIR$/Service/Implementation/BookingService.cs" containingFunctionPresentation="Method 'CreateBookingAsync'">
             <startOffsets>
-              <option value="583" />
+              <option value="588" />
             </startOffsets>
             <endOffsets>
-              <option value="646" />
+              <option value="651" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="26" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Service/Implementation/BookingService.cs</url>
-          <line>46</line>
+          <line>44</line>
           <properties documentPath="$PROJECT_DIR$/Service/Implementation/BookingService.cs" containingFunctionPresentation="Method 'GetBookingByIdAsync'">
             <startOffsets>
-              <option value="1574" />
+              <option value="1539" />
             </startOffsets>
             <endOffsets>
-              <option value="1650" />
+              <option value="1601" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/Service/Implementation/EventService.cs</url>
-          <line>75</line>
+          <line>51</line>
           <properties documentPath="$PROJECT_DIR$/Service/Implementation/EventService.cs" containingFunctionPresentation="Method 'CreateAsync'">
             <startOffsets>
-              <option value="2212" />
+              <option value="1645" />
             </startOffsets>
             <endOffsets>
-              <option value="2264" />
+              <option value="1702" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="28" />

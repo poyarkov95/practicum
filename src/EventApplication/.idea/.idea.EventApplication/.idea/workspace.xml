@@ -11,15 +11,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cf73f89-09f1-49bd-8c8c-1ddc7792d617" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/BookingRepositoryTest.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/DatabaseTestManager.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventApplication.IntegrationTests.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Repository/Implementation/EventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Repository/Implementation/EventRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.sln" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -222,7 +215,7 @@
       <workItem from="1773764986776" duration="30066000" />
       <workItem from="1775315064370" duration="12568000" />
       <workItem from="1776185456099" duration="51927000" />
-      <workItem from="1778607231852" duration="18693000" />
+      <workItem from="1778607231852" duration="19173000" />
     </task>
     <task id="LOCAL-00001" summary="Перенес все в src папку">
       <option name="closed" value="true" />
@@ -344,7 +337,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778919100706</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="+ тесты">
+      <option name="closed" value="true" />
+      <created>1779211226106</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1779211226107</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -391,7 +392,8 @@
     <MESSAGE value="Обновленный README.md" />
     <MESSAGE value="Коммит по итогам пятого спринта.&#10;&#10;Подключена база данных Postgres" />
     <MESSAGE value="репозитории + миграция" />
-    <option name="LAST_COMMIT_MESSAGE" value="репозитории + миграция" />
+    <MESSAGE value="+ тесты" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ тесты" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -475,13 +477,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs</url>
-          <line>108</line>
+          <line>112</line>
           <properties documentPath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" containingFunctionPresentation="">
             <startOffsets>
-              <option value="3583" />
+              <option value="3830" />
             </startOffsets>
             <endOffsets>
-              <option value="3584" />
+              <option value="3831" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="21" />
@@ -540,13 +542,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs</url>
-          <line>42</line>
+          <line>46</line>
           <properties documentPath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" containingFunctionPresentation="Constructor 'EventServiceTest'">
             <startOffsets>
-              <option value="1458" />
+              <option value="1705" />
             </startOffsets>
             <endOffsets>
-              <option value="1537" />
+              <option value="1784" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="29" />
@@ -644,13 +646,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs</url>
-          <line>48</line>
+          <line>52</line>
           <properties documentPath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" containingFunctionPresentation="Method 'CreateEventTest'">
             <startOffsets>
-              <option value="1610" />
+              <option value="1857" />
             </startOffsets>
             <endOffsets>
-              <option value="1908" />
+              <option value="2155" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="40" />

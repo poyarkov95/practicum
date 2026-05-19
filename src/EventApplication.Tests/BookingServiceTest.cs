@@ -124,7 +124,7 @@ public class BookingServiceTest
          await worker.StartAsync(cts.Token);
     
          await Task.Delay(TimeSpan.FromSeconds(4), cts.Token);
-         cts.Cancel();
+         await cts.CancelAsync();
     
          Assert.NotNull(pendingBooking);
          Assert.Equal(BookingStatus.Confirmed, pendingBooking.Status);
@@ -165,7 +165,7 @@ public class BookingServiceTest
          await worker.StartAsync(cts.Token);
     
          await Task.Delay(TimeSpan.FromSeconds(4), cts.Token);
-         cts.Cancel();
+         await cts.CancelAsync();
     
          Assert.NotNull(pendingBooking);
          Assert.Equal(BookingStatus.Rejected, pendingBooking.Status);
@@ -206,7 +206,7 @@ public class BookingServiceTest
          await worker.StartAsync(cts.Token);
     
          await Task.Delay(TimeSpan.FromSeconds(4), cts.Token);
-         cts.Cancel();
+         await cts.CancelAsync();
     
          Assert.NotNull(pendingBooking);
          Assert.Equal(BookingStatus.Rejected, pendingBooking.Status);
@@ -249,7 +249,7 @@ public class BookingServiceTest
          await worker.StartAsync(cts.Token);
     
          await Task.Delay(TimeSpan.FromSeconds(4), cts.Token);
-         cts.Cancel();
+         await cts.CancelAsync();
     
          Assert.NotNull(pendingBooking);
          Assert.Equal(BookingStatus.Rejected, pendingBooking.Status);
@@ -264,7 +264,7 @@ public class BookingServiceTest
          await worker.StartAsync(ctsNew.Token);
     
          await Task.Delay(TimeSpan.FromSeconds(4), ctsNew.Token);
-         ctsNew.Cancel();
+         await ctsNew.CancelAsync();
     
          Assert.NotNull(secondPendingBooking);
          Assert.Equal(BookingStatus.Confirmed, secondPendingBooking.Status);
@@ -290,8 +290,8 @@ public class BookingServiceTest
             EndAt = new DateTime(2020, 01, 31)
         };
 
-        _eventService.CreateAsync(eventItem);
-        _eventService.DeleteAsync(eventId);
+        await _eventService.CreateAsync(eventItem);
+        await _eventService.DeleteAsync(eventId);
         await Assert.ThrowsAsync<EventNotFoundException>(() => _bookingService.CreateBookingAsync(eventId));
     }
 
@@ -382,7 +382,7 @@ public class BookingServiceTest
                  {
                      exceptionBag.Add(e);
                  }
-             }));
+             }, cts.Token));
          }
     
          await Task.WhenAll(tasks);
@@ -423,7 +423,7 @@ public class BookingServiceTest
                  {
                      exceptionBag.Add(e);
                  }
-             }));
+             }, cts.Token));
          }
     
          await Task.WhenAll(tasks);

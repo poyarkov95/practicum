@@ -41,19 +41,7 @@
   &lt;Project Location="/Users/andrey/Projects/learning/yandex/practicum/src/EventApplication.Tests" Presentation="&amp;lt;EventApplication.Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7a2170c0_002D07a1_002D4ac4_002D9649_002Df09076cc95e2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Session #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.VerifyBookingStatusChangeTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.VerifyBookingStatusChangeTest_RealService&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.BookingChangeStatusMethodsTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::B42EAAD8-2A04-4647-9BDD-E34F1A9051CE::net9.0::EventApplication.IntegrationTests.EventRepositoryTest.GetByIdTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::B42EAAD8-2A04-4647-9BDD-E34F1A9051CE::net9.0::EventApplication.IntegrationTests.EventRepositoryTest.GetAllAsyncTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::B42EAAD8-2A04-4647-9BDD-E34F1A9051CE::net9.0::EventApplication.IntegrationTests.EventRepositoryTest.CreateEventTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::B42EAAD8-2A04-4647-9BDD-E34F1A9051CE::net9.0::EventApplication.IntegrationTests.EventRepositoryTest.UpdateEventTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::B42EAAD8-2A04-4647-9BDD-E34F1A9051CE::net9.0::EventApplication.IntegrationTests.EventRepositoryTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::B42EAAD8-2A04-4647-9BDD-E34F1A9051CE::net9.0::EventApplication.IntegrationTests.BookingRepositoryTest.UpdateEventTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest&lt;/TestId&gt;
-    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.EventServiceTest&lt;/TestId&gt;
-  &lt;/TestAncestor&gt;
+  &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8dc96e3b_002D3458_002D43be_002D85f4_002D4299b3757bf2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="VerifyBookingStatusChangeTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;

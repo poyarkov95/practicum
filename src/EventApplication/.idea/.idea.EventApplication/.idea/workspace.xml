@@ -11,8 +11,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cf73f89-09f1-49bd-8c8c-1ddc7792d617" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -215,7 +214,7 @@
       <workItem from="1773764986776" duration="30066000" />
       <workItem from="1775315064370" duration="12568000" />
       <workItem from="1776185456099" duration="51927000" />
-      <workItem from="1778607231852" duration="19173000" />
+      <workItem from="1778607231852" duration="19525000" />
     </task>
     <task id="LOCAL-00001" summary="Перенес все в src папку">
       <option name="closed" value="true" />
@@ -345,7 +344,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779211226107</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="warnings">
+      <option name="closed" value="true" />
+      <created>1779211737588</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1779211737588</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -393,7 +400,8 @@
     <MESSAGE value="Коммит по итогам пятого спринта.&#10;&#10;Подключена база данных Postgres" />
     <MESSAGE value="репозитории + миграция" />
     <MESSAGE value="+ тесты" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ тесты" />
+    <MESSAGE value="warnings" />
+    <option name="LAST_COMMIT_MESSAGE" value="warnings" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

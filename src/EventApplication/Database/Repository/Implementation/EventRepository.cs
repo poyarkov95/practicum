@@ -64,7 +64,7 @@ public class EventRepository(AppDbContext db) : IEventRepository
 
         if (!string.IsNullOrEmpty(title))
         {
-            query = query.Where(s => s.Title.Contains(title, StringComparison.OrdinalIgnoreCase));
+            query = query.Where(s => s.Title.ToLower().Contains(title.ToLower()));
         }
 
         if (from != null)

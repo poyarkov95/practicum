@@ -1,4 +1,6 @@
 ﻿using EventApplication.Database;
+using EventApplication.Database.Repository.Implementation;
+using EventApplication.Database.Repository.Interface;
 using EventApplication.Exception;
 using EventApplication.Models;
 using EventApplication.Service.Implementation;
@@ -22,6 +24,8 @@ public class EventServiceTest
         services.AddDbContext<AppDbContext>(options =>
             options.UseInMemoryDatabase(dbName));
         
+        services.AddScoped<IEventRepository, EventRepository>();
+        services.AddScoped<IBookingRepository, BookingRepository>();
         services.AddScoped<IEventService, EventService>();
         services.AddScoped<IBookingService, BookingService>();
         

@@ -30,7 +30,7 @@ public class DatabaseTestManager : IAsyncLifetime
             .Options;
 
         var context = new AppDbContext(options);
-        await context.Database.EnsureCreatedAsync();
+        await context.Database.MigrateAsync();
         return context;
     }
     

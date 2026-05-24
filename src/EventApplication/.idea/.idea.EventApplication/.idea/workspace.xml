@@ -11,7 +11,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cf73f89-09f1-49bd-8c8c-1ddc7792d617" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../EventApplication.IntegrationTests/BookingRepositoryTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/BookingRepositoryTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EventApplication.IntegrationTests/DatabaseTestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/DatabaseTestManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Database/Repository/Implementation/EventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Database/Repository/Implementation/EventRepository.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Service/Implementation/EventService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Service/Implementation/EventService.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,7 +51,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/1d6adc2a4ba444f89174c21e9cc94ddf69400/01/fda8c7f9/ValidationTestExtension.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/a534d715270545338a1b10305774950016e00/9d/a50c1f9e/WebApplicationBuilder.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/f11d9f4720504a4ab075fa10df0db547e200/3d/2206f8b1/BackgroundService.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/057eeff5d8764e358c7c7f31329a8c15e22600/_18cae/IReadOnlyList.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/057eeff5d8764e358c7c7f31329a8c15e22600/_18cae/IReadOnlyList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/271b8d2d9d94e13a469269f46758864f64ad438c3174f74d4a591af6410e96b/Future.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/2c711cc1eafabedca656f5c8568f7359816ecc2613c46dceaae83ff4bd332a/ExceptionAsserts.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/4117ae48b3954af098dc2bcb9d4faf457872e2718768ea11ac4054d4f02a9fa9/Guard.cs" root0="FORCE_HIGHLIGHTING" />
@@ -53,6 +59,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/59e69cdfed13efa8a6d7821335c5f5d1dd7e4dc2d09a23eec71b142e6f9967/Dictionary.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/656c392daf503fe14a1fe53fc449dbae6fe48d895df4a039d1ca03e2d837/ProblemDetails.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/7f17ec8a792336f22d4db3723fbddcb12fa39ff14bfda85d9ea332462b2019f2/StatusCodes.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8776ccc61a57bd1b29fd19126a117f45c6f4a35323d4d9b31ee1694ed6d6/Guard.Null.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/8b203ea068ab3184da20425f94a1196a6339def59454613d36ffcbe73876d/XunitTestRunnerBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a6f52f75db0c77bb83f322fb52f52cef9cff6cdafbb94dfec214bab243d18/Task.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b2bf10fa1a078c781bb4d6954d449e2aa1b7e5b37e2f0b59db9787f0b5ff56/TestRunner.cs" root0="FORCE_HIGHLIGHTING" />
@@ -115,7 +122,7 @@
     "e70ac98a-5ad8-4653-a78e-a9c4b9833b64.executor": "Debug",
     "eca8e62c-807f-4a90-8795-9608eb456d10.executor": "Debug",
     "f8ba6b64-9ad3-4f49-8b56-d394958d88b9.executor": "Debug",
-    "git-widget-placeholder": "sprint-6",
+    "git-widget-placeholder": "#6 on sprint-6",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -214,7 +221,8 @@
       <workItem from="1773764986776" duration="30066000" />
       <workItem from="1775315064370" duration="12568000" />
       <workItem from="1776185456099" duration="51927000" />
-      <workItem from="1778607231852" duration="19525000" />
+      <workItem from="1778607231852" duration="21326000" />
+      <workItem from="1779387108028" duration="10298000" />
     </task>
     <task id="LOCAL-00001" summary="Перенес все в src папку">
       <option name="closed" value="true" />
@@ -352,7 +360,15 @@
       <option name="project" value="LOCAL" />
       <updated>1779211737588</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="+readme">
+      <option name="closed" value="true" />
+      <created>1779212280190</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1779212280190</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -401,7 +417,8 @@
     <MESSAGE value="репозитории + миграция" />
     <MESSAGE value="+ тесты" />
     <MESSAGE value="warnings" />
-    <option name="LAST_COMMIT_MESSAGE" value="warnings" />
+    <MESSAGE value="+readme" />
+    <option name="LAST_COMMIT_MESSAGE" value="+readme" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -423,10 +440,10 @@
           <line>49</line>
           <properties documentPath="$PROJECT_DIR$/Service/Implementation/EventService.cs" containingFunctionPresentation="Method 'Update'">
             <startOffsets>
-              <option value="1628" />
+              <option value="1659" />
             </startOffsets>
             <endOffsets>
-              <option value="1708" />
+              <option value="1739" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="11" />
@@ -540,10 +557,10 @@
           <line>51</line>
           <properties documentPath="$PROJECT_DIR$/Service/Implementation/EventService.cs" containingFunctionPresentation="Method 'CreateAsync'">
             <startOffsets>
-              <option value="1645" />
+              <option value="1676" />
             </startOffsets>
             <endOffsets>
-              <option value="1702" />
+              <option value="1733" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="28" />
@@ -576,13 +593,13 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs</url>
-          <line>45</line>
+          <line>51</line>
           <properties documentPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" containingFunctionPresentation="Method 'GetAllAsyncTest'">
             <startOffsets>
-              <option value="1532" />
+              <option value="1930" />
             </startOffsets>
             <endOffsets>
-              <option value="1580" />
+              <option value="1978" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="34" />
@@ -595,7 +612,7 @@
               <option value="423" />
             </startOffsets>
             <endOffsets>
-              <option value="481" />
+              <option value="465" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="35" />
@@ -605,36 +622,36 @@
           <line>62</line>
           <properties documentPath="$PROJECT_DIR$/Database/Repository/Implementation/EventRepository.cs" containingFunctionPresentation="Method 'PrepareQuery'">
             <startOffsets>
-              <option value="2091" />
+              <option value="2024" />
             </startOffsets>
             <endOffsets>
-              <option value="2127" />
+              <option value="2060" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs</url>
-          <line>94</line>
+          <line>167</line>
           <properties documentPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" containingFunctionPresentation="Method 'UpdateEventTest'">
             <startOffsets>
-              <option value="3421" />
+              <option value="6260" />
             </startOffsets>
             <endOffsets>
-              <option value="3475" />
+              <option value="6314" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
           <url>file://$PROJECT_DIR$/../EventApplication.IntegrationTests/BookingRepositoryTest.cs</url>
-          <line>21</line>
+          <line>22</line>
           <properties documentPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/BookingRepositoryTest.cs" containingFunctionPresentation="Method 'UpdateEventTest'">
             <startOffsets>
-              <option value="621" />
+              <option value="665" />
             </startOffsets>
             <endOffsets>
-              <option value="669" />
+              <option value="713" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="38" />
@@ -664,6 +681,45 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../EventApplication.IntegrationTests/BookingRepositoryTest.cs</url>
+          <line>76</line>
+          <properties documentPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/BookingRepositoryTest.cs" containingFunctionPresentation="Method 'GetByIdTest'">
+            <startOffsets>
+              <option value="2709" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2796" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs</url>
+          <line>72</line>
+          <properties documentPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" containingFunctionPresentation="Method 'GetAllAsyncTest'">
+            <startOffsets>
+              <option value="2759" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2791" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs</url>
+          <line>85</line>
+          <properties documentPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" containingFunctionPresentation="Method 'GetAllAsyncTest'">
+            <startOffsets>
+              <option value="3192" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3242" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

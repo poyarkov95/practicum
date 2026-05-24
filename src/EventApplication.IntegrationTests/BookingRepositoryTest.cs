@@ -1,5 +1,6 @@
 using EventApplication.Database.Repository.Implementation;
 using EventApplication.Models;
+using Microsoft.EntityFrameworkCore;
 using Xunit;
 
 namespace EventApplication.IntegrationTests;
@@ -16,7 +17,7 @@ public class BookingRepositoryTest : DatabaseTestManager
     };
     
     [Fact]
-    public async Task UpdateEventTest()
+    public async Task GetPendingBookingsTest()
     {
         // Arrange
         await using var context = await CreateContext();
@@ -39,5 +40,94 @@ public class BookingRepositoryTest : DatabaseTestManager
         //Assert
         Assert.Single(pendingBookings);
         Assert.Equal(BookingStatus.Pending, pendingBookings.FirstOrDefault()?.Status);
+    }
+    
+    [Fact]
+    public async Task AddBookingTest()
+    {
+        // Arrange
+        await using var createContext = await CreateContext();
+        await createContext.Events.AddAsync(_testEvent, TestContext.Current.CancellationToken);
+
+        var bookingId = Guid.NewGuid();
+        await createContext.Bookings.AddAsync(new Booking
+        {
+            Id = bookingId,
+            CreatedAt = DateTime.UtcNow,
+            Status = BookingStatus.Pending,
+            EventId = _testEvent.Id
+        }, TestContext.Current.CancellationToken);
+        
+        await createContext.SaveChangesAsync(TestContext.Current.CancellationToken);
+        
+        //Act
+        await using var verifyContext = await CreateContext();
+        var createdBooking = await verifyContext.Bookings.FirstOrDefaultAsync(b => b.Id ==  bookingId, cancellationToken: TestContext.Current.CancellationToken);
+        
+        //Assert
+        Assert.NotNull(createdBooking);
+        Assert.Equal(bookingId, createdBooking.Id);
+    }
+    
+    [Fact]
+    public async Task GetByIdTest()
+    {
+        // Arrange
+        await using var createContext = await CreateContext();
+        await createContext.Events.AddAsync(_testEvent, TestContext.Current.CancellationToken);
+        
+        var bookingId = Guid.NewGuid();
+        await createContext.Bookings.AddAsync(new Booking
+        {
+            Id = bookingId,
+            CreatedAt = DateTime.UtcNow,
+            Status = BookingStatus.Pending,
+            EventId = _testEvent.Id
+        }, TestContext.Current.CancellationToken);
+        
+        await createContext.SaveChangesAsync(TestContext.Current.CancellationToken);
+        
+        //Act
+        await using var verifyContext = await CreateContext();
+        var bookingRepository = new BookingRepository(verifyContext);
+        var createdBooking = await bookingRepository.GetByIdAsync(bookingId);
+        
+        //Assert
+        Assert.NotNull(createdBooking);
+        Assert.Equal(bookingId, createdBooking.Id);
+    }
+    
+    [Fact]
+    public async Task SaveChangesTest()
+    {
+        // Arrange
+        await using var createContext = await CreateContext();
+        await createContext.Events.AddAsync(_testEvent, TestContext.Current.CancellationToken);
+        
+        var bookingId = Guid.NewGuid();
+        await createContext.Bookings.AddAsync(new Booking
+        {
+            Id = bookingId,
+            CreatedAt = DateTime.UtcNow,
+            Status = BookingStatus.Pending,
+            EventId = _testEvent.Id
+        }, TestContext.Current.CancellationToken);
+        
+        await createContext.SaveChangesAsync(TestContext.Current.CancellationToken);
+        
+        //Act
+        await using var verifyContext = await CreateContext();
+        var bookingRepository = new BookingRepository(verifyContext);
+        var createdBooking = await bookingRepository.GetByIdAsync(bookingId);
+        
+        Assert.NotNull(createdBooking);
+        createdBooking.Status = BookingStatus.Rejected;
+        await bookingRepository.SaveChangesAsync();
+        
+        var savedBooking = await bookingRepository.GetByIdAsync(bookingId);
+        
+        //Assert
+        Assert.NotNull(savedBooking);
+        Assert.Equal(BookingStatus.Rejected, savedBooking.Status);
     }
 }

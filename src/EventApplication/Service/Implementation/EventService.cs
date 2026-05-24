@@ -17,7 +17,7 @@ public class EventService(IEventRepository eventRepository) : IEventService
         return new PaginatedResult<EventInfoDto>
         {
             Data = events.Select(EventMapper.MapToDto),
-            Count = await eventRepository.CountAsync(),
+            Count = await eventRepository.CountAsync(title, from, to, page, pageSize),
             Page = page.Value,
             PageSize = pageSize.Value
         };

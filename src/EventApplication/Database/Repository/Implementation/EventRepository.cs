@@ -8,7 +8,7 @@ public class EventRepository(AppDbContext db) : IEventRepository
 {
     public async Task<ICollection<Event>> GetAllAsync(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10)
     {
-        var query = PrepareQuery(title, from, to, page, pageSize);
+        var query = PrepareQuery(title, from, to);
         
         if (page != null && pageSize != null)
         {
@@ -20,7 +20,7 @@ public class EventRepository(AppDbContext db) : IEventRepository
 
     public async Task<int> CountAsync(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10)
     {
-        var query = PrepareQuery(title, from, to, page, pageSize);
+        var query = PrepareQuery(title, from, to);
         return await query.CountAsync();
     }
 
@@ -58,7 +58,7 @@ public class EventRepository(AppDbContext db) : IEventRepository
         await db.SaveChangesAsync();
     }
 
-    private IQueryable<Event> PrepareQuery(string? title = null, DateTime? from = null, DateTime? to = null, int? page = 1, int? pageSize = 10)
+    private IQueryable<Event> PrepareQuery(string? title = null, DateTime? from = null, DateTime? to = null)
     {
         var query = db.Events.AsQueryable();
 

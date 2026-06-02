@@ -1,4 +1,6 @@
 ﻿using EventApplication.Database;
+using EventApplication.Database.Repository.Implementation;
+using EventApplication.Database.Repository.Interface;
 using EventApplication.Exception;
 using EventApplication.Models;
 using EventApplication.Service.Implementation;
@@ -22,6 +24,8 @@ public class EventServiceTest
         services.AddDbContext<AppDbContext>(options =>
             options.UseInMemoryDatabase(dbName));
         
+        services.AddScoped<IEventRepository, EventRepository>();
+        services.AddScoped<IBookingRepository, BookingRepository>();
         services.AddScoped<IEventService, EventService>();
         services.AddScoped<IBookingService, BookingService>();
         
@@ -111,7 +115,7 @@ public class EventServiceTest
         Assert.Equal(_testEvent.Id, eventByTitle?.Id);
         
         var eventBySubTitle = (await _eventService.GetAllAsync("овок события")).Data?.FirstOrDefault();
-        Assert.Equal(_testEvent.Id, eventByTitle?.Id);
+        Assert.Equal(_testEvent.Id, eventBySubTitle?.Id);
     }
     
     [Fact]
@@ -179,7 +183,7 @@ public class EventServiceTest
             StartAt = new DateTime(2020, 01, 01),
             EndAt = new DateTime(2020, 01, 31),
         };
-        _eventService.CreateAsync(eventToCreate);
+        await _eventService.CreateAsync(eventToCreate);
     
         var getByPaginationCount = (await _eventService.GetAllAsync(title: title, page: page, pageSize: pageSize)).Data?.Count();
         Assert.Equal(expectedCount, getByPaginationCount);

@@ -1,12 +1,11 @@
-using EventApplication.Database;
+using EventApplication.Database.Repository.Interface;
 using EventApplication.Exception;
 using EventApplication.Models;
 using EventApplication.Service.Interface;
-using Microsoft.EntityFrameworkCore;
 
 namespace EventApplication.Service.Implementation;
 
-public class BookingService(AppDbContext db, ILogger<BookingService> logger, IEventService eventService) : IBookingService
+public class BookingService(IBookingRepository bookingRepository, ILogger<BookingService> logger, IEventService eventService) : IBookingService
 {
     private readonly SemaphoreSlim _processingSemaphore = new(1, 1);
     private readonly SemaphoreSlim _createBookingSemaphore = new(1, 1);
@@ -31,8 +30,7 @@ public class BookingService(AppDbContext db, ILogger<BookingService> logger, IEv
                     EventId = eventItem.Id
                 };
         
-                await db.Bookings.AddAsync(booking);
-                await db.SaveChangesAsync();
+               await bookingRepository.AddAsync(booking);
                 
                 return booking;   
             }
@@ -44,7 +42,7 @@ public class BookingService(AppDbContext db, ILogger<BookingService> logger, IEv
 
     public async Task<Booking> GetBookingByIdAsync(Guid bookingId)
     {
-        var booking = await db.Bookings.FirstOrDefaultAsync(x => x.Id == bookingId);
+        var booking = await bookingRepository.GetByIdAsync(bookingId);
         
         if (booking == null)
         {
@@ -56,12 +54,12 @@ public class BookingService(AppDbContext db, ILogger<BookingService> logger, IEv
 
     public async Task<ICollection<Booking>> GetPendingBookingsAsync()
     {
-        return await db.Bookings.Where(x => x.Status == BookingStatus.Pending).ToListAsync();
+        return await bookingRepository.GetPendingBookingsAsync();
     }
 
     public async Task SaveProcessedBookingAsync(Booking processedBooking)
     {
-        var bookingToUpdate = db.Bookings.FirstOrDefault(s => s.Id == processedBooking.Id);
+        var bookingToUpdate = await bookingRepository.GetByIdAsync(processedBooking.Id);
     
         if (bookingToUpdate != null)
         {
@@ -69,7 +67,7 @@ public class BookingService(AppDbContext db, ILogger<BookingService> logger, IEv
             bookingToUpdate.ProcessedAt =  processedBooking.ProcessedAt;
         }
         
-        await db.SaveChangesAsync();
+        await bookingRepository.SaveChangesAsync();
     }
 
     public async Task ProcessBookingAsync(Booking booking, CancellationToken stoppingToken)

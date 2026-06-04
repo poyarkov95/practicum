@@ -1,5 +1,5 @@
-using EventApplication.Exception;
-using EventApplication.Models;
+using Application.Common.DTOs;
+using Domain.Exceptions;
 using FluentValidation;
 
 namespace EventApplication.Middleware;
@@ -12,7 +12,7 @@ public class GlobalExceptionHandlingMiddleware(RequestDelegate next)
         {
             await next(httpContext);
         }
-        catch (System.Exception ex)
+        catch (Exception ex)
         {
             await HandleException(httpContext, ex);
         }

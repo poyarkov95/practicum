@@ -1,6 +1,5 @@
-using EventApplication.Database;
+using Infrastructure.Persistence;
 using Microsoft.EntityFrameworkCore;
-using Npgsql;
 using Testcontainers.PostgreSql;
 using Xunit;
 

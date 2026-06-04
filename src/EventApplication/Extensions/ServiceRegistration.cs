@@ -1,8 +1,6 @@
-using EventApplication.Database;
-using EventApplication.Service.Hosted;
-using EventApplication.Service.Implementation;
-using EventApplication.Service.Interface;
-using Microsoft.EntityFrameworkCore;
+using Application.Abstractions.Services;
+using Infrastructure.Services;
+using Infrastructure.Services.Hosted;
 
 namespace EventApplication.Extensions;
 

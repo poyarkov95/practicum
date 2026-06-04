@@ -1,5 +1,5 @@
-using EventApplication.Database.Repository.Implementation;
-using EventApplication.Models;
+using Domain.Entities;
+using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 

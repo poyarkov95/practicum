@@ -1,7 +1,8 @@
-using EventApplication.Exception;
-using EventApplication.Mapper;
-using EventApplication.Models;
-using EventApplication.Service.Interface;
+using Application.Abstractions.Mapper;
+using Application.Abstractions.Services;
+using Application.Common.DTOs;
+using Application.Event.DTOs;
+using Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventApplication.Controller;

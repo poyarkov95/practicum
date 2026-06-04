@@ -1,9 +1,9 @@
 using System.Reflection;
-using EventApplication.Database;
+using Application.Abstractions.Validation;
+using Application.Common.DTOs;
 using EventApplication.Extensions;
-using EventApplication.Models;
-using EventApplication.Validation;
 using FluentValidation.AspNetCore;
+using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

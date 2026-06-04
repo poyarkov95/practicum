@@ -1,5 +1,5 @@
-using EventApplication.Database.Repository.Implementation;
-using EventApplication.Database.Repository.Interface;
+using Application.Abstractions.Persistence.Repositories;
+using Infrastructure.Persistence.Repositories;
 
 namespace EventApplication.Extensions;
 

@@ -1,5 +1,5 @@
-using EventApplication.Mapper;
-using EventApplication.Service.Interface;
+using Application.Abstractions.Mapper;
+using Application.Abstractions.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EventApplication.Controller;

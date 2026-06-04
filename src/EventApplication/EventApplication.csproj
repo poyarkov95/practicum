@@ -27,6 +27,15 @@
     <_ContentIncludedByDefault Remove="EventApplication.IntegrationTests\obj\EventApplication.IntegrationTests.csproj.nuget.dgspec.json" />
     <_ContentIncludedByDefault Remove="EventApplication.IntegrationTests\obj\project.assets.json" />
     <_ContentIncludedByDefault Remove="EventApplication.IntegrationTests\obj\project.packagespec.json" />
+    <_ContentIncludedByDefault Remove="Domain\obj\Domain.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="Domain\obj\project.assets.json" />
+    <_ContentIncludedByDefault Remove="Application\obj\Application.csproj.nuget.dgspec.json" />
+    <_ContentIncludedByDefault Remove="Application\obj\project.assets.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

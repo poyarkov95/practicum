@@ -11,48 +11,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23b84c33-7672-4939-b191-55f34cf5c9cd" name="Changes" comment="+ регистрация сервисов перенесена в Infrastructure">
-      <change afterPath="$PROJECT_DIR$/../Presentation/Controller/BookingsController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/Controller/EventsController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/EventApplication.http" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/EventApplication.sln" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/EventApplication.sln.DotSettings.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/Extensions/ExceptionMiddlewareExtension.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/Folder.DotSettings.user" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/Middleware/GlobalExceptionHandlingMiddleware.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/Presentation.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/Program.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/Properties/launchSettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/appsettings.Development.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/appsettings.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Presentation/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventApplication.IntegrationTests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventApplication.IntegrationTests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/EventApplication.Tests.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/EventApplication.Tests.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication.dir/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication.dir/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication.dir/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication.dir/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/projectSettingsUpdater.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="23b84c33-7672-4939-b191-55f34cf5c9cd" name="Changes" comment="EventApplication проект -&gt; Presentation смена имени">
+      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/BookingsController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/EventsController.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.csproj" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.http" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.sln" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/ExceptionMiddlewareExtension.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Folder.DotSettings.user" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Middleware/GlobalExceptionHandlingMiddleware.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Properties/launchSettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsettings.Development.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/appsettings.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Infrastructure/Persistence/Migrations/20260516080407_InitialCreate.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Migrations/20260516080407_InitialCreate.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Infrastructure/Persistence/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +97,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.EventApplication: http.executor&quot;: &quot;Debug&quot;,
+    &quot;.NET Launch Settings Profile.EventApplication: http.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -196,7 +157,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1780473834283</updated>
-      <workItem from="1780473834283" duration="13277000" />
+      <workItem from="1780473834283" duration="14030000" />
     </task>
     <task id="LOCAL-00001" summary="Сломался контекст базы данных">
       <option name="closed" value="true" />
@@ -230,7 +191,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780562770010</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="EventApplication проект -&gt; Presentation смена имени">
+      <option name="closed" value="true" />
+      <created>1780563410570</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1780563410571</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -260,7 +229,8 @@
     <MESSAGE value="+ удобства для применения миграций" />
     <MESSAGE value="ошибки при создании эвента поправлены" />
     <MESSAGE value="+ регистрация сервисов перенесена в Infrastructure" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ регистрация сервисов перенесена в Infrastructure" />
+    <MESSAGE value="EventApplication проект -&gt; Presentation смена имени" />
+    <option name="LAST_COMMIT_MESSAGE" value="EventApplication проект -&gt; Presentation смена имени" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

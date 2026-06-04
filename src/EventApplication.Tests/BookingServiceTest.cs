@@ -1,13 +1,13 @@
 using System.Collections.Concurrent;
 using Application.Abstractions.Persistence.Repositories;
-using Application.Abstractions.Services;
+using Application.Abstractions.Services.Hosted;
+using Application.Abstractions.Services.Implementation;
+using Application.Abstractions.Services.Interface;
 using Application.Event.DTOs;
 using Domain.Entities;
 using Domain.Exceptions;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories;
-using Infrastructure.Services;
-using Infrastructure.Services.Hosted;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

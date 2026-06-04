@@ -11,9 +11,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23b84c33-7672-4939-b191-55f34cf5c9cd" name="Changes" comment="EventApplication проект -&gt; Presentation смена имени">
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../README.md" afterDir="false" />
+    <list default="true" id="23b84c33-7672-4939-b191-55f34cf5c9cd" name="Changes" comment="README.md">
+      <change afterPath="$PROJECT_DIR$/../Application/ApplicationDependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Application/Abstractions/Services/IBookingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Services/Interface/IBookingService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Application/Abstractions/Services/IEventService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Services/Interface/IEventService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Application/Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domain/Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domain/Entities/Booking.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Entities/Booking.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domain/Entities/Event.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Entities/Event.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Extensions/ServiceRegistration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Extensions/ServiceRegistration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/InfrastructureDependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/InfrastructureDependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Persistence/Configurations/BookingsConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Configurations/BookingsConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Persistence/Configurations/EventConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Configurations/EventConfiguration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Persistence/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Services/BookingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Services/Implementation/BookingService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Services/EventService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Services/Implementation/EventService.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Services/Hosted/BookingWorker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Services/Hosted/BookingWorker.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Presentation/Controller/BookingsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Presentation/Controller/BookingsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Presentation/Controller/EventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Presentation/Controller/EventsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Presentation/EventApplication.sln" beforeDir="false" afterPath="$PROJECT_DIR$/../Presentation/EventApplication.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Presentation/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Presentation/Program.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,24 +82,24 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/a6f52f75db0c77bb83f322fb52f52cef9cff6cdafbb94dfec214bab243d18/Task.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b2bf10fa1a078c781bb4d6954d449e2aa1b7e5b37e2f0b59db9787f0b5ff56/TestRunner.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/b43021565ba7f13262dd95827ae378ea6015db2c146979398f92c7356d98488/MigrationCommandExecutor.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c7afd9724cf757c4a8469dba2bdc22ab5ac111c91f431dbfefc992dacb3e8635/ControllerBase.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c82112acf224de1d157da0309437b227be6c1ef877865c23872f49eaf9d73c/PostgreSqlContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ce37be1a06b16c6faa02038d2cc477dd3bca5b217ceeb41c5f2ad45c1bf9/ServiceProvider.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d65d8dd6af5669905bd6d55baa11d05965d2c35dab0553524c64dd0c775311d/EventDefinition`.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d65d8dd6af5669905bd6d55baa11d05965d2c35dab0553524c64dd0c775311d/EventDefinition`.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/db7395f4add94e6d10e515b3e55373f2821f8323de7dc8e314d78feefacf5584/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e762b2ef5220ad3c4ad025b3cfe96022d4797393a511c5ce6760def9c124cd3c/Record.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fc2027f7e776fc105cddb56b1a25eeb3895b3ae6f3aac854d786e63bd01f75e2/CallSiteFactory.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Application/Abstractions/Mapper/BookingMapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Application/Abstractions/Mapper/EventMapper.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Application/Abstractions/Validation/EventValidator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Application/ApplicationDependencyInjection.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../EventApplication.IntegrationTests/BookingRepositoryTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Infrastructure/InfrastructureDependencyInjection.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Infrastructure/Persistence/Repositories/EventRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Infrastructure/Services/BookingService.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Infrastructure/Services/EventService.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Infrastructure/InfrastructureDependencyInjection.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Infrastructure/Persistence/Repositories/EventRepository.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="false" />
   <component name="ProblemsViewState">
@@ -97,7 +118,7 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;.NET Launch Settings Profile.EventApplication: http.executor&quot;: &quot;Run&quot;,
+    &quot;.NET Launch Settings Profile.EventApplication: http.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
@@ -157,7 +178,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1780473834283</updated>
-      <workItem from="1780473834283" duration="14030000" />
+      <workItem from="1780473834283" duration="20363000" />
     </task>
     <task id="LOCAL-00001" summary="Сломался контекст базы данных">
       <option name="closed" value="true" />
@@ -199,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780563410571</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="README.md">
+      <option name="closed" value="true" />
+      <created>1780564429801</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1780564429801</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,7 +259,8 @@
     <MESSAGE value="ошибки при создании эвента поправлены" />
     <MESSAGE value="+ регистрация сервисов перенесена в Infrastructure" />
     <MESSAGE value="EventApplication проект -&gt; Presentation смена имени" />
-    <option name="LAST_COMMIT_MESSAGE" value="EventApplication проект -&gt; Presentation смена имени" />
+    <MESSAGE value="README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="README.md" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -240,23 +270,23 @@
           <line>32</line>
           <properties documentPath="$PROJECT_DIR$/Controller/EventsController.cs" containingFunctionPresentation="Method 'Create'">
             <startOffsets>
-              <option value="932" />
+              <option value="942" />
             </startOffsets>
             <endOffsets>
-              <option value="956" />
+              <option value="966" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../Infrastructure/Services/EventService.cs</url>
+          <url>file://$PROJECT_DIR$/../Application/Abstractions/Services/Implementation/EventService.cs</url>
           <line>53</line>
           <properties documentPath="$PROJECT_DIR$/../Infrastructure/Services/EventService.cs" containingFunctionPresentation="Method 'CreateAsync'">
             <startOffsets>
-              <option value="1714" />
+              <option value="1758" />
             </startOffsets>
             <endOffsets>
-              <option value="1771" />
+              <option value="1815" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="3" />

@@ -1,5 +1,5 @@
 using Application.Abstractions.Mapper;
-using Application.Abstractions.Services;
+using Application.Abstractions.Services.Interface;
 using Application.Common.DTOs;
 using Application.Event.DTOs;
 using Domain.Exceptions;
@@ -30,19 +30,7 @@ public class EventsController(IEventService eventService, IBookingService bookin
     [HttpPost]
     public async Task<IActionResult> Create(CreateEventDto newEvent)
     {
-        if (!ModelState.IsValid)
-        {
-            var errors = ModelState.Values
-                .SelectMany(state => state.Errors)
-                .Select(error => error.ErrorMessage)
-                .ToList();
-            
-            return BadRequest(new ErrorResponse
-            {
-                Message = "Ошибка валидации",
-                Errors = errors
-            });
-        } 
+        
         
         var model = EventMapper.MapToEvent(newEvent);
         return CreatedAtAction(nameof(Create), await eventService.CreateAsync(model));

@@ -1,12 +1,11 @@
 using Application.Abstractions.Mapper;
 using Application.Abstractions.Persistence.Repositories;
-using Application.Abstractions.Services;
+using Application.Abstractions.Services.Interface;
 using Application.Common.DTOs;
 using Application.Event.DTOs;
-using Domain.Entities;
 using Domain.Exceptions;
 
-namespace Infrastructure.Services;
+namespace Application.Abstractions.Services.Implementation;
 
 /// <summary>
 /// Руализация сервиса для работы с событиями
@@ -37,7 +36,7 @@ public class EventService(IEventRepository eventRepository) : IEventService
         return EventMapper.MapToDto(eventItem);
     }
 
-    public async Task<Event> GetEntityByIdAsync(Guid id)
+    public async Task<Domain.Entities.Event> GetEntityByIdAsync(Guid id)
     {
         var eventItem = await eventRepository.GetByIdAsync(id);
 
@@ -49,7 +48,7 @@ public class EventService(IEventRepository eventRepository) : IEventService
         return eventItem;
     }
 
-    public async Task<EventInfoDto> CreateAsync(Event model)
+    public async Task<EventInfoDto> CreateAsync(Domain.Entities.Event model)
     {
         if (await eventRepository.GetByIdAsync(model.Id) != null)
         {
@@ -60,7 +59,7 @@ public class EventService(IEventRepository eventRepository) : IEventService
         return EventMapper.MapToDto(newEvent);
     }
 
-    public async Task<EventInfoDto> UpdateAsync(Event model)
+    public async Task<EventInfoDto> UpdateAsync(Domain.Entities.Event model)
     {
         var eventItem = await eventRepository.GetByIdAsync(model.Id);
         if (eventItem == null)

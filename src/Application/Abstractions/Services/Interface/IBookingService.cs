@@ -1,6 +1,6 @@
 using Domain.Entities;
 
-namespace Application.Abstractions.Services;
+namespace Application.Abstractions.Services.Interface;
 
 public interface IBookingService
 {

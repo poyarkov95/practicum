@@ -1,5 +1,6 @@
 using Application.Abstractions.Mapper;
 using Application.Abstractions.Services;
+using Application.Abstractions.Services.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controller;

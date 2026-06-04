@@ -19,7 +19,6 @@ public static class InfrastructureDependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
         services.AddRepositories();
-        services.AddServices();
         return services;
     }
 }

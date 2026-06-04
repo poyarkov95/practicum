@@ -2,7 +2,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventApplication", "EventApplication.csproj", "{11012514-448F-1785-8F05-A28030589BA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Presentation", "Presentation.csproj", "{11012514-448F-1785-8F05-A28030589BA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EventApplication.Tests", "..\EventApplication.Tests\EventApplication.Tests.csproj", "{124C91E7-73C6-40B1-AFCB-851CD78D31F4}"
 EndProject

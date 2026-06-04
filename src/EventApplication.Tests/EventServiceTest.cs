@@ -1,10 +1,10 @@
 ﻿using Application.Abstractions.Persistence.Repositories;
-using Application.Abstractions.Services;
+using Application.Abstractions.Services.Implementation;
+using Application.Abstractions.Services.Interface;
 using Domain.Entities;
 using Domain.Exceptions;
 using Infrastructure.Persistence;
 using Infrastructure.Persistence.Repositories;
-using Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

@@ -1,9 +1,9 @@
-using Application.Abstractions.Services;
-using Infrastructure.Services;
-using Infrastructure.Services.Hosted;
+using Application.Abstractions.Services.Hosted;
+using Application.Abstractions.Services.Implementation;
+using Application.Abstractions.Services.Interface;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace Infrastructure.Extensions;
+namespace Application.Extensions;
 
 /// <summary>
 /// Регистрация сервисов через расширение

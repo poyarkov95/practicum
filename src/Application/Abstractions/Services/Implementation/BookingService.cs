@@ -1,17 +1,17 @@
 using Application.Abstractions.Persistence.Repositories;
-using Application.Abstractions.Services;
+using Application.Abstractions.Services.Interface;
 using Domain.Entities;
 using Domain.Exceptions;
 using Microsoft.Extensions.Logging;
 
-namespace Infrastructure.Services;
+namespace Application.Abstractions.Services.Implementation;
 
 public class BookingService(IBookingRepository bookingRepository, ILogger<BookingService> logger, IEventService eventService) : IBookingService
 {
     private readonly SemaphoreSlim _processingSemaphore = new(1, 1);
     private readonly SemaphoreSlim _createBookingSemaphore = new(1, 1);
     
-    public async Task<Booking> CreateBookingAsync(Guid eventId)
+    public async Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId)
     {
             var eventItem = await eventService.GetEntityByIdAsync(eventId);
             try
@@ -23,7 +23,7 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
                     throw new NoAvailableSeatsException("No available seats for this event");
                 }
                 
-                var booking = new Booking
+                var booking = new Domain.Entities.Booking
                 {
                     Id = Guid.NewGuid(),
                     CreatedAt = DateTime.UtcNow,
@@ -41,7 +41,7 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
             }
     }
 
-    public async Task<Booking> GetBookingByIdAsync(Guid bookingId)
+    public async Task<Domain.Entities.Booking> GetBookingByIdAsync(Guid bookingId)
     {
         var booking = await bookingRepository.GetByIdAsync(bookingId);
         
@@ -53,12 +53,12 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
         return booking;
     }
 
-    public async Task<ICollection<Booking>> GetPendingBookingsAsync()
+    public async Task<ICollection<Domain.Entities.Booking>> GetPendingBookingsAsync()
     {
         return await bookingRepository.GetPendingBookingsAsync();
     }
 
-    public async Task SaveProcessedBookingAsync(Booking processedBooking)
+    public async Task SaveProcessedBookingAsync(Domain.Entities.Booking processedBooking)
     {
         var bookingToUpdate = await bookingRepository.GetByIdAsync(processedBooking.Id);
     
@@ -71,7 +71,7 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
         await bookingRepository.SaveChangesAsync();
     }
 
-    public async Task ProcessBookingAsync(Booking booking, CancellationToken stoppingToken)
+    public async Task ProcessBookingAsync(Domain.Entities.Booking booking, CancellationToken stoppingToken)
     {
         try
         {
@@ -81,7 +81,7 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
             await Task.Delay(TimeSpan.FromSeconds(2), stoppingToken);
             await _processingSemaphore.WaitAsync(stoppingToken);
             
-            Event eventItem;
+            Domain.Entities.Event eventItem;
 
             try
             {

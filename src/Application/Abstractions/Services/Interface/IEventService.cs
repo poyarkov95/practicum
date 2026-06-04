@@ -1,7 +1,7 @@
 using Application.Common.DTOs;
 using Application.Event.DTOs;
 
-namespace Application.Abstractions.Services;
+namespace Application.Abstractions.Services.Interface;
 
 public interface IEventService
 {

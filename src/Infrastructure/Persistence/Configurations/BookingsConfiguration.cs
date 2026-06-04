@@ -8,9 +8,25 @@ public class BookingsConfiguration : IEntityTypeConfiguration<Booking>
 {
     public void Configure(EntityTypeBuilder<Booking> builder)
     {
-        builder.HasKey(e => e.Id);
-        builder.Property(e => e.Id).ValueGeneratedNever();
-        builder.Property(e => e.CreatedAt).IsRequired();
-        builder.Property(e => e.EventId).IsRequired();
+        builder.HasKey(b => b.Id);
+    
+        builder.Property(b => b.Id)
+            .ValueGeneratedNever()
+            .HasComment("Уникальный идентификатор");
+    
+        builder.Property(b => b.Status)
+            .IsRequired()
+            .HasComment("Текущий статус брони");
+    
+        builder.Property(b => b.CreatedAt)
+            .IsRequired()
+            .HasComment("Дата и время создания брони");
+    
+        builder.Property(b => b.ProcessedAt)
+            .HasComment("Дата и время обработки брони");
+    
+        builder.Property(b => b.EventId)
+            .IsRequired()
+            .HasComment("Идентификатор события, к которому относится бронь");
     }
 }

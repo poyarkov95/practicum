@@ -1,9 +1,9 @@
-using Application.Abstractions.Services;
+using Application.Abstractions.Services.Interface;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace Infrastructure.Services.Hosted;
+namespace Application.Abstractions.Services.Hosted;
 
 public class BookingWorker(ILogger<BookingWorker> logger, IServiceScopeFactory scopeFactory) : BackgroundService
 {

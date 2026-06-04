@@ -10,15 +10,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23b84c33-7672-4939-b191-55f34cf5c9cd" name="Changes" comment="Сломался контекст базы данных">
-      <change afterPath="$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Infrastructure/InfrastructureDependencyInjection.cs" afterDir="false" />
+    <list default="true" id="23b84c33-7672-4939-b191-55f34cf5c9cd" name="Changes" comment="+ удобства для применения миграций">
       <change beforePath="$PROJECT_DIR$/../Domain/Entities/Event.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Entities/Event.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/RepositoryRegistration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Extensions/RepositoryRegistration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Infrastructure/Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Infrastructure.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Infrastructure/Persistence/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/AppDbContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controller/EventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/EventsController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +65,7 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/bf9021a960b74107a7e141aa06bc9d8a0a53c929178c2fb95b1597be8af8dc/ExceptionDispatchInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/c82112acf224de1d157da0309437b227be6c1ef877865c23872f49eaf9d73c/PostgreSqlContainer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/ce37be1a06b16c6faa02038d2cc477dd3bca5b217ceeb41c5f2ad45c1bf9/ServiceProvider.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/d65d8dd6af5669905bd6d55baa11d05965d2c35dab0553524c64dd0c775311d/EventDefinition`.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/db7395f4add94e6d10e515b3e55373f2821f8323de7dc8e314d78feefacf5584/ActionMethodExecutor.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e762b2ef5220ad3c4ad025b3cfe96022d4797393a511c5ce6760def9c124cd3c/Record.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/fc2027f7e776fc105cddb56b1a25eeb3895b3ae6f3aac854d786e63bd01f75e2/CallSiteFactory.cs" root0="FORCE_HIGHLIGHTING" />
@@ -147,7 +144,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1780473834283</updated>
-      <workItem from="1780473834283" duration="11560000" />
+      <workItem from="1780473834283" duration="12496000" />
     </task>
     <task id="LOCAL-00001" summary="Сломался контекст базы данных">
       <option name="closed" value="true" />
@@ -157,7 +154,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780559202746</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="+ удобства для применения миграций">
+      <option name="closed" value="true" />
+      <created>1780561761124</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1780561761124</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -184,7 +189,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Сломался контекст базы данных" />
-    <option name="LAST_COMMIT_MESSAGE" value="Сломался контекст базы данных" />
+    <MESSAGE value="+ удобства для применения миграций" />
+    <option name="LAST_COMMIT_MESSAGE" value="+ удобства для применения миграций" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -194,10 +200,10 @@
           <line>32</line>
           <properties documentPath="$PROJECT_DIR$/Controller/EventsController.cs" containingFunctionPresentation="Method 'Create'">
             <startOffsets>
-              <option value="906" />
+              <option value="936" />
             </startOffsets>
             <endOffsets>
-              <option value="930" />
+              <option value="960" />
             </endOffsets>
           </properties>
           <option name="timeStamp" value="2" />
@@ -253,19 +259,6 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="DotNet Breakpoints">
-          <url>file://$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs</url>
-          <line>18</line>
-          <properties documentPath="$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs" containingFunctionPresentation="Property 'Configuration'">
-            <startOffsets>
-              <option value="468" />
-            </startOffsets>
-            <endOffsets>
-              <option value="469" />
-            </endOffsets>
-          </properties>
-          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

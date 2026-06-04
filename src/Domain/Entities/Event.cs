@@ -49,9 +49,6 @@ public class Event
     [Comment("Текущее количество свободных мест")]
     public int AvailableSeats { get; set; }
 
-    [Comment("Тестовое поле для проверки миграций")]
-    public int TestField { get; set; }
-
     /// <summary>
     /// Бронирования на событие
     /// </summary>

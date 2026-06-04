@@ -22,13 +22,13 @@ public class EventsController(IEventService eventService, IBookingService bookin
     }
 
     [HttpGet("{id:Guid}")]
-    public IActionResult GetById(Guid id)
+    public async Task<IActionResult> GetById(Guid id)
     {
-        return Ok(eventService.GetByIdAsync(id));
+        return Ok(await eventService.GetByIdAsync(id));
     }
 
     [HttpPost]
-    public IActionResult Create(CreateEventDto newEvent)
+    public async Task<IActionResult> Create(CreateEventDto newEvent)
     {
         if (!ModelState.IsValid)
         {
@@ -45,11 +45,11 @@ public class EventsController(IEventService eventService, IBookingService bookin
         } 
         
         var model = EventMapper.MapToEvent(newEvent);
-        return CreatedAtAction(nameof(Create), eventService.CreateAsync(model));
+        return CreatedAtAction(nameof(Create), await eventService.CreateAsync(model));
     }
 
     [HttpPut("{id:Guid}")]
-    public IActionResult Update(Guid id, CreateEventDto eventDto)
+    public async Task<IActionResult> Update(Guid id, CreateEventDto eventDto)
     {
         if (!ModelState.IsValid)
         {
@@ -71,13 +71,13 @@ public class EventsController(IEventService eventService, IBookingService bookin
         }
 
         var model = EventMapper.MapToEvent(eventDto);
-        return Ok(eventService.UpdateAsync(model));
+        return Ok(await eventService.UpdateAsync(model));
     }
 
     [HttpDelete("{id:Guid}")]
-    public IActionResult Delete(Guid id)
+    public async Task<IActionResult> Delete(Guid id)
     {
-        eventService.DeleteAsync(id);
+        await eventService.DeleteAsync(id);
         return Ok();
     }
     

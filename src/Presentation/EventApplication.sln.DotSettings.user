@@ -33,7 +33,7 @@
     &lt;TestId&gt;xUnit::B42EAAD8-2A04-4647-9BDD-E34F1A9051CE::net9.0::EventApplication.IntegrationTests.EventRepositoryTest.GetByIdTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0e3c8ded_002D9068_002D4a05_002Dab7a_002D5e45caa26285/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Session #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0e3c8ded_002D9068_002D4a05_002Dab7a_002D5e45caa26285/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2bf744c0_002D3b4c_002D4096_002Da5ba_002D81fea2698f83/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestCreateEvent" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -83,7 +83,7 @@
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.VerifyEventNotFoundTriggersBookingReject&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f8ba6b64_002D9ad3_002D4f49_002D8b56_002Dd394958d88b9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;EventApplication.Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
-  &lt;Project Location="/Users/andrey/Projects/learning/yandex/practicum/src/EventApplication.Tests" Presentation="&amp;lt;EventApplication.Tests&amp;gt;" /&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f8ba6b64_002D9ad3_002D4f49_002D8b56_002Dd394958d88b9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="All tests from &amp;lt;EventApplication.Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
 	</wpf:ResourceDictionary>

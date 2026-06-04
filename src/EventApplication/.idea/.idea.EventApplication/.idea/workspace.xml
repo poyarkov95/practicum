@@ -10,11 +10,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23b84c33-7672-4939-b191-55f34cf5c9cd" name="Changes" comment="+ удобства для применения миграций">
-      <change beforePath="$PROJECT_DIR$/../Domain/Entities/Event.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Entities/Event.cs" afterDir="false" />
+    <list default="true" id="23b84c33-7672-4939-b191-55f34cf5c9cd" name="Changes" comment="ошибки при создании эвента поправлены">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/EventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/EventsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/ServiceRegistration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Extensions/ServiceRegistration.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/InfrastructureDependencyInjection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/InfrastructureDependencyInjection.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -144,7 +144,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1780473834283</updated>
-      <workItem from="1780473834283" duration="12496000" />
+      <workItem from="1780473834283" duration="12686000" />
     </task>
     <task id="LOCAL-00001" summary="Сломался контекст базы данных">
       <option name="closed" value="true" />
@@ -162,7 +162,15 @@
       <option name="project" value="LOCAL" />
       <updated>1780561761124</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="ошибки при создании эвента поправлены">
+      <option name="closed" value="true" />
+      <created>1780562588807</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1780562588807</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -190,7 +198,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Сломался контекст базы данных" />
     <MESSAGE value="+ удобства для применения миграций" />
-    <option name="LAST_COMMIT_MESSAGE" value="+ удобства для применения миграций" />
+    <MESSAGE value="ошибки при создании эвента поправлены" />
+    <option name="LAST_COMMIT_MESSAGE" value="ошибки при создании эвента поправлены" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

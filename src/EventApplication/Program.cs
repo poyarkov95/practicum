@@ -48,12 +48,7 @@ builder.Services.AddControllers(
     });
 
 
-builder.Services.AddServices();
-// builder.Services.AddRepositories();
 builder.Services.AddInfrastructure(builder.Configuration);
-
-// builder.Services.AddDbContext<AppDbContext>(options =>
-//     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

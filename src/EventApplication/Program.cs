@@ -3,6 +3,7 @@ using Application.Abstractions.Validation;
 using Application.Common.DTOs;
 using EventApplication.Extensions;
 using FluentValidation.AspNetCore;
+using Infrastructure;
 using Infrastructure.Persistence;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -48,10 +49,11 @@ builder.Services.AddControllers(
 
 
 builder.Services.AddServices();
-builder.Services.AddRepositories();
+// builder.Services.AddRepositories();
+builder.Services.AddInfrastructure(builder.Configuration);
 
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+// builder.Services.AddDbContext<AppDbContext>(options =>
+//     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 var app = builder.Build();
 

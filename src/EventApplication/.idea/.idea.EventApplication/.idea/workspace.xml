@@ -10,57 +10,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="23b84c33-7672-4939-b191-55f34cf5c9cd" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Application/Abstractions/Services/IBookingService.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Application/Application.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Domain/Domain.csproj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Infrastructure/Infrastructure.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.IntegrationTests/BookingRepositoryTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/BookingRepositoryTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.IntegrationTests/DatabaseTestManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/DatabaseTestManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/EventServiceTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../EventApplication.Tests/FluentValidatorTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../EventApplication.Tests/FluentValidatorTest.cs" afterDir="false" />
+    <list default="true" id="23b84c33-7672-4939-b191-55f34cf5c9cd" name="Changes" comment="Сломался контекст базы данных">
+      <change afterPath="$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Infrastructure/InfrastructureDependencyInjection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Domain/Entities/Event.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Entities/Event.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.EventApplication/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/BookingsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/BookingsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controller/EventsController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Controller/EventsController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/AppDbContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Configuration/BookingsConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Configurations/BookingsConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Configuration/EventConfiguration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Configurations/EventConfiguration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Repository/Implementation/BookingRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Repositories/BookingRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Repository/Implementation/EventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Repositories/EventRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Repository/Interface/IBookingRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Persistence/Repositories/IBookingRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Database/Repository/Interface/IEventRepository.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Persistence/Repositories/IEventRepository.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.sln" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/EventApplication.sln.DotSettings.user" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Exception/BookingNotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Exceptions/BookingNotFoundException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Exception/EventAlreadyExistsException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Exceptions/EventAlreadyExistsException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Exception/EventNotFoundException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Exceptions/EventNotFoundException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Exception/NoAvailableSeatsException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Exceptions/NoAvailableSeatsException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/RepositoryRegistration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/RepositoryRegistration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Extensions/ServiceRegistration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Extensions/ServiceRegistration.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mapper/BookingMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Mapper/BookingMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mapper/EventMapper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Mapper/EventMapper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Middleware/GlobalExceptionHandlingMiddleware.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Middleware/GlobalExceptionHandlingMiddleware.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20260516080407_InitialCreate.Designer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Migrations/20260516080407_InitialCreate.Designer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/20260516080407_InitialCreate.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Migrations/20260516080407_InitialCreate.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Migrations/AppDbContextModelSnapshot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/Migrations/AppDbContextModelSnapshot.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Booking.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Entities/Booking.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/BookingInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Booking/DTOs/BookingInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/BookingStatus.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Entities/BookingStatus.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/CreateEventDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Event/DTOs/CreateEventDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/ErrorResponse.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Common/DTOs/ErrorResponse.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Event.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Domain/Entities/Event.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/EventInfoDto.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Event/DTOs/EventInfoDto.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/PaginatedResult.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Common/DTOs/PaginatedResult.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Extensions/RepositoryRegistration.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Extensions/RepositoryRegistration.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Hosted/BookingWorker.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Services/Hosted/BookingWorker.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Implementation/BookingService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Services/BookingService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Implementation/EventService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Services/EventService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Interface/IBookingService.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Service/Interface/IEventService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Services/IEventService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Validation/EventValidator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Application/Abstractions/Validation/EventValidator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Infrastructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Infrastructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Infrastructure/Persistence/AppDbContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/../Infrastructure/Persistence/AppDbContext.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -121,8 +79,9 @@
     <setting file="file://$PROJECT_DIR$/../EventApplication.IntegrationTests/EventRepositoryTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../EventApplication.Tests/BookingServiceTest.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Extensions/ExceptionMiddlewareExtension.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Extensions/RepositoryRegistration.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Middleware/GlobalExceptionHandlingMiddleware.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Infrastructure/InfrastructureDependencyInjection.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Infrastructure/Persistence/Repositories/EventRepository.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Infrastructure/Services/BookingService.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Infrastructure/Services/EventService.cs" root0="FORCE_HIGHLIGHTING" />
@@ -188,8 +147,17 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1780473834283</updated>
-      <workItem from="1780473834283" duration="9204000" />
+      <workItem from="1780473834283" duration="11560000" />
     </task>
+    <task id="LOCAL-00001" summary="Сломался контекст базы данных">
+      <option name="closed" value="true" />
+      <created>1780559202746</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1780559202746</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -213,6 +181,10 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Сломался контекст базы данных" />
+    <option name="LAST_COMMIT_MESSAGE" value="Сломался контекст базы данных" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -281,6 +253,19 @@
             </endOffsets>
           </properties>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs</url>
+          <line>18</line>
+          <properties documentPath="$PROJECT_DIR$/../Infrastructure/Extensions/DesignTimeDbContextFactory.cs" containingFunctionPresentation="Property 'Configuration'">
+            <startOffsets>
+              <option value="468" />
+            </startOffsets>
+            <endOffsets>
+              <option value="469" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

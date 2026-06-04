@@ -15,7 +15,7 @@ public class DesignTimeDbContextFactory : IDesignTimeDbContextFactory<AppDbConte
     {
         var optionsBuilder = new DbContextOptionsBuilder<AppDbContext>();
         
-        var basePath = Path.Combine(Directory.GetCurrentDirectory(), "../EventApplication");
+        var basePath = Path.Combine(Directory.GetCurrentDirectory(), "../Presentation");
         
         var configuration = new ConfigurationBuilder()
             .SetBasePath(basePath)

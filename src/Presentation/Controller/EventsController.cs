@@ -5,7 +5,7 @@ using Application.Event.DTOs;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EventApplication.Controller;
+namespace Presentation.Controller;
 
 [ApiController]
 [Route("[controller]")]

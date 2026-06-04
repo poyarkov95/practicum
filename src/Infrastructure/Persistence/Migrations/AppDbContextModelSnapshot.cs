@@ -22,7 +22,7 @@ namespace EventApplication.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("EventApplication.Models.Booking", b =>
+            modelBuilder.Entity("Presentation.Models.Booking", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid")
@@ -51,7 +51,7 @@ namespace EventApplication.Migrations
                     b.ToTable("Bookings");
                 });
 
-            modelBuilder.Entity("EventApplication.Models.Event", b =>
+            modelBuilder.Entity("Presentation.Models.Event", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uuid")
@@ -89,9 +89,9 @@ namespace EventApplication.Migrations
                     b.ToTable("Events");
                 });
 
-            modelBuilder.Entity("EventApplication.Models.Booking", b =>
+            modelBuilder.Entity("Presentation.Models.Booking", b =>
                 {
-                    b.HasOne("EventApplication.Models.Event", "Event")
+                    b.HasOne("Presentation.Models.Event", "Event")
                         .WithMany("Bookings")
                         .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -100,7 +100,7 @@ namespace EventApplication.Migrations
                     b.Navigation("Event");
                 });
 
-            modelBuilder.Entity("EventApplication.Models.Event", b =>
+            modelBuilder.Entity("Presentation.Models.Event", b =>
                 {
                     b.Navigation("Bookings");
                 });

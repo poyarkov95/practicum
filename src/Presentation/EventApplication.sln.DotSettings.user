@@ -32,13 +32,13 @@
     &lt;TestId&gt;xUnit::B42EAAD8-2A04-4647-9BDD-E34F1A9051CE::net9.0::EventApplication.IntegrationTests.EventRepositoryTest.GetByIdTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0e3c8ded_002D9068_002D4a05_002Dab7a_002D5e45caa26285/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=0e3c8ded_002D9068_002D4a05_002Dab7a_002D5e45caa26285/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Session #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=2bf744c0_002D3b4c_002D4096_002Da5ba_002D81fea2698f83/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="TestCreateEvent" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Project Location="/Users/andrey/Projects/learning/yandex/practicum/src/EventApplication.Tests" Presentation="&amp;lt;EventApplication.Tests&amp;gt;" /&gt;
 &lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7a2170c0_002D07a1_002D4ac4_002D9649_002Df09076cc95e2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Session #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7a2170c0_002D07a1_002D4ac4_002D9649_002Df09076cc95e2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=8dc96e3b_002D3458_002D43be_002D85f4_002D4299b3757bf2/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="VerifyBookingStatusChangeTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

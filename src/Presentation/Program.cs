@@ -1,7 +1,7 @@
 using System.Reflection;
 using Application.Abstractions.Validation;
 using Application.Common.DTOs;
-using EventApplication.Extensions;
+using Presentation.Extensions;
 using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Persistence;

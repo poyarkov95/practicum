@@ -1,6 +1,6 @@
-using EventApplication.Middleware;
+using Presentation.Middleware;
 
-namespace EventApplication.Extensions;
+namespace Presentation.Extensions;
 
 public static class ExceptionMiddlewareExtension
 {

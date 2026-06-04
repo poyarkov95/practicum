@@ -2,7 +2,7 @@ using Application.Common.DTOs;
 using Domain.Exceptions;
 using FluentValidation;
 
-namespace EventApplication.Middleware;
+namespace Presentation.Middleware;
 
 public class GlobalExceptionHandlingMiddleware(RequestDelegate next)
 {

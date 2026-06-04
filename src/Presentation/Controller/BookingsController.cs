@@ -2,7 +2,7 @@ using Application.Abstractions.Mapper;
 using Application.Abstractions.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace EventApplication.Controller;
+namespace Presentation.Controller;
 
 [ApiController]
 [Route("[controller]")]

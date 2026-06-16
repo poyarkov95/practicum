@@ -1,5 +1,5 @@
-using EventApplication.Models;
-using EventApplication.Validation;
+using Application.Abstractions.Validation;
+using Application.Event.DTOs;
 using FluentValidation.TestHelper;
 using Xunit;
 

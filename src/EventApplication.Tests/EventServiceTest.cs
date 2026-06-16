@@ -1,10 +1,10 @@
-﻿using EventApplication.Database;
-using EventApplication.Database.Repository.Implementation;
-using EventApplication.Database.Repository.Interface;
-using EventApplication.Exception;
-using EventApplication.Models;
-using EventApplication.Service.Implementation;
-using EventApplication.Service.Interface;
+﻿using Application.Abstractions.Persistence.Repositories;
+using Application.Abstractions.Services.Implementation;
+using Application.Abstractions.Services.Interface;
+using Domain.Entities;
+using Domain.Exceptions;
+using Infrastructure.Persistence;
+using Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;

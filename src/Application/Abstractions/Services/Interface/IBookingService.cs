@@ -5,7 +5,7 @@ public interface IBookingService
     /// <summary>
     ///  Cоздание брони для указанного события
     /// </summary>
-    Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId, string userId);
+    Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId, Guid userId);
 
     /// <summary>
     /// Получение брони по идентификатору

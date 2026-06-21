@@ -23,6 +23,8 @@ public interface IBookingRepository
     /// </summary>
     Task<ICollection<Domain.Entities.Booking>> GetPendingBookingsAsync();
     
+    Task<ICollection<Domain.Entities.Booking>> GetBookingsAsync();
+    
     /// <summary>
     /// Посчитать кол-во броней на одно событие у пользователя
     /// </summary>

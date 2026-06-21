@@ -7,7 +7,7 @@ public interface IUserService
     /// <summary>
     /// Зарегистрировать пользователя
     /// </summary>
-    Task Register(LoginRequestDto  loginRequestDto);
+    Task<Guid> Register(LoginRequestDto  loginRequestDto);
     
     /// <summary>
     /// Сгенерировать токен для пользователя

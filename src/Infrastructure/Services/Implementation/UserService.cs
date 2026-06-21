@@ -8,7 +8,7 @@ namespace Infrastructure.Services.Implementation;
 
 public class UserService(IUserRepository userRepository, IJWTGenerator jwtGenerator, IPasswordHashGenerator passwordHashGenerator) : IUserService
 {
-    public async Task Register(LoginRequestDto loginRequestDto)
+    public async Task<Guid> Register(LoginRequestDto loginRequestDto)
     {
         var user = new User
         {   
@@ -19,6 +19,7 @@ public class UserService(IUserRepository userRepository, IJWTGenerator jwtGenera
         };
         
         await userRepository.AddUserAsync(user);
+        return user.Id;
     }
 
     public async Task<string> Login(LoginRequestDto loginRequestDto)

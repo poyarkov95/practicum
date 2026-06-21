@@ -78,7 +78,7 @@ public class EventsController(IEventService eventService, IBookingService bookin
     public async Task<IActionResult> BookEvent(Guid id)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        var booking = await bookingService.CreateBookingAsync(id, userId);
+        var booking = await bookingService.CreateBookingAsync(id, Guid.Parse(userId));
         return AcceptedAtAction( actionName: nameof(BookingsController.GetBookingByIdAsync), controllerName:  nameof(BookingsController).Replace("Controller", ""), routeValues: new { id = booking.Id }, value: BookingMapper.MapToDto(booking));
     }
 }

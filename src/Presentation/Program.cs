@@ -83,7 +83,6 @@ builder.Services.AddControllers(
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
-
 var tokenConfiguration = builder.Configuration.GetSection("TokenMetadata");
 builder.Services.Configure<TokenMetadata>(tokenConfiguration);
 
@@ -99,18 +98,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
-            // ValidateIssuerSigningKey = true,
-            // RequireSignedTokens = true,      
-            // ValidateTokenReplay = false,  
-            // TryAllIssuerSigningKeys = false,
-            // ValidateActor = false,     
-            // RoleClaimType = ClaimTypes.Role,
             IssuerSigningKey = key,
             ValidIssuer = tokenMetadata.Issuer,
             ValidAudience = tokenMetadata.Audience,
             ClockSkew = TimeSpan.Zero,
+            RoleClaimType = ClaimTypes.Role
         };
-        options.TokenValidationParameters.RoleClaimType = ClaimTypes.Role;
     }); 
 
 var app = builder.Build();

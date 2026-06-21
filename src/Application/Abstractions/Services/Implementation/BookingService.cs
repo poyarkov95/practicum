@@ -1,3 +1,4 @@
+using System.Globalization;
 using Application.Abstractions.Persistence.Repositories;
 using Application.Abstractions.Services.Interface;
 using Domain.Entities;
@@ -10,8 +11,9 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
 {
     private readonly SemaphoreSlim _processingSemaphore = new(1, 1);
     private readonly SemaphoreSlim _createBookingSemaphore = new(1, 1);
+    private const int BookingPerEventLimit = 10;
     
-    public async Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId, string userId)
+    public async Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId, Guid userId)
     {
             var eventItem = await eventService.GetEntityByIdAsync(eventId);
             try
@@ -20,13 +22,13 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
 
                 if (eventItem.StartAt <= DateTime.UtcNow)
                 {
-                    throw new EventAlreadyExistsException("Event already started, booking is unavailable");
+                    throw new EventExpiredException("Event already started, booking is unavailable");
                 }
                 
-                var userGuidId = Guid.Parse(userId);
-                var eventUserBookings = await bookingRepository.CountEventUserBookingsAsync(eventItem.Id, userGuidId);
+                var eventUserBookings = await bookingRepository.CountEventUserBookingsAsync(eventItem.Id, userId);
+                Console.WriteLine($"Кол-во эвентов на уастника: {eventUserBookings}");
 
-                if (eventUserBookings == 10)
+                if (eventUserBookings == BookingPerEventLimit)
                 {
                     throw new BookingLimitExceededException("Booking limit exceeded. Only 10 bookings available for each user per event");
                 }
@@ -42,12 +44,11 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
                     CreatedAt = DateTime.UtcNow,
                     Status = BookingStatus.Pending,
                     EventId = eventItem.Id,
-                    UserId = userGuidId
+                    UserId = userId
                 };
         
                await bookingRepository.AddAsync(booking);
-                
-                return booking;   
+               return booking;   
             }
             finally
             {
@@ -180,6 +181,5 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
         {
             throw new OperationNotAllowedException("This booking belongs to another user and cannot be canceled");
         }
-       
     }
 }

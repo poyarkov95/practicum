@@ -28,5 +28,16 @@ public class BookingsConfiguration : IEntityTypeConfiguration<Booking>
         builder.Property(b => b.EventId)
             .IsRequired()
             .HasComment("Идентификатор события, к которому относится бронь");
+
+        builder.Property(b => b.UserId)
+            .IsRequired()
+            .HasComment("Уникальный идентификатор пользователя, создашего бронь");
+        
+        builder.HasOne(e => e.User)
+            .WithOne()
+            .HasForeignKey<Booking>(o => o.UserId);
+        
+        builder.HasIndex(b => b.UserId)
+            .IsUnique(false);
     }
 }

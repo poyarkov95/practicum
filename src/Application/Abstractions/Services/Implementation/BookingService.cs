@@ -6,18 +6,31 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Abstractions.Services.Implementation;
 
-public class BookingService(IBookingRepository bookingRepository, ILogger<BookingService> logger, IEventService eventService) : IBookingService
+public class BookingService(IBookingRepository bookingRepository, ILogger<BookingService> logger, IEventService eventService, IUserService userService) : IBookingService
 {
     private readonly SemaphoreSlim _processingSemaphore = new(1, 1);
     private readonly SemaphoreSlim _createBookingSemaphore = new(1, 1);
     
-    public async Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId)
+    public async Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId, string userId)
     {
             var eventItem = await eventService.GetEntityByIdAsync(eventId);
             try
             {
                 await _createBookingSemaphore.WaitAsync();
+
+                if (eventItem.StartAt <= DateTime.UtcNow)
+                {
+                    throw new EventAlreadyExistsException("Event already started, booking is unavailable");
+                }
                 
+                var userGuidId = Guid.Parse(userId);
+                var eventUserBookings = await bookingRepository.CountEventUserBookingsAsync(eventItem.Id, userGuidId);
+
+                if (eventUserBookings == 10)
+                {
+                    throw new BookingLimitExceededException("Booking limit exceeded. Only 10 bookings available for each user per event");
+                }
+
                 if (!eventItem.TryReserveSeats())
                 {
                     throw new NoAvailableSeatsException("No available seats for this event");
@@ -28,7 +41,8 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
                     Id = Guid.NewGuid(),
                     CreatedAt = DateTime.UtcNow,
                     Status = BookingStatus.Pending,
-                    EventId = eventItem.Id
+                    EventId = eventItem.Id,
+                    UserId = userGuidId
                 };
         
                await bookingRepository.AddAsync(booking);
@@ -47,7 +61,7 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
         
         if (booking == null)
         {
-            throw new BookingNotFoundException($"Не удалось найти бронирование с идентификатором {booking}");
+            throw new BookingNotFoundException($"Не удалось найти бронирование с идентификатором {bookingId}");
         }
         
         return booking;
@@ -132,5 +146,40 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
         {
             _processingSemaphore.Release();
         }
+    }
+
+    public async Task CancelBookingAsync(Guid bookingId, string userId)
+    {
+        var currentUser = await userService.GetUser(Guid.Parse(userId));
+        var booking = await bookingRepository.GetByIdAsync(bookingId);
+
+        if (booking.Status == BookingStatus.Cancelled)
+        {
+            return;
+        }
+
+        ValidateBookingCancel(booking, currentUser);
+
+        booking.Cancel();
+        
+        var eventItem = await eventService.GetEntityByIdAsync(booking.EventId);
+        eventItem.ReleaseSeats();
+        await eventService.UpdateAsync(eventItem);
+        
+        await bookingRepository.SaveChangesAsync();
+    }
+
+    public void ValidateBookingCancel(Domain.Entities.Booking booking, Domain.Entities.User currentUser)
+    {
+        if (currentUser.Role == UserRole.Admin)
+        {
+            return;
+        }
+
+        if (booking.UserId != currentUser.Id)
+        {
+            throw new OperationNotAllowedException("This booking belongs to another user and cannot be canceled");
+        }
+       
     }
 }

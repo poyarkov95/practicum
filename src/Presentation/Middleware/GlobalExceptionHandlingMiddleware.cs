@@ -18,7 +18,7 @@ public class GlobalExceptionHandlingMiddleware(RequestDelegate next)
         }
     }
 
-    private async Task HandleException(HttpContext httpContext, System.Exception ex)
+    private async Task HandleException(HttpContext httpContext, Exception ex)
     {
         if (httpContext.Response.HasStarted)
         {
@@ -34,16 +34,20 @@ public class GlobalExceptionHandlingMiddleware(RequestDelegate next)
         await httpContext.Response.WriteAsJsonAsync(errorResponse);
     }
 
-    private static int MapStatusCode(System.Exception ex)
+    private static int MapStatusCode(Exception ex)
         => ex switch
         {
             ValidationException => StatusCodes.Status400BadRequest,
             EventNotFoundException => StatusCodes.Status404NotFound,
             BookingNotFoundException => StatusCodes.Status404NotFound,
             NoAvailableSeatsException => StatusCodes.Status409Conflict,
+            InvalidCredentialsException => StatusCodes.Status401Unauthorized,
+            EventExpiredException => StatusCodes.Status400BadRequest,
+            BookingLimitExceededException => StatusCodes.Status409Conflict,
+            OperationNotAllowedException => StatusCodes.Status403Forbidden,
             _ => StatusCodes.Status500InternalServerError
         };   
-    private static ErrorResponse CreateErrorResponse(System.Exception ex)
+    private static ErrorResponse CreateErrorResponse(Exception ex)
     {
         var errorResponse = new ErrorResponse
         {

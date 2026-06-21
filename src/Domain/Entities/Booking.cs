@@ -31,6 +31,13 @@ public class Booking
     public Guid EventId { get; set; }
 
     public Event Event { get; set; }
+    
+    /// <summary>
+    /// Уникальный идентификатор пользователя, создашего бронь
+    /// </summary>
+    public Guid UserId { get; set; }
+    
+    public User User { get; set; }
 
     /// <summary>
     /// Метод смены статуса на BookingStatus.Confirmed
@@ -46,5 +53,13 @@ public class Booking
     public void Reject()
     {
         Status = BookingStatus.Rejected;
+    }
+
+    /// <summary>
+    /// Метод смены статуса на BookingStatus.Cancelled
+    /// </summary>
+    public void Cancel()
+    {
+        Status = BookingStatus.Cancelled;
     }
 }

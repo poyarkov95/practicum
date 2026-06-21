@@ -1,4 +1,6 @@
 using System.Reflection;
+using System.Security.Claims;
+using System.Text;
 using Application;
 using Application.Abstractions.Validation;
 using Application.Common.DTOs;
@@ -6,8 +8,12 @@ using Presentation.Extensions;
 using FluentValidation.AspNetCore;
 using Infrastructure;
 using Infrastructure.Persistence;
+using Infrastructure.Settings;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,6 +24,31 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
     options.IncludeXmlComments(xmlPath);
+    
+    // Добавляем кнопку для ввода токена в Swagger UI
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+    {
+        Description = "Введите токен в формате: Bearer {token}",
+        Name = "Authorization",
+        In = ParameterLocation.Header,
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer"
+    });
+    
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                    Type = ReferenceType.SecurityScheme,
+                    Id = "Bearer"
+                }
+            },
+            Array.Empty<string>()
+        }
+    });
 });
 
 builder.Services.AddControllers(
@@ -52,6 +83,36 @@ builder.Services.AddControllers(
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
+
+var tokenConfiguration = builder.Configuration.GetSection("TokenMetadata");
+builder.Services.Configure<TokenMetadata>(tokenConfiguration);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        var tokenMetadata = tokenConfiguration.Get<TokenMetadata>();
+
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(tokenMetadata.Secret));
+        
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            // ValidateIssuerSigningKey = true,
+            // RequireSignedTokens = true,      
+            // ValidateTokenReplay = false,  
+            // TryAllIssuerSigningKeys = false,
+            // ValidateActor = false,     
+            // RoleClaimType = ClaimTypes.Role,
+            IssuerSigningKey = key,
+            ValidIssuer = tokenMetadata.Issuer,
+            ValidAudience = tokenMetadata.Audience,
+            ClockSkew = TimeSpan.Zero,
+        };
+        options.TokenValidationParameters.RoleClaimType = ClaimTypes.Role;
+    }); 
+
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -71,5 +132,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.AddExceptionMiddleware();
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 app.Run();

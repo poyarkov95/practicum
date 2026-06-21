@@ -18,6 +18,7 @@ public static class InfrastructureDependencyInjection
         services.AddDbContext<AppDbContext>(options =>
             options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
+        services.AddServices();
         services.AddRepositories();
         return services;
     }

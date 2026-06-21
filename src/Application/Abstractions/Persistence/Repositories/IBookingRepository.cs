@@ -1,5 +1,3 @@
-using Domain.Entities;
-
 namespace Application.Abstractions.Persistence.Repositories;
 
 public interface IBookingRepository
@@ -24,4 +22,9 @@ public interface IBookingRepository
     /// Получить бронирование в статусе Pending
     /// </summary>
     Task<ICollection<Domain.Entities.Booking>> GetPendingBookingsAsync();
+    
+    /// <summary>
+    /// Посчитать кол-во броней на одно событие у пользователя
+    /// </summary>
+    Task<int> CountEventUserBookingsAsync(Guid eventId, Guid userId);
 }

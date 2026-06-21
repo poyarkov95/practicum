@@ -1,5 +1,3 @@
-using Domain.Entities;
-
 namespace Application.Abstractions.Services.Interface;
 
 public interface IBookingService
@@ -7,7 +5,7 @@ public interface IBookingService
     /// <summary>
     ///  Cоздание брони для указанного события
     /// </summary>
-    Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId);
+    Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId, string userId);
 
     /// <summary>
     /// Получение брони по идентификатору
@@ -28,4 +26,9 @@ public interface IBookingService
     /// Метод обработки брони в hosted service
     /// </summary>
     Task ProcessBookingAsync(Domain.Entities.Booking booking, CancellationToken stoppingToken);
+
+    /// <summary>
+    /// Метод удаления бронирования
+    /// </summary>
+    Task CancelBookingAsync(Guid bookingId, string userId);
 }

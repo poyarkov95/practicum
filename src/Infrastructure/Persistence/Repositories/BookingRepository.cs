@@ -29,4 +29,10 @@ public class BookingRepository(AppDbContext db) : IBookingRepository
             .Where(x => x.Status == BookingStatus.Pending)
             .ToListAsync();
     }
+
+    public async Task<int> CountEventUserBookingsAsync(Guid eventId, Guid userId)
+    {
+        return await db.Bookings
+            .Where(x => x.Id == eventId && x.UserId == userId).CountAsync();
+    }
 }

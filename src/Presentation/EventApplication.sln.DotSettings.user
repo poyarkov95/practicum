@@ -120,6 +120,8 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=e8398056_002D6747_002D481f_002Daea0_002Def5fb1f64dc0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="BookingLimitExceededTest #7" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.BookingLimitExceededTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.BookAlreadyPassedEventTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.UserBookingNotBotheringOthersUserTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=eca8e62c_002D807f_002D4a90_002D8795_002D9608eb456d10/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="VerifyBookingStatusChangeTest #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

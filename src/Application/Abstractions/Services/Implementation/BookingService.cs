@@ -15,10 +15,11 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
     
     public async Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId, Guid userId)
     {
-            var eventItem = await eventService.GetEntityByIdAsync(eventId);
             try
             {
                 await _createBookingSemaphore.WaitAsync();
+                
+                var eventItem = await eventService.GetEntityByIdAsync(eventId);
 
                 if (eventItem.StartAt <= DateTime.UtcNow)
                 {

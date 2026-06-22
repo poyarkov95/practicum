@@ -80,7 +80,7 @@ public class BookingServiceTest : IAsyncLifetime
     
     public async ValueTask DisposeAsync()
     {
-        //await _dbContext.DisposeAsync();
+        await _dbContext.DisposeAsync();
     }
 
     public async ValueTask InitializeAsync()
@@ -510,10 +510,38 @@ public class BookingServiceTest : IAsyncLifetime
          foreach (var _ in Enumerable.Range(0, 10))
          {
              await _bookingService.CreateBookingAsync(testEvent.Id, _user.Id);
-             await Task.Delay(1000); 
          }
          
          await Assert.ThrowsAsync<BookingLimitExceededException>(() =>
              _bookingService.CreateBookingAsync(testEvent.Id, _user.Id));
+     }
+     
+     [Fact]
+     public async Task UserBookingNotBotheringOthersUserTest()
+     {
+         var testEvent = new Event
+         {
+             Id = new Guid("1a1f2e3b4c5d6e7f8a9b0c1d2e3f4a5b"),
+             Title = "Прошедший эвент",
+             Description = "Описание события",
+             StartAt = new DateTime(2030, 01, 01),
+             EndAt = new DateTime(2030, 01, 31),
+             TotalSeats = 20,
+             AvailableSeats = 20
+         };
+         
+         await _eventService.CreateAsync(testEvent);
+
+         foreach (var _ in Enumerable.Range(0, 10))
+         {
+             await _bookingService.CreateBookingAsync(testEvent.Id, _user.Id);
+         }
+         
+         await Assert.ThrowsAsync<BookingLimitExceededException>(() =>
+             _bookingService.CreateBookingAsync(testEvent.Id, _user.Id));
+         
+         var otherUserBooking = await _bookingService.CreateBookingAsync(testEvent.Id, _adminUser.Id);
+         
+         Assert.NotNull(otherUserBooking);
      }
 }

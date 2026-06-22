@@ -34,8 +34,8 @@ public class BookingsConfiguration : IEntityTypeConfiguration<Booking>
             .HasComment("Уникальный идентификатор пользователя, создашего бронь");
         
         builder.HasOne(e => e.User)
-            .WithOne()
-            .HasForeignKey<Booking>(o => o.UserId);
+            .WithMany()
+            .HasForeignKey(o => o.UserId);
         
         builder.HasIndex(b => b.UserId)
             .IsUnique(false);

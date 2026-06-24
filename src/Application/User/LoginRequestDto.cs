@@ -22,5 +22,5 @@ public class LoginRequestDto
     /// <summary>
     /// Роль пользователя
     /// </summary>
-    public UserRole Role { get; set; } =  UserRole.User;
+    public UserRole Role { get; set; } = UserRole.User;
 }

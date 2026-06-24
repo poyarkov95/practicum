@@ -22,7 +22,7 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
     public async Task<IActionResult> CancelBookingAsync(Guid id)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        await bookingService.CancelBookingAsync(id, userId);
-        return Ok();
+        await bookingService.CancelBookingAsync(id, Guid.Parse(userId));
+        return NoContent();
     }
 }

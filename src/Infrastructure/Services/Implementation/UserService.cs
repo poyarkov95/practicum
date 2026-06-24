@@ -32,6 +32,7 @@ public class UserService(IUserRepository userRepository, IJWTGenerator jwtGenera
         }
 
         loginRequestDto.UserId = existingUser.Id;
+        loginRequestDto.Role = existingUser.Role;
         return jwtGenerator.GenerateToken(loginRequestDto);
     }
 

@@ -1,4 +1,3 @@
-using System.Globalization;
 using Application.Abstractions.Persistence.Repositories;
 using Application.Abstractions.Services.Interface;
 using Domain.Entities;
@@ -27,11 +26,10 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
                 }
                 
                 var eventUserBookings = await bookingRepository.CountEventUserBookingsAsync(eventItem.Id, userId);
-                Console.WriteLine($"Кол-во эвентов на уастника: {eventUserBookings}");
 
                 if (eventUserBookings == BookingPerEventLimit)
                 {
-                    throw new BookingLimitExceededException("Booking limit exceeded. Only 10 bookings available for each user per event");
+                    throw new BookingLimitExceededException($"Booking limit exceeded. Only {BookingPerEventLimit} bookings available for each user per event");
                 }
 
                 if (!eventItem.TryReserveSeats())
@@ -150,10 +148,15 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
         }
     }
 
-    public async Task CancelBookingAsync(Guid bookingId, string userId)
+    public async Task CancelBookingAsync(Guid bookingId, Guid userId)
     {
-        var currentUser = await userService.GetUser(Guid.Parse(userId));
+        var currentUser = await userService.GetUser(userId);
         var booking = await bookingRepository.GetByIdAsync(bookingId);
+
+        if (booking == null)
+        {
+            throw new BookingNotFoundException($"Не удалось найти бронирование с идентификатором {bookingId}");
+        }
 
         if (booking.Status == BookingStatus.Cancelled)
         {

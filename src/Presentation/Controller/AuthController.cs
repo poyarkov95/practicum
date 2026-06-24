@@ -14,12 +14,12 @@ public class AuthController(IUserService userService) : ControllerBase
     public async Task<IActionResult> Register(LoginRequestDto request)
     {
         await userService.Register(request);
-        return Ok();
+        return NoContent();
     }
     
     [HttpPost("login")]
     public async Task<IActionResult> Login(LoginRequestDto request)
     {
-        return CreatedAtAction(nameof(Login), await userService.Login(request));
+        return Ok(await userService.Login(request));
     }
 }

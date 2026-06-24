@@ -41,7 +41,7 @@ public class GlobalExceptionHandlingMiddleware(RequestDelegate next)
             EventNotFoundException => StatusCodes.Status404NotFound,
             BookingNotFoundException => StatusCodes.Status404NotFound,
             NoAvailableSeatsException => StatusCodes.Status409Conflict,
-            InvalidCredentialsException => StatusCodes.Status401Unauthorized,
+            InvalidCredentialsException => StatusCodes.Status404NotFound,
             EventExpiredException => StatusCodes.Status400BadRequest,
             BookingLimitExceededException => StatusCodes.Status409Conflict,
             OperationNotAllowedException => StatusCodes.Status403Forbidden,

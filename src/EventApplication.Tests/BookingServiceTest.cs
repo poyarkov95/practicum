@@ -26,6 +26,7 @@ public class BookingServiceTest : IAsyncLifetime
     private readonly Event _testEvent;
     private readonly User _adminUser;
     private readonly User _user;
+    private readonly User _otherUser;
     
     private readonly AppDbContext _dbContext;
 
@@ -71,6 +72,12 @@ public class BookingServiceTest : IAsyncLifetime
             Role = UserRole.Admin
         };
         
+        _otherUser = new User
+        {
+            Login = "otherUser",
+            Role = UserRole.User
+        };
+        
         _user = new User
         {
             Login = "user",
@@ -98,6 +105,13 @@ public class BookingServiceTest : IAsyncLifetime
             Login = _user.Login,
             Password = "test",
             Role = _user.Role
+        });
+        
+        _otherUser.Id = await _userService.Register(new LoginRequestDto
+        {
+            Login = _otherUser.Login,
+            Password = "test",
+            Role = _otherUser.Role
         });
     }
 
@@ -543,5 +557,70 @@ public class BookingServiceTest : IAsyncLifetime
          var otherUserBooking = await _bookingService.CreateBookingAsync(testEvent.Id, _adminUser.Id);
          
          Assert.NotNull(otherUserBooking);
+     }
+     
+     [Fact]
+     public async Task UserCancelOtherUsersBookingTest()
+     {
+         var testEvent = new Event
+         {
+             Id = new Guid("1a1f2e3b4c5d6e7f8a9b0c1d2e3f4a5b"),
+             Title = "Прошедший эвент",
+             Description = "Описание события",
+             StartAt = new DateTime(2030, 01, 01),
+             EndAt = new DateTime(2030, 01, 31),
+             TotalSeats = 20,
+             AvailableSeats = 20
+         };
+         
+         await _eventService.CreateAsync(testEvent);
+         var booking = await _bookingService.CreateBookingAsync(testEvent.Id, _user.Id);
+         
+         await Assert.ThrowsAsync<OperationNotAllowedException>(() =>
+             _bookingService.CancelBookingAsync(booking.Id, _otherUser.Id));
+     }
+     
+     [Fact]
+     public async Task UserCancelBookingTest()
+     {
+         var testEvent = new Event
+         {
+             Id = new Guid("1a1f2e3b4c5d6e7f8a9b0c1d2e3f4a5b"),
+             Title = "Прошедший эвент",
+             Description = "Описание события",
+             StartAt = new DateTime(2030, 01, 01),
+             EndAt = new DateTime(2030, 01, 31),
+             TotalSeats = 20,
+             AvailableSeats = 20
+         };
+         
+         await _eventService.CreateAsync(testEvent);
+         var booking = await _bookingService.CreateBookingAsync(testEvent.Id, _user.Id);
+
+         await _bookingService.CancelBookingAsync(booking.Id, _user.Id);
+         
+         Assert.Equal(BookingStatus.Cancelled, booking.Status);
+     }
+     
+     [Fact]
+     public async Task AdminCancelBookingTest()
+     {
+         var testEvent = new Event
+         {
+             Id = new Guid("1a1f2e3b4c5d6e7f8a9b0c1d2e3f4a5b"),
+             Title = "Прошедший эвент",
+             Description = "Описание события",
+             StartAt = new DateTime(2030, 01, 01),
+             EndAt = new DateTime(2030, 01, 31),
+             TotalSeats = 20,
+             AvailableSeats = 20
+         };
+         
+         await _eventService.CreateAsync(testEvent);
+         var booking = await _bookingService.CreateBookingAsync(testEvent.Id, _user.Id);
+
+         await _bookingService.CancelBookingAsync(booking.Id, _adminUser.Id);
+         
+         Assert.Equal(BookingStatus.Cancelled, booking.Status);
      }
 }

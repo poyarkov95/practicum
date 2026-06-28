@@ -6,18 +6,32 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Abstractions.Services.Implementation;
 
-public class BookingService(IBookingRepository bookingRepository, ILogger<BookingService> logger, IEventService eventService) : IBookingService
+public class BookingService(IBookingRepository bookingRepository, ILogger<BookingService> logger, IEventService eventService, IUserService userService) : IBookingService
 {
     private readonly SemaphoreSlim _processingSemaphore = new(1, 1);
     private readonly SemaphoreSlim _createBookingSemaphore = new(1, 1);
+    private const int BookingPerEventLimit = 10;
     
-    public async Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId)
+    public async Task<Domain.Entities.Booking> CreateBookingAsync(Guid eventId, Guid userId)
     {
-            var eventItem = await eventService.GetEntityByIdAsync(eventId);
             try
             {
                 await _createBookingSemaphore.WaitAsync();
                 
+                var eventItem = await eventService.GetEntityByIdAsync(eventId);
+
+                if (eventItem.StartAt <= DateTime.UtcNow)
+                {
+                    throw new EventExpiredException("Event already started, booking is unavailable");
+                }
+                
+                var eventUserBookings = await bookingRepository.CountEventUserBookingsAsync(eventItem.Id, userId);
+
+                if (eventUserBookings == BookingPerEventLimit)
+                {
+                    throw new BookingLimitExceededException($"Booking limit exceeded. Only {BookingPerEventLimit} bookings available for each user per event");
+                }
+
                 if (!eventItem.TryReserveSeats())
                 {
                     throw new NoAvailableSeatsException("No available seats for this event");
@@ -28,12 +42,12 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
                     Id = Guid.NewGuid(),
                     CreatedAt = DateTime.UtcNow,
                     Status = BookingStatus.Pending,
-                    EventId = eventItem.Id
+                    EventId = eventItem.Id,
+                    UserId = userId
                 };
         
                await bookingRepository.AddAsync(booking);
-                
-                return booking;   
+               return booking;   
             }
             finally
             {
@@ -47,7 +61,7 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
         
         if (booking == null)
         {
-            throw new BookingNotFoundException($"Не удалось найти бронирование с идентификатором {booking}");
+            throw new BookingNotFoundException($"Не удалось найти бронирование с идентификатором {bookingId}");
         }
         
         return booking;
@@ -131,6 +145,45 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
         finally
         {
             _processingSemaphore.Release();
+        }
+    }
+
+    public async Task CancelBookingAsync(Guid bookingId, Guid userId)
+    {
+        var currentUser = await userService.GetUser(userId);
+        var booking = await bookingRepository.GetByIdAsync(bookingId);
+
+        if (booking == null)
+        {
+            throw new BookingNotFoundException($"Не удалось найти бронирование с идентификатором {bookingId}");
+        }
+
+        if (booking.Status == BookingStatus.Cancelled)
+        {
+            return;
+        }
+
+        ValidateBookingCancel(booking, currentUser);
+
+        booking.Cancel();
+        
+        var eventItem = await eventService.GetEntityByIdAsync(booking.EventId);
+        eventItem.ReleaseSeats();
+        await eventService.UpdateAsync(eventItem);
+        
+        await bookingRepository.SaveChangesAsync();
+    }
+
+    public void ValidateBookingCancel(Domain.Entities.Booking booking, Domain.Entities.User currentUser)
+    {
+        if (currentUser.Role == UserRole.Admin)
+        {
+            return;
+        }
+
+        if (booking.UserId != currentUser.Id)
+        {
+            throw new OperationNotAllowedException("This booking belongs to another user and cannot be canceled");
         }
     }
 }

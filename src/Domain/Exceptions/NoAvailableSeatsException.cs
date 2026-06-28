@@ -1,3 +1,3 @@
 namespace Domain.Exceptions;
 
-public class NoAvailableSeatsException(string message) : System.Exception(message);
+public class NoAvailableSeatsException(string message) : Exception(message);

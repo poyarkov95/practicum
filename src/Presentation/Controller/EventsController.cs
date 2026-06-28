@@ -1,24 +1,27 @@
+using System.Security.Claims;
 using Application.Abstractions.Mapper;
 using Application.Abstractions.Services.Interface;
 using Application.Common.DTOs;
 using Application.Event.DTOs;
 using Domain.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Presentation.Controller;
 
 [ApiController]
+[Authorize]
 [Route("[controller]")]
 public class EventsController(IEventService eventService, IBookingService bookingService) : ControllerBase
 {
     [HttpGet]
-    public IActionResult GetAll([FromQuery] string? title,
+    public async Task<IActionResult> GetAll([FromQuery] string? title,
         [FromQuery] DateTime? from,
         [FromQuery] DateTime? to,
         [FromQuery] int? page,
         [FromQuery] int? pageSize)
     {
-        return Ok(eventService.GetAllAsync(title, from, to, page, pageSize));
+        return Ok(await eventService.GetAllAsync(title, from, to, page, pageSize));
     }
 
     [HttpGet("{id:Guid}")]
@@ -28,15 +31,15 @@ public class EventsController(IEventService eventService, IBookingService bookin
     }
 
     [HttpPost]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(CreateEventDto newEvent)
     {
-        
-        
         var model = EventMapper.MapToEvent(newEvent);
         return CreatedAtAction(nameof(Create), await eventService.CreateAsync(model));
     }
 
     [HttpPut("{id:Guid}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Update(Guid id, CreateEventDto eventDto)
     {
         if (!ModelState.IsValid)
@@ -63,6 +66,7 @@ public class EventsController(IEventService eventService, IBookingService bookin
     }
 
     [HttpDelete("{id:Guid}")]
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(Guid id)
     {
         await eventService.DeleteAsync(id);
@@ -73,7 +77,8 @@ public class EventsController(IEventService eventService, IBookingService bookin
     [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
     public async Task<IActionResult> BookEvent(Guid id)
     {
-        var booking = await bookingService.CreateBookingAsync(id);
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var booking = await bookingService.CreateBookingAsync(id, Guid.Parse(userId));
         return AcceptedAtAction( actionName: nameof(BookingsController.GetBookingByIdAsync), controllerName:  nameof(BookingsController).Replace("Controller", ""), routeValues: new { id = booking.Id }, value: BookingMapper.MapToDto(booking));
     }
 }

@@ -37,6 +37,6 @@ public class DatabaseTestManager : IAsyncLifetime
     {
         await using var context = await CreateContext();
         await context.Database.ExecuteSqlRawAsync(
-            """TRUNCATE TABLE "Bookings", "Events" RESTART IDENTITY CASCADE""");
+            """TRUNCATE TABLE "Bookings", "Events", "Users" RESTART IDENTITY CASCADE""");
     }
 }

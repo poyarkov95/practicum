@@ -31,7 +31,7 @@ public class BookingWorker(ILogger<BookingWorker> logger, IServiceScopeFactory s
                     pendingBookings.Select(booking => bookingService.ProcessBookingAsync(booking, stoppingToken));
                 await Task.WhenAll(tasks);
             }
-            catch (System.Exception ex)
+            catch (Exception ex)
             {
                 logger.LogError(ex, "Ошибка при обработке бронирования");
             }

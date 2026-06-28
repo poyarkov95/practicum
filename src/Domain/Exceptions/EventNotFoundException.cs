@@ -1,3 +1,3 @@
 namespace Domain.Exceptions;
 
-public class EventNotFoundException(string message) : System.Exception(message);
+public class EventNotFoundException(string message) : Exception(message);

@@ -1,7 +1,0 @@
-﻿services:
-  userapplication:
-    image: userapplication
-    build:
-      context: .
-      dockerfile: UserApplication/Dockerfile
-

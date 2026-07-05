@@ -3,8 +3,8 @@ using System.Security.Claims;
 using System.Text;
 using Application.Services.Interface;
 using Application.User;
+using Common.Settings;
 using Domain.Entities;
-using Infrastructure.Settings;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 

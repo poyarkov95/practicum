@@ -1,8 +1,8 @@
 using System.Security.Claims;
 using Application.Abstractions.Mapper;
+using Application.Abstractions.Services.Interface;
 using Application.Common.DTOs;
 using Application.Events.DTOs;
-using Application.Services.Interface;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -70,16 +70,6 @@ public class EventsController(IEventService eventService) : ControllerBase
     public async Task<IActionResult> Delete(Guid id)
     {
         await eventService.DeleteAsync(id);
-        return Ok();
-    }
-    
-    [HttpPost("{id:Guid}/book")]
-    [ProducesResponseType(typeof(ProblemDetails), StatusCodes.Status409Conflict)]
-    public async Task<IActionResult> BookEvent(Guid id)
-    {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        //var booking = await bookingService.CreateBookingAsync(id, Guid.Parse(userId));
-        // return AcceptedAtAction( actionName: nameof(BookingsController.GetBookingByIdAsync), controllerName:  nameof(BookingsController).Replace("Controller", ""), routeValues: new { id = booking.Id }, value: BookingMapper.MapToDto(booking));
         return Ok();
     }
 }

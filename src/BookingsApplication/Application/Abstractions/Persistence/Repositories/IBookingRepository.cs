@@ -30,5 +30,5 @@ public interface IBookingRepository
     /// <summary>
     /// Посчитать кол-во броней на одно событие у пользователя
     /// </summary>
-    Task<int> CountEventUserBookingsAsync(Guid eventId, Guid userId);
+    Task<int> CountEventUserBookingsAsync(Guid userId);
 }

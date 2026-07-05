@@ -29,16 +29,12 @@ public class Booking
     /// Идентификатор события, к которому относится бронь
     /// </summary>
     public Guid EventId { get; set; }
-
-    // public Event Event { get; set; }
     
     /// <summary>
     /// Уникальный идентификатор пользователя, создашего бронь
     /// </summary>
     public Guid UserId { get; set; }
     
-    // public User User { get; set; }
-
     /// <summary>
     /// Метод смены статуса на BookingStatus.Confirmed
     /// </summary>

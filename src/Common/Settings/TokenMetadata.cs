@@ -1,4 +1,4 @@
-namespace Infrastructure.Settings;
+namespace Common.Settings;
 
 public class TokenMetadata
 {

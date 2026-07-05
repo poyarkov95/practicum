@@ -1,5 +1,6 @@
-using Application.Services.Implementation;
-using Application.Services.Interface;
+using Application.Abstractions.Services.Hosted;
+using Application.Abstractions.Services.Implementation;
+using Application.Abstractions.Services.Interface;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Application.Extensions;
@@ -13,5 +14,8 @@ public static class ServiceRegistration
     {
         // Регистрация сервисов
         services.AddScoped<IEventService, EventService>();
+        
+        // Hosted сервисы
+        services.AddHostedService<EventWorker>();
     }
 }

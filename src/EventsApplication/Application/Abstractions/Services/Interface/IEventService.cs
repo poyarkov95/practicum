@@ -1,7 +1,8 @@
 using Application.Common.DTOs;
 using Application.Events.DTOs;
+using Common.DomainEvents;
 
-namespace Application.Services.Interface;
+namespace Application.Abstractions.Services.Interface;
 
 public interface IEventService
 {
@@ -44,4 +45,9 @@ public interface IEventService
     /// </summary>
     /// <param name="id"></param>
     Task DeleteAsync(Guid id);
+
+    /// <summary>
+    /// Обработать доменное событие создания брони 
+    /// </summary>
+    Task ProcessCreatedBooking(BookingCreatedDomainEvent booking, CancellationToken token);
 }

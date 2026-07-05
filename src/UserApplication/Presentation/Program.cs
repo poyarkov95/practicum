@@ -2,10 +2,10 @@ using System.Reflection;
 using System.Security.Claims;
 using System.Text;
 using Application.Common.DTOs;
+using Common.Settings;
 using Presentation.Extensions;
 using Infrastructure;
 using Infrastructure.Persistence;
-using Infrastructure.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -73,7 +73,6 @@ builder.Services.AddControllers(
 
 
 builder.Services.AddInfrastructure(builder.Configuration);
-// builder.Services.AddApplication();
 
 var tokenConfiguration = builder.Configuration.GetSection("TokenMetadata");
 builder.Services.Configure<TokenMetadata>(tokenConfiguration);

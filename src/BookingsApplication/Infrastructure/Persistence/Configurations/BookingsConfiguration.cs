@@ -33,10 +33,6 @@ public class BookingsConfiguration : IEntityTypeConfiguration<Booking>
             .IsRequired()
             .HasComment("Уникальный идентификатор пользователя, создашего бронь");
         
-        // builder.HasOne(e => e.User)
-        //     .WithMany()
-        //     .HasForeignKey(o => o.UserId);
-        
         builder.HasIndex(b => b.UserId)
             .IsUnique(false);
     }

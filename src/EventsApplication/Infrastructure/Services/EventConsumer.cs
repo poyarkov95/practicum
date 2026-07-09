@@ -38,8 +38,7 @@ public class EventConsumer(IConsumer<Ignore, string> consumer,
                 {
                     var eventService = scope.ServiceProvider.GetRequiredService<IEventService>();
                     await eventService.ProcessCreatedBooking(bookingCreatedDomainEvent, cancellationToken);
-
-                    // Коммитим оффсет после успешной обработки
+                    
                     consumer.Commit(consumeResult);
                 }
             }
@@ -56,6 +55,8 @@ public class EventConsumer(IConsumer<Ignore, string> consumer,
 
     public async Task ProcessCancelledBookings(CancellationToken cancellationToken)
     {
+        await Task.Yield();
+        
         var topic = configuration.Value?.BookingCancelledTopic;
         
         consumer.Subscribe(topic);

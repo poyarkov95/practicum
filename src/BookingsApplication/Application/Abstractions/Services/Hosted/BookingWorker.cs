@@ -35,6 +35,10 @@ public class BookingWorker(ILogger<BookingWorker> logger, IServiceScopeFactory s
             {
                 logger.LogError(ex, "Ошибка при обработке бронирования");
             }
+            finally
+            {
+                await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
+            }
         }
 
         logger.LogInformation("BookingWorker остановлен");

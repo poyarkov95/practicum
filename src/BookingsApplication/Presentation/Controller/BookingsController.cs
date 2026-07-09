@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Presentation.Controller;
 
 [ApiController]
-// [Authorize]
+[Authorize]
 [Route("[controller]")]
 public class BookingsController(IBookingService bookingService) : ControllerBase
 {
@@ -16,8 +16,7 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
     public async Task<IActionResult> BookEvent(Guid id)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        // await bookingService.CreateBookingAsync(id, Guid.Parse(userId));
-        await bookingService.CreateBookingAsync(id, Guid.Parse("816c5295-f886-49e1-a86b-906d7f21b10b"));
+        await bookingService.CreateBookingAsync(id, Guid.Parse(userId));
         return Ok();
     }
     
@@ -32,7 +31,8 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
     public async Task<IActionResult> CancelBookingAsync(Guid id)
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-        await bookingService.CancelBookingAsync(id, Guid.Parse(userId));
+        var userRole = User.FindFirstValue(ClaimTypes.Role);
+        await bookingService.CancelBookingAsync(id,Guid.Parse(userId), userRole);
         return NoContent();
     }
 }

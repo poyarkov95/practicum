@@ -6,4 +6,9 @@ public interface IEventConsumer : IDisposable
     /// Чтение созданых бронирований из топика
     /// </summary>
     Task ProcessBookings(CancellationToken cancellationToken);
+    
+    /// <summary>
+    /// Чтение отмененных бронирований из топика
+    /// </summary>
+    Task ProcessCancelledBookings(CancellationToken cancellationToken);
 }

@@ -30,5 +30,5 @@ public interface IBookingService
     /// <summary>
     /// Метод удаления бронирования
     /// </summary>
-    Task CancelBookingAsync(Guid bookingId, Guid userId);
+    Task CancelBookingAsync(Guid bookingId, Guid userId, string userRole);
 }

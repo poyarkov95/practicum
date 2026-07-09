@@ -50,4 +50,9 @@ public interface IEventService
     /// Обработать доменное событие создания брони 
     /// </summary>
     Task ProcessCreatedBooking(BookingCreatedDomainEvent booking, CancellationToken token);
+    
+    /// <summary>
+    /// Обработать доменное событие отмены брони
+    /// </summary>
+    Task ProcessCancelledBooking(BookingCancelledDomainEvent booking, CancellationToken token);
 }

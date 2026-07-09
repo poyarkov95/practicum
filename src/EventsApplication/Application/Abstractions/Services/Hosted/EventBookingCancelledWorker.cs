@@ -5,11 +5,11 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Abstractions.Services.Hosted;
 
-public class EventWorker(ILogger<EventWorker> logger, IServiceScopeFactory scopeFactory) : BackgroundService
+public class EventBookingCancelledWorker(ILogger<EventBookingCancelledWorker> logger, IServiceScopeFactory scopeFactory) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        logger.LogInformation("EventWorker запущен");
+        logger.LogInformation("EventBookingCancelledWorker запущен");
 
         while (!stoppingToken.IsCancellationRequested)
         {
@@ -17,14 +17,14 @@ public class EventWorker(ILogger<EventWorker> logger, IServiceScopeFactory scope
             {
                 await using var scope = scopeFactory.CreateAsyncScope();
                 var eventConsumer = scope.ServiceProvider.GetRequiredService<IEventConsumer>();
-                await eventConsumer.ProcessBookings(stoppingToken);
+                await eventConsumer.ProcessCancelledBookings(stoppingToken);
             }
             catch (Exception ex)
             {
-                logger.LogError(ex, "Ошибка при работе EventConsumer");
+                logger.LogError(ex, "Ошибка при работе EventBookingCancelledWorker");
             }
         }
 
-        logger.LogInformation("EventWorker остановлен");
+        logger.LogInformation("EventBookingCancelledWorker остановлен");
     }
 }

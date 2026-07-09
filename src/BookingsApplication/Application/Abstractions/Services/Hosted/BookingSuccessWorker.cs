@@ -18,7 +18,6 @@ public class BookingSuccessWorker(ILogger<BookingSuccessWorker> logger, IService
                 await using var scope = scopeFactory.CreateAsyncScope();
                 var eventConsumer = scope.ServiceProvider.GetRequiredService<IBookingConsumer>();
                 await eventConsumer.ProcessSuccessfulBookings(stoppingToken);
-                
             }
             catch (Exception ex)
             {

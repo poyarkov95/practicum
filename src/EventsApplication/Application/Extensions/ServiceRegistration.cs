@@ -17,5 +17,6 @@ public static class ServiceRegistration
         
         // Hosted сервисы
         services.AddHostedService<EventWorker>();
+        services.AddHostedService<EventBookingCancelledWorker>();
     }
 }

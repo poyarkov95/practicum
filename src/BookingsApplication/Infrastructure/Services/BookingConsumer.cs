@@ -10,37 +10,48 @@ using Microsoft.Extensions.Options;
 
 namespace Infrastructure.Services;
 
-public class BookingConsumer(IConsumer<Ignore, string> consumer,
+public class BookingConsumer(
+    IConsumer<Ignore, string> consumer,
     IOptions<KafkaConsumerConfiguration> configuration,
-    IServiceProvider serviceProvider, ILogger<BookingConsumer> logger) : IBookingConsumer
+    IServiceProvider serviceProvider,
+    ILogger<BookingConsumer> logger) : IBookingConsumer
 {
     public async Task ProcessSuccessfulBookings(CancellationToken cancellationToken)
     {
-        var topic =  configuration.Value?.BookingProcessedSuccessfullyTopic;
-        consumer.Subscribe(topic);
+        await Task.Yield();
         
-        while (!cancellationToken.IsCancellationRequested)
-        {
-            try
-            {
-                var consumeResult = consumer.Consume(cancellationToken);
-                var bookingCreatedDomainEvent = JsonSerializer.Deserialize<BookingProcessedDomainEvent>(consumeResult.Message.Value);
+        var topic = configuration.Value?.BookingProcessedSuccessfullyTopic;
+        consumer.Subscribe(topic);
 
-                using (var scope = serviceProvider.CreateScope())
-                {
-                    var bookingRepository = scope.ServiceProvider.GetRequiredService<IBookingRepository>();
-                    var booking = await bookingRepository.GetByIdAsync(bookingCreatedDomainEvent.BookingId);
-                    booking.Confirm();
-                    booking.ProcessedAt = bookingCreatedDomainEvent.ProcessedAt;
-                    await bookingRepository.SaveChangesAsync();
-                    
-                    consumer.Commit(consumeResult);
-                }
-            }
-            catch (Exception ex)
+        try
+        {
+            var consumeResult = consumer.Consume(cancellationToken);
+            var bookingCreatedDomainEvent =
+                JsonSerializer.Deserialize<BookingProcessedDomainEvent>(consumeResult.Message.Value);
+
+            if (bookingCreatedDomainEvent == null)
             {
-                logger.LogError(ex, $"Error processing topic: {topic}");
+                return;
             }
+
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var bookingRepository = scope.ServiceProvider.GetRequiredService<IBookingRepository>();
+                var booking = await bookingRepository.GetByIdAsync(bookingCreatedDomainEvent.BookingId);
+                booking.Confirm();
+                booking.ProcessedAt = bookingCreatedDomainEvent.ProcessedAt;
+                await bookingRepository.SaveChangesAsync();
+
+                consumer.Commit(consumeResult);
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, $"Error processing topic : {topic}.  {ex.Message}");
+        }
+        finally
+        {
+            await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
         }
     }
 
@@ -48,29 +59,36 @@ public class BookingConsumer(IConsumer<Ignore, string> consumer,
     {
         var topic = configuration.Value?.BookingProcessedUnsuccessfullyTopic;
         consumer.Subscribe(topic);
-        
-        while (!cancellationToken.IsCancellationRequested)
-        {
-            try
-            {
-                var consumeResult = consumer.Consume(cancellationToken);
-                var bookingCreatedDomainEvent = JsonSerializer.Deserialize<BookingProcessedDomainEvent>(consumeResult.Message.Value);
 
-                using (var scope = serviceProvider.CreateScope())
-                {
-                    var bookingRepository = scope.ServiceProvider.GetRequiredService<IBookingRepository>();
-                    var booking = await bookingRepository.GetByIdAsync(bookingCreatedDomainEvent.BookingId);
-                    booking.Reject();
-                    booking.ProcessedAt = bookingCreatedDomainEvent.ProcessedAt;
-                    await bookingRepository.SaveChangesAsync();
-                    
-                    consumer.Commit(consumeResult);
-                }
-            }
-            catch (Exception ex)
+        try
+        {
+            var consumeResult = consumer.Consume(cancellationToken);
+            var bookingCreatedDomainEvent =
+                JsonSerializer.Deserialize<BookingProcessedDomainEvent>(consumeResult.Message.Value);
+
+            if (bookingCreatedDomainEvent == null)
             {
-                logger.LogError(ex, $"Error processing topic: {topic}");
+                return;
             }
+
+            using (var scope = serviceProvider.CreateScope())
+            {
+                var bookingRepository = scope.ServiceProvider.GetRequiredService<IBookingRepository>();
+                var booking = await bookingRepository.GetByIdAsync(bookingCreatedDomainEvent.BookingId);
+                booking.Reject();
+                booking.ProcessedAt = bookingCreatedDomainEvent.ProcessedAt;
+                await bookingRepository.SaveChangesAsync();
+
+                consumer.Commit(consumeResult);
+            }
+        }
+        catch (Exception ex)
+        {
+            logger.LogError(ex, $"Error processing topic : {topic}.  {ex.Message}");
+        }
+        finally
+        {
+            await Task.Delay(TimeSpan.FromSeconds(5), cancellationToken);
         }
     }
 

@@ -83,34 +83,13 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
             await Task.Delay(TimeSpan.FromSeconds(2), stoppingToken);
             await _processingSemaphore.WaitAsync(stoppingToken);
             
+            await producer.PublishBookingCreated(booking, stoppingToken);
+            
             //помечаем, чтобы воркер не захватывал это бронирование
             booking.Confirm();
             await SaveProcessedBookingAsync(booking);
-            
-            await producer.PublishBookingCreated(booking, stoppingToken);
-            
-            //Domain.Entities.Event eventItem;
 
-            // try
-            // {
-            //     eventItem = await eventService.GetEntityByIdAsync(booking.EventId);
-            // }
-            // catch (EventNotFoundException)
-            // {
-            //     booking.Reject();
-            //     booking.ProcessedAt = DateTime.UtcNow;
-            //     await SaveProcessedBookingAsync(booking);
-            //
-            //     logger.LogWarning(
-            //         "Обработка бронирования {Id} для события {EventId} прошла неудачно. Событие не найдено",
-            //         booking.Id, booking.EventId);
-            //
-            //     return;
-            // 
-            //await eventService.UpdateAsync(eventItem);
-
-            logger.LogInformation(
-                "Бронирование {Id} обработано успешно", booking.Id);
+            logger.LogInformation("Бронирование {Id} обработано успешно", booking.Id);
         }
         catch (OperationCanceledException) when (stoppingToken.IsCancellationRequested)
         {
@@ -125,10 +104,6 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
             booking.Reject();
             booking.ProcessedAt = DateTime.UtcNow;
             await SaveProcessedBookingAsync(booking);
-
-            // var eventItem = await eventService.GetEntityByIdAsync(booking.EventId);
-            // eventItem.ReleaseSeats();
-            // await eventService.UpdateAsync(eventItem);
         }
         finally
         {
@@ -136,44 +111,39 @@ public class BookingService(IBookingRepository bookingRepository, ILogger<Bookin
         }
     }
 
-    public async Task CancelBookingAsync(Guid bookingId, Guid userId)
+    public async Task CancelBookingAsync(Guid bookingId, Guid userId, string userRole)
     {
-        // var currentUser = await userService.GetUser(userId);
-        // var booking = await bookingRepository.GetByIdAsync(bookingId);
-        //
-        // if (booking == null)
-        // {
-        //     throw new BookingNotFoundException($"Не удалось найти бронирование с идентификатором {bookingId}");
-        // }
-        //
-        // if (booking.Status == BookingStatus.Cancelled)
-        // {
-        //     return;
-        // }
-        //
-        // ValidateBookingCancel(booking, currentUser);
-        //
-        // booking.Cancel();
-        //
-        // var eventItem = await eventService.GetEntityByIdAsync(booking.EventId);
-        // eventItem.ReleaseSeats();
-        // await eventService.UpdateAsync(eventItem);
-        //
-        // await bookingRepository.SaveChangesAsync();
+         var booking = await bookingRepository.GetByIdAsync(bookingId);
+        
+         if (booking == null)
+         {
+             throw new BookingNotFoundException($"Не удалось найти бронирование с идентификатором {bookingId}");
+         }
+        
+         if (booking.Status == BookingStatus.Cancelled)
+         {
+             return;
+         }
+        
+         ValidateBookingCancel(booking, userId, userRole);
+        
+         await producer.PublishBookingCancelled(booking, new CancellationToken());
+         
+         booking.Cancel();
+        
+         await bookingRepository.SaveChangesAsync();
     }
 
-    public void ValidateBookingCancel(Booking booking
-        // , Domain.Entities.User currentUser
-        )
+    public void ValidateBookingCancel(Booking booking, Guid userId, string userRole)
     {
-        // if (currentUser.Role == UserRole.Admin)
-        // {
-        //     return;
-        // }
-        //
-        // if (booking.UserId != currentUser.Id)
-        // {
-        //     throw new OperationNotAllowedException("This booking belongs to another user and cannot be canceled");
-        // }
+        if (userRole == "Admin")
+        {
+            return;
+        }
+        
+        if (booking.UserId != userId)
+        {
+            throw new OperationNotAllowedException("This booking belongs to another user and cannot be canceled");
+        }
     }
 }

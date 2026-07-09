@@ -112,6 +112,22 @@ public class EventService(IEventRepository eventRepository, IEventProducer produ
              return;
          }
         
+         await producer.PublishBookingProcessedSuccessfully(booking, token);
          await eventRepository.UpdateAsync(eventItem);
+    }
+
+    public async Task ProcessCancelledBooking(BookingCancelledDomainEvent booking, CancellationToken token)
+    {
+        var eventItem = await eventRepository.GetByIdAsync(booking.EventId);
+
+        if (eventItem == null)
+        {
+            logger.LogError($"Не удалось найти событие с идентификатором {booking.EventId}");
+            return;
+        }
+        
+        eventItem.ReleaseSeats();
+        
+        await eventRepository.UpdateAsync(eventItem);
     }
 }

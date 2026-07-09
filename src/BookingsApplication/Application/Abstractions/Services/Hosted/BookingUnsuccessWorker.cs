@@ -5,10 +5,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Application.Abstractions.Services.Hosted;
 
-public class BookingUnsuccessWorker(ILogger<BookingSuccessWorker> logger, IServiceScopeFactory scopeFactory) : BackgroundService
+public class BookingUnsuccessWorker(ILogger<BookingUnsuccessWorker> logger, IServiceScopeFactory scopeFactory) : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
+        await Task.Yield();
+        
         logger.LogInformation("BookingUnsuccessWorker запущен");
 
         while (!stoppingToken.IsCancellationRequested)
@@ -19,6 +21,7 @@ public class BookingUnsuccessWorker(ILogger<BookingSuccessWorker> logger, IServi
                 var eventConsumer = scope.ServiceProvider.GetRequiredService<IBookingConsumer>();
                 await eventConsumer.ProcessUnsuccessfulBookings(stoppingToken);
                 
+                await Task.Delay(TimeSpan.FromSeconds(5), stoppingToken);
             }
             catch (Exception ex)
             {

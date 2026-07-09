@@ -33,6 +33,27 @@ public class BookingProducer(ILogger<BookingProducer> logger, IOptions<KafkaConf
         }
     }
 
+    public async Task PublishBookingCancelled(Booking booking, CancellationToken ct)
+    {
+        var message = new Message<Null, string>
+        {
+            Value = JsonSerializer.Serialize(new BookingCancelledDomainEvent
+            {
+                EventId = booking.EventId
+            })
+        };
+        
+        try
+        {
+            await producer.ProduceAsync(configuration.Value?.BookingCancelledTopic, message, ct);
+        }
+        catch (ProduceException<Null, string> ex)
+        {
+            logger.LogError(ex, "Failed to publish BookingCancelled event");
+            throw;
+        }
+    }
+
     public void Dispose()
     {
         producer.Dispose();

@@ -17,14 +17,7 @@ public interface IEventService
     /// </summary>
     /// <param name="id"></param>
     /// <returns>Возвращает событие</returns>
-    Task<EventInfoDto> GetByIdAsync(Guid id);
-    
-    /// <summary>
-    /// Получить событие из хранилища событие по идентификатору
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns>Возвращает событие</returns>
-    Task<Domain.Entities.Event> GetEntityByIdAsync(Guid id);
+    Task<EventInfoDto> GetByIdAsync(Guid id, CancellationToken cancellationToken);
     
     /// <summary>
     /// Создать событие
@@ -55,4 +48,14 @@ public interface IEventService
     /// Обработать доменное событие отмены брони
     /// </summary>
     Task ProcessCancelledBooking(BookingCancelledDomainEvent booking, CancellationToken token);
+    
+    /// <summary>
+    /// Получить топ-10 событий по забронированным местам
+    /// </summary>
+    Task<ICollection<TopEventDto>> GetTop10Events(CancellationToken token);
+    
+    /// <summary>
+    /// Инвалидировать кэш при измененнии события
+    /// </summary>
+    Task InvalidateEventCacheAsync(Guid eventId, CancellationToken token = default(CancellationToken));
 }

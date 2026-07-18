@@ -1,4 +1,3 @@
-using System.Security.Claims;
 using Application.Abstractions.Mapper;
 using Application.Abstractions.Services.Interface;
 using Application.Common.DTOs;
@@ -25,9 +24,9 @@ public class EventsController(IEventService eventService) : ControllerBase
     }
 
     [HttpGet("{id:Guid}")]
-    public async Task<IActionResult> GetById(Guid id)
+    public async Task<IActionResult> GetById(Guid id, CancellationToken cancellationToken)
     {
-        return Ok(await eventService.GetByIdAsync(id));
+        return Ok(await eventService.GetByIdAsync(id, cancellationToken));
     }
 
     [HttpPost]
@@ -71,5 +70,12 @@ public class EventsController(IEventService eventService) : ControllerBase
     {
         await eventService.DeleteAsync(id);
         return Ok();
+    }
+    
+    [HttpGet("top10-events")]
+    public async Task<IActionResult> GetTop10Events(CancellationToken ct)
+    {
+        var events = await eventService.GetTop10Events(ct);
+        return Ok(events);
     }
 }

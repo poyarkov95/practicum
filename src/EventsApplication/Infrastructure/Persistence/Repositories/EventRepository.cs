@@ -58,6 +58,14 @@ public class EventRepository(AppDbContext db) : IEventRepository
         await db.SaveChangesAsync();
     }
 
+    public async Task<ICollection<Event>> GetTop10Events()
+    {
+        return await db.Events
+            .OrderByDescending(e => (e.TotalSeats - e.AvailableSeats) / (double)e.TotalSeats)
+            .Take(10)
+            .ToListAsync(); 
+    }
+
     private IQueryable<Event> PrepareQuery(string? title = null, DateTime? from = null, DateTime? to = null)
     {
         var query = db.Events.AsQueryable();

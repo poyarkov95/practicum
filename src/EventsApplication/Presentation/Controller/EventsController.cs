@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Presentation.Controller;
 
 [ApiController]
-[Authorize]
+//[Authorize]
 [Route("[controller]")]
 public class EventsController(IEventService eventService) : ControllerBase
 {
@@ -30,7 +30,7 @@ public class EventsController(IEventService eventService) : ControllerBase
     }
 
     [HttpPost]
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public async Task<IActionResult> Create(CreateEventDto newEvent)
     {
         var model = EventMapper.MapToEvent(newEvent);

@@ -4,6 +4,7 @@
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AAuthenticationMiddleware_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003Ff8ca5be75154b04f70b1cca13ec3aa13db1047937aafc852e21fc8f50d822d8_003FAuthenticationMiddleware_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003AAuthenticationService_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003F51134c3ed57a1eb110f1ffec97fb7cecd8ee8eff54373e3a5ea4083ec36c38f_003FAuthenticationService_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ABackgroundService_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003F99e8bc77d296dbfa0f7a2456d5ae46ce4fe6113f975e32755c54f64bd5a39c_003FBackgroundService_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ACallSiteFactory_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003F51986e38149d7168a48244177b10e8ce2c0faf1d4b35fbbeaf26cb3d652320_003FCallSiteFactory_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ACallSiteFactory_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003Ffc2027f7e776fc105cddb56b1a25eeb3895b3ae6f3aac854d786e63bd01f75e2_003FCallSiteFactory_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ACallSiteRuntimeResolver_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003F3751f63369d883c5ea470ed57be8df2515b62dde23c49b86e1bbaf8c27b_003FCallSiteRuntimeResolver_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ACallSiteVisitor_002Ecs_002Fl_003A_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003F_002E_002E_003FLibrary_003FApplication_0020Support_003FJetBrains_003FRider2025_002E3_003Fresharper_002Dhost_003FSourcesCache_003Ff789418437d3db4a3ae92758c424f20616c8716db4a4c98e740af36d4cde1_003FCallSiteVisitor_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
@@ -58,7 +59,26 @@
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=483f2d62_002De17f_002D4fe6_002Dbbfd_002Dee5815dac9c0/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BookingLimitExceededTest #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
-    &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.BookingLimitExceededTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.EventServiceTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5b0cdb1c_002D8958_002D4164_002D8f36_002D5b62c79faf45/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="EventServiceTest #3" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.EventServiceTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.CacheServiceTest.GetDataFromCacheTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=5fef88a4_002D44e8_002D4f57_002D843d_002D22c84840ad95/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="EventServiceTest #4" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.EventServiceTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.CacheServiceTest.GetDataFromCacheTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.CacheServiceTest.GetDataFromRepositoryTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.CacheServiceTest.InvalidateCacheTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=72dd3e08_002D7022_002D413f_002Db2e3_002Dee780aeb3449/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="EventServiceTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.EventServiceTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=75981606_002D9f32_002D4c1f_002Dba6a_002D3e99efb5f76b/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BookingLimitExceededTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -86,6 +106,11 @@
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.BookingChangeStatusMethodsTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=a05281c9_002D0e22_002D4feb_002Db99e_002D1e00b56d0bd3/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="EventServiceTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.EventServiceTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ad4b9f0f_002Da3c3_002D4581_002Dab18_002D02f055e875df/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BookingLimitExceededTest #5" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.BookingLimitExceededTest&lt;/TestId&gt;
@@ -94,6 +119,11 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=c5ac632d_002D1c65_002D41a4_002D911d_002D8c7c2352a617/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="BookingLimitExceededTest #6" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::124C91E7-73C6-40B1-AFCB-851CD78D31F4::net9.0::EventApplication.Tests.BookingServiceTest.BookingLimitExceededTest&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=cd8b4a43_002D1478_002D4c3e_002Db4e0_002D7885b67992da/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="CreateEventTest" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.EventServiceTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=d0a5f416_002D6872_002D47a9_002D87c8_002Df6c13479f361/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Session" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
@@ -133,5 +163,6 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=f8ba6b64_002D9ad3_002D4f49_002D8b56_002Dd394958d88b9/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="All tests from &amp;lt;EventApplication.Tests&amp;gt;" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;Solution /&gt;
 &lt;/SessionState&gt;</s:String>
+	
 	
 	</wpf:ResourceDictionary>

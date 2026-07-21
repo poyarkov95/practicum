@@ -152,7 +152,6 @@ builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
                            ?? builder.Configuration["Redis:ConnectionString"];
 
     var options = ConfigurationOptions.Parse(connectionString);
-    options.Password = cacheTtlConfiguration["Password"];
     options.AbortOnConnectFail = false;
     options.ConnectTimeout = 10000;
     options.SyncTimeout = 10000;

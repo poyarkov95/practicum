@@ -72,6 +72,7 @@ public class EventsController(IEventService eventService) : ControllerBase
         return Ok();
     }
     
+    [AllowAnonymous]
     [HttpGet("top10-events")]
     public async Task<IActionResult> GetTop10Events(CancellationToken ct)
     {

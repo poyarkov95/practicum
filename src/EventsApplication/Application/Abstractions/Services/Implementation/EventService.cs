@@ -162,7 +162,7 @@ public class EventService(IEventRepository eventRepository,
         await cacheService.SetAsync(
             cacheKey,
             events,
-            TimeSpan.FromSeconds(cacheSettings.Value.EventCacheTTLSeconds),
+            TimeSpan.FromSeconds(cacheSettings.Value.TopEventsCacheTTLSeconds),
             token);
 
         return events.Select(EventMapper.MapToTop10Event).ToList();

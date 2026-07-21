@@ -74,6 +74,7 @@
     &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.CacheServiceTest.GetDataFromCacheTest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.CacheServiceTest.GetDataFromRepositoryTest&lt;/TestId&gt;
     &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.CacheServiceTest.InvalidateCacheTest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::C1089EA6-FE5A-4E84-AD3C-ED866D72C0BF::net9.0::UnitTests.CacheServiceTest&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=72dd3e08_002D7022_002D413f_002Db2e3_002Dee780aeb3449/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="EventServiceTest #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;

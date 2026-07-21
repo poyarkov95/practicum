@@ -68,13 +68,6 @@ public class CacheServiceTest
             StartAt = new DateTime(2020, 01, 01),
             EndAt = new DateTime(2020, 01, 31)
         };
-        
-        _eventRepository
-            .Setup(x => x.CreateAsync(
-                It.Is<Event>(e => e.Title == _testEvent.Title && e.Description == _testEvent.Description)))
-            .ReturnsAsync(_testEvent);
-        
-        Task.Run(() => _eventService.CreateAsync(_testEvent)).GetAwaiter().GetResult();
     }
     
     [Fact]
@@ -86,12 +79,19 @@ public class CacheServiceTest
         var eventItem = await _eventService.GetByIdAsync(_testEvent.Id, CancellationToken.None);
         _eventRepository.Verify(
             x => x.GetByIdAsync(It.IsAny<Guid>()),
-            Times.Once);
+            Times.Never);
     }
     
     [Fact]
     public async Task GetDataFromRepositoryTest()
     {
+        _eventRepository
+            .Setup(x => x.CreateAsync(
+                It.Is<Event>(e => e.Title == _testEvent.Title && e.Description == _testEvent.Description)))
+            .ReturnsAsync(_testEvent);
+        
+        Task.Run(() => _eventService.CreateAsync(_testEvent)).GetAwaiter().GetResult();
+        
         _cacheService
             .Setup(x => x.GetAsync<Event>($"event:{_testEvent.Id}", It.IsAny<CancellationToken>()))
             .ReturnsAsync(Task.FromResult<Event?>(null).Result);

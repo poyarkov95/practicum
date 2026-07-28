@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -141,6 +142,28 @@ builder.Services.Configure<KafkaConfiguration>(kafkaConfiguration);
 
 var kafkaConsumerConfiguration = builder.Configuration.GetSection("KafkaConfiguration");
 builder.Services.Configure<KafkaConsumerConfiguration>(kafkaConsumerConfiguration);
+
+var cacheTtlConfiguration = builder.Configuration.GetSection("CacheSettings");
+builder.Services.Configure<CacheSettings>(cacheTtlConfiguration);
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+{
+    var connectionString = builder.Configuration.GetConnectionString("Redis")
+                           ?? builder.Configuration["Redis:ConnectionString"];
+
+    var options = ConfigurationOptions.Parse(connectionString);
+    options.AbortOnConnectFail = false;
+    options.ConnectTimeout = 10000;
+    options.SyncTimeout = 10000;
+
+    return ConnectionMultiplexer.Connect(options);
+});
+
+builder.Services.AddScoped<IDatabase>(sp =>
+{
+    var multiplexer = sp.GetRequiredService<IConnectionMultiplexer>();
+    return multiplexer.GetDatabase();
+});
 
 var app = builder.Build();
 

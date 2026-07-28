@@ -42,4 +42,9 @@ public interface IEventRepository
     /// </summary>
     /// <param name="id"></param>
     Task DeleteAsync(Event eventItem);
+
+    /// <summary>
+    /// Получить топ-10 событий по забронированным местам
+    /// </summary>
+    Task<ICollection<Event>> GetTop10Events();
 }

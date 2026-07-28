@@ -35,4 +35,14 @@ public static class EventMapper
             AvailableSeats = eventItem.TotalSeats ?? 0
         };
     }
+    
+    public static TopEventDto MapToTop10Event(Event eventItem)
+    {
+        return new TopEventDto
+        {
+            Id = eventItem.Id,
+            Title = eventItem.Title,
+            Description = eventItem.Description,
+        };
+    }
 }
